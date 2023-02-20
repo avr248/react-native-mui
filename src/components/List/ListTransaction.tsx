@@ -3,9 +3,10 @@ import {
   FlexAlignType,
   GestureResponderEvent,
   StyleProp,
+  TextStyle,
   View,
-  ViewStyle,
-  TextStyle
+  Text,
+  ViewStyle
 } from 'react-native';
 import { withInternalTheme } from '../../core/theming';
 import type {
@@ -14,8 +15,9 @@ import type {
   InternalTheme,
 } from '../../types';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
-import Text from '../Typography/Text';
 import { vis } from '../../index';
+import TextTicker from 'react-native-text-ticker';
+
 interface Style {
   marginLeft?: number;
   marginRight?: number;
@@ -24,25 +26,26 @@ interface Style {
 }
 
 export type Props = $RemoveChildren<typeof TouchableRipple> & {
-    amount: string;
-    date: Array<string>;
-    time: Array<string>;
-    dateStyle?: StyleProp<TextStyle>;
-    timeStyle?: StyleProp<TextStyle>;
-    onPress?: (e: GestureResponderEvent) => void;
-    right?: (props: { color: string; style?: Style }) => React.ReactNode;
-    direction?: any;
-    description?: any;
-    theme: InternalTheme;
-    style?: StyleProp<ViewStyle>;
-    amountStyle?: StyleProp<TextStyle>;
-    descriptionStyle?: StyleProp<TextStyle>;
-    amountNumberOfLines?: number;
-    descriptionNumberOfLines?: number;
-    amountEllipsizeMode?: EllipsizeProp;
-    descriptionEllipsizeMode?: EllipsizeProp;
+  amount: string;
+  date: Array<string>;
+  time: Array<string>;
+  dateStyle?: StyleProp<TextStyle>;
+  timeStyle?: StyleProp<TextStyle>;
+  onPress?: (e: GestureResponderEvent) => void;
+  right?: (props: { color: string; style?: Style }) => React.ReactNode;
+  direction?: any;
+  description?: any;
+  theme: InternalTheme;
+  style?: StyleProp<ViewStyle>;
+  amountStyle?: StyleProp<TextStyle>;
+  descriptionStyle?: StyleProp<TextStyle>;
+  amountNumberOfLines?: number;
+  descriptionNumberOfLines?: number;
+  amountEllipsizeMode?: EllipsizeProp;
+  descriptionEllipsizeMode?: EllipsizeProp;
 };
-const ListLastCardTransaction = ({
+
+const ListLastTransaction = ({
     date,
     time,
     direction,
@@ -52,36 +55,40 @@ const ListLastCardTransaction = ({
     onPress,
     theme,
     style,
-    amountStyle,
     amountNumberOfLines = 1,
     descriptionNumberOfLines = 2,
     amountEllipsizeMode,
     descriptionEllipsizeMode,
     descriptionStyle,
+    amountStyle,
+    dateStyle,
+    timeStyle,
     ...rest
 }: Props) => {
+    let marqueeRef = React.useRef<TextTicker | null>(null);
+    const directionContainerStyle = [vis.w10, vis.row, vis.fc, vis.ac];
+    const amountContainerStyle = [vis.talRl, amountStyle];
     return (
-        <TouchableRipple {...rest} style={[vis.w100p, vis.row, vis.ac, vis.mb3]} onPress={onPress}>
-            <View style={[vis.w100pe, vis.rowRl, vis.sb, vis.as, vis.h40p]}>
-                <View style={[vis.rowRl, vis.fsRl, vis.ac, vis.w60pe, vis.h50p]}>
+        <TouchableRipple {...rest} style={[vis.w100, vis.row, vis.fc, vis.ac, vis.mb4]} onPress={onPress}>
+            <View style={[vis.w90, vis.rowRl, vis.sb, vis.ac, vis.h5]}>
+                <View style={directionContainerStyle}>
                     {direction}
-                    <View style={[!vis.isRTL ? vis.ml3 : [ vis.fs, vis.ae, vis.mr3, vis.w80pe]]}>
-                        <Text style={[vis.w100p, vis.talRl]}>{amount}</Text>
-                        <Text style={[vis.w100p, vis.talRl]}>{description}</Text>
-                    </View>
                 </View>
-                <View style={[vis.colRl, vis.fc, vis.h50p, !vis.isRTL ? vis.ae : vis.as]}>
-                    <View>
-                        <Text>{time}</Text>
-                    </View>
-                    <View>
-                        <Text>{date}</Text>
-                    </View> 
+                <View style={[vis.w50, vis.col, vis.h40p, vis.sb]}>
+                    <Text style={amountContainerStyle}>{amount}</Text>
+                    <TextTicker style={[vis.talRl, vis.fsRl, vis.w50, descriptionStyle]} duration={10000} isRTL={vis.isRTL.direction == 'rtl'} marqueeOnMount={false} ref={(c) => (marqueeRef.current = c) }>
+                        {description}
+                    </TextTicker>  
+                </View>
+                <View style={[vis.w20, vis.col, vis.h40p, vis.sb, vis.isRTL ? vis.ae : vis.as]}>
+                  <Text style={timeStyle}>{time}</Text>
+                  <Text style={dateStyle}>{date}</Text>
                 </View>       
             </View>
         </TouchableRipple>
     );
 };
 
-ListLastCardTransaction.displayName = 'List.LastCardTransaction';
-export default withInternalTheme(ListLastCardTransaction);
+ListLastTransaction.displayName = 'List.LastTransaction';
+
+export default withInternalTheme(ListLastTransaction);
