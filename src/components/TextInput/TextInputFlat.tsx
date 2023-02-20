@@ -11,7 +11,6 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import { useInternalTheme } from '../../core/theming';
 import { AdornmentSide, AdornmentType, InputMode } from './Adornment/enums';
 import TextInputAdornment, {
   TextInputAdornmentProps,
@@ -44,6 +43,7 @@ import {
 } from './helpers';
 import InputLabel from './Label/InputLabel';
 import type { ChildTextInputProps, RenderProps } from './types';
+import { useInternalTheme } from '../../core/theming';
 
 const TextInputFlat = ({
   disabled = false,

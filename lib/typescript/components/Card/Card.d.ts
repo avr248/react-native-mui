@@ -57,7 +57,7 @@ export declare type Props = React.ComponentProps<typeof Surface> & {
      */
     accessible?: boolean;
 };
-declare const _default: React.ComponentType<(Pick<OutlinedCardProps & Pick<import("../Surface").Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View> & {
+declare const _default: React.ComponentType<(Pick<OutlinedCardProps & Pick<import("../Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
     /**
      * Mode of the Card.
      * - `elevated` - Card with elevation.
@@ -98,7 +98,7 @@ declare const _default: React.ComponentType<(Pick<OutlinedCardProps & Pick<impor
      * Pass down accessible from card props to touchable
      */
     accessible?: boolean | undefined;
-}, "onPress" | "onLongPress" | keyof import("react-native").ViewProps | "delayLongPress" | keyof React.RefAttributes<View> | keyof OutlinedCardProps> | Pick<ElevatedCardProps & Pick<import("../Surface").Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View> & {
+}, keyof import("react-native").ViewProps | "onPress" | "onLongPress" | "delayLongPress" | keyof React.RefAttributes<View> | keyof OutlinedCardProps> | Pick<ElevatedCardProps & Pick<import("../Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
     /**
      * Mode of the Card.
      * - `elevated` - Card with elevation.
@@ -139,7 +139,7 @@ declare const _default: React.ComponentType<(Pick<OutlinedCardProps & Pick<impor
      * Pass down accessible from card props to touchable
      */
     accessible?: boolean | undefined;
-}, "onPress" | "onLongPress" | keyof import("react-native").ViewProps | "delayLongPress" | keyof React.RefAttributes<View> | keyof ElevatedCardProps> | Pick<ContainedCardProps & Pick<import("../Surface").Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View> & {
+}, keyof import("react-native").ViewProps | "onPress" | "onLongPress" | "delayLongPress" | keyof React.RefAttributes<View> | keyof ElevatedCardProps> | Pick<ContainedCardProps & Pick<import("../Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
     /**
      * Mode of the Card.
      * - `elevated` - Card with elevation.
@@ -180,9 +180,9 @@ declare const _default: React.ComponentType<(Pick<OutlinedCardProps & Pick<impor
      * Pass down accessible from card props to touchable
      */
     accessible?: boolean | undefined;
-}, "onPress" | "onLongPress" | keyof import("react-native").ViewProps | "delayLongPress" | keyof React.RefAttributes<View> | keyof ContainedCardProps>) & {
+}, keyof import("react-native").ViewProps | "onPress" | "onLongPress" | "delayLongPress" | keyof React.RefAttributes<View> | keyof ContainedCardProps>) & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
-}> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<(OutlinedCardProps | ElevatedCardProps | ContainedCardProps) & Pick<import("../Surface").Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View> & {
+}> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<(OutlinedCardProps | ElevatedCardProps | ContainedCardProps) & Pick<import("../Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
     /**
      * Mode of the Card.
      * - `elevated` - Card with elevation.
@@ -224,7 +224,7 @@ declare const _default: React.ComponentType<(Pick<OutlinedCardProps & Pick<impor
      */
     accessible?: boolean | undefined;
 }> & {
-    ({ elevation: cardElevation, onLongPress, delayLongPress, onPress, mode: cardMode, children, style, theme, testID, accessible, ...rest }: (OutlinedCardProps | ElevatedCardProps | ContainedCardProps) & Pick<import("../Surface").Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View> & {
+    ({ elevation: cardElevation, onLongPress, delayLongPress, onPress, mode: cardMode, children, style, theme, testID, accessible, ...rest }: (OutlinedCardProps | ElevatedCardProps | ContainedCardProps) & Pick<import("../Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
         /**
          * Mode of the Card.
          * - `elevated` - Card with elevation.

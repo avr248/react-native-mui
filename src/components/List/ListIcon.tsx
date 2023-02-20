@@ -14,7 +14,10 @@ export type Props = {
 };
 
 const ListIcon = ({ icon, color: iconColor, style, size, theme }: Props) => (
-  <View style={[theme.isV3 ? styles.itemV3 : styles.item, style]} pointerEvents="box-none">
+  <View
+    style={[theme.isV3 ? styles.itemV3 : styles.item, style]}
+    pointerEvents="box-none"
+  >
     <Icon source={icon} size={size || 12} color={iconColor} />
   </View>
 );

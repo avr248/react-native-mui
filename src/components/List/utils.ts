@@ -70,7 +70,6 @@ export const getLeftStyles = (
   };
 };
 
-
 export const getRightStyles = (
   alignToTop: boolean,
   description: Description,

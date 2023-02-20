@@ -12,6 +12,7 @@ import {
   ViewStyle,
 } from 'react-native';
 
+import { getChipColors } from './helpers';
 import { withInternalTheme } from '../../core/theming';
 import { white } from '../../styles/themes/v2/colors';
 import type { EllipsizeProp, InternalTheme } from '../../types';
@@ -21,7 +22,6 @@ import MaterialCommunityIcon from '../MaterialCommunityIcon';
 import Surface from '../Surface';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
 import Text from '../Typography/Text';
-import { getChipColors } from './helpers';
 
 export type Props = React.ComponentProps<typeof Surface> & {
   /**

@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { GestureResponderEvent, StyleProp, ViewStyle } from 'react-native';
 import type { IconSource } from '../Icon';
 export declare type Props = {

@@ -85,7 +85,7 @@ declare const _default: React.ComponentType<Pick<import("react-native").ViewProp
      * @optional
      */
     theme: InternalTheme;
-}, "source" | "size" | keyof import("react-native").ViewProps | "onError" | "onLoad" | "onLoadEnd" | "onLoadStart" | "onProgress" | keyof React.RefAttributes<View>> & {
+}, "source" | keyof import("react-native").ViewProps | "size" | "onError" | "onLoad" | "onLoadEnd" | "onLoadStart" | "onProgress" | keyof React.RefAttributes<View>> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<import("react-native").ViewProps & React.RefAttributes<View> & {
     /**

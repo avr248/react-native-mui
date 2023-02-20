@@ -6,10 +6,10 @@ import {
   Platform,
 } from 'react-native';
 
+import { accessibilityProps } from './MaterialCommunityIcon';
 import { Consumer as SettingsConsumer } from '../core/settings';
 import { withInternalTheme } from '../core/theming';
 import type { InternalTheme } from '../types';
-import { accessibilityProps } from './MaterialCommunityIcon';
 
 type IconSourceBase = string | ImageSourcePropType;
 

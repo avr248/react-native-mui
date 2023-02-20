@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Animated, StyleProp, View, ViewStyle } from 'react-native';
-import type { InternalTheme } from '../types';
 import Button from './Button/Button';
 import type { IconSource } from './Icon';
 import Surface from './Surface';
+import type { InternalTheme } from '../types';
 export declare type Props = React.ComponentProps<typeof Surface> & {
     /**
      * Whether the Snackbar is currently visible.
@@ -60,7 +60,7 @@ export declare type Props = React.ComponentProps<typeof Surface> & {
      */
     theme: InternalTheme;
 };
-declare const _default: React.ComponentType<Pick<Pick<import("./Surface").Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View> & {
+declare const _default: React.ComponentType<Pick<Pick<import("./Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
     /**
      * Whether the Snackbar is currently visible.
      */
@@ -70,7 +70,7 @@ declare const _default: React.ComponentType<Pick<Pick<import("./Surface").Props,
      * - `label` - Label of the action button
      * - `onPress` - Callback that is called when action button is pressed.
      */
-    action?: (Omit<Pick<Pick<import("./Surface").Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View> & {
+    action?: (Omit<Pick<Pick<import("./Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
         mode?: "text" | "outlined" | "contained" | "elevated" | "contained-tonal" | undefined;
         dark?: boolean | undefined;
         compact?: boolean | undefined;
@@ -94,7 +94,7 @@ declare const _default: React.ComponentType<Pick<Pick<import("./Surface").Props,
         labelStyle?: StyleProp<import("react-native").TextStyle>;
         theme: InternalTheme;
         testID?: string | undefined;
-    }, "dark" | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "elevation" | keyof import("react-native").ViewProps | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "buttonColor" | "textColor" | "contentStyle"> & {
+    }, "dark" | "elevation" | keyof import("react-native").ViewProps | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "buttonColor" | "textColor" | "contentStyle"> & {
         theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
     }, "children"> & {
         label: string;
@@ -141,9 +141,9 @@ declare const _default: React.ComponentType<Pick<Pick<import("./Surface").Props,
      * @optional
      */
     theme: InternalTheme;
-}, "icon" | "visible" | "elevation" | keyof import("react-native").ViewProps | "action" | keyof React.RefAttributes<View> | "duration" | "onDismiss" | "onIconPress" | "iconAccessibilityLabel" | "wrapperStyle"> & {
+}, "visible" | "elevation" | keyof import("react-native").ViewProps | "icon" | "action" | keyof React.RefAttributes<View> | "duration" | "onDismiss" | "onIconPress" | "iconAccessibilityLabel" | "wrapperStyle"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
-}> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Pick<import("./Surface").Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View> & {
+}> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Pick<import("./Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
     /**
      * Whether the Snackbar is currently visible.
      */
@@ -153,7 +153,7 @@ declare const _default: React.ComponentType<Pick<Pick<import("./Surface").Props,
      * - `label` - Label of the action button
      * - `onPress` - Callback that is called when action button is pressed.
      */
-    action?: (Omit<Pick<Pick<import("./Surface").Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View> & {
+    action?: (Omit<Pick<Pick<import("./Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
         mode?: "text" | "outlined" | "contained" | "elevated" | "contained-tonal" | undefined;
         dark?: boolean | undefined;
         compact?: boolean | undefined;
@@ -177,7 +177,7 @@ declare const _default: React.ComponentType<Pick<Pick<import("./Surface").Props,
         labelStyle?: StyleProp<import("react-native").TextStyle>;
         theme: InternalTheme;
         testID?: string | undefined;
-    }, "dark" | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "elevation" | keyof import("react-native").ViewProps | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "buttonColor" | "textColor" | "contentStyle"> & {
+    }, "dark" | "elevation" | keyof import("react-native").ViewProps | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "buttonColor" | "textColor" | "contentStyle"> & {
         theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
     }, "children"> & {
         label: string;

@@ -11,10 +11,10 @@ import {
 
 import color from 'color';
 
+import { AdornmentSide } from './enums';
 import { withInternalTheme } from '../../../core/theming';
 import type { InternalTheme } from '../../../types';
 import { getConstants } from '../helpers';
-import { AdornmentSide } from './enums';
 
 export type Props = {
   /**

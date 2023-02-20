@@ -9,13 +9,13 @@ import {
 
 import color from 'color';
 
+import { ToggleButtonGroupContext } from './ToggleButtonGroup';
+import { getToggleButtonColor } from './utils';
 import { withInternalTheme } from '../../core/theming';
 import { black, white } from '../../styles/themes/v2/colors';
 import type { InternalTheme } from '../../types';
 import type { IconSource } from '../Icon';
 import IconButton from '../IconButton/IconButton';
-import { ToggleButtonGroupContext } from './ToggleButtonGroup';
-import { getToggleButtonColor } from './utils';
 
 export type Props = {
   /**

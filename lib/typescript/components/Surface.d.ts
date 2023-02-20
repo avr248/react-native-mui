@@ -68,5 +68,5 @@ export declare type Props = React.ComponentPropsWithRef<typeof View> & {
  * });
  * ```
  */
-declare const Surface: React.ForwardRefExoticComponent<Pick<Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View>>;
+declare const Surface: React.ForwardRefExoticComponent<Pick<Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View>>;
 export default Surface;

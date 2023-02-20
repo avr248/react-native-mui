@@ -52,7 +52,7 @@ export declare type Props = {
      */
     accessibilityLabel?: string;
 };
-declare const _default: React.ComponentType<Pick<Props, "style" | "title" | "onPress" | "testID" | "disabled" | "accessibilityLabel" | "titleStyle" | "contentStyle" | "leadingIcon" | "trailingIcon" | "dense"> & {
+declare const _default: React.ComponentType<Pick<Props, "style" | "title" | "testID" | "accessibilityLabel" | "onPress" | "disabled" | "titleStyle" | "contentStyle" | "leadingIcon" | "trailingIcon" | "dense"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Props> & {
     ({ leadingIcon, trailingIcon, dense, title, disabled, onPress, style, contentStyle, testID, titleStyle, accessibilityLabel, theme, }: Props): JSX.Element;

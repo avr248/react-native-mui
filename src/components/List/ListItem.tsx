@@ -13,6 +13,7 @@ import {
 
 import color from 'color';
 
+import { getLeftStyles, getRightStyles } from './utils';
 import { withInternalTheme } from '../../core/theming';
 import type {
   $RemoveChildren,
@@ -21,7 +22,6 @@ import type {
 } from '../../types';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
 import Text from '../Typography/Text';
-import { getLeftStyles, getRightStyles } from './utils';
 
 type Title =
   | React.ReactNode

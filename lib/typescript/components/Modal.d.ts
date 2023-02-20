@@ -80,7 +80,7 @@ export declare type Props = {
  * ```
  */
 declare function Modal({ dismissable, visible, overlayAccessibilityLabel, onDismiss, children, contentContainerStyle, style, theme, testID, }: Props): JSX.Element | null;
-declare const _default: React.ComponentType<Pick<Props, "style" | "children" | "testID" | "visible" | "contentContainerStyle" | "onDismiss" | "overlayAccessibilityLabel" | "dismissable"> & {
+declare const _default: React.ComponentType<Pick<Props, "style" | "children" | "visible" | "testID" | "contentContainerStyle" | "onDismiss" | "overlayAccessibilityLabel" | "dismissable"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Props> & typeof Modal, {}>;
 export default _default;

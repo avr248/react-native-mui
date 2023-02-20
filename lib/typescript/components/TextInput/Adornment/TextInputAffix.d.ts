@@ -1,7 +1,7 @@
 import React from 'react';
 import { Animated, LayoutChangeEvent, StyleProp, TextStyle } from 'react-native';
-import type { InternalTheme } from '../../../types';
 import { AdornmentSide } from './enums';
+import type { InternalTheme } from '../../../types';
 export declare type Props = {
     /**
      * Text to show.

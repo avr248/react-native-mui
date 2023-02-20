@@ -97,14 +97,14 @@ export declare type Props = {
      */
     testID?: string;
 };
-declare const _default: React.ComponentType<Pick<Props, "label" | "style" | "color" | "onPress" | "testID" | "accessibilityLabel" | "icon" | "visible" | "open" | "variant" | "actions" | "fabStyle" | "onStateChange" | "backdropColor"> & {
+declare const _default: React.ComponentType<Pick<Props, "label" | "style" | "visible" | "testID" | "accessibilityLabel" | "color" | "onPress" | "icon" | "open" | "variant" | "actions" | "fabStyle" | "onStateChange" | "backdropColor"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Props> & {
     ({ actions, icon, open, onPress, accessibilityLabel, theme, style, fabStyle, visible, label, testID, onStateChange, color: colorProp, variant, backdropColor: customBackdropColor, }: Props): JSX.Element;
     displayName: string;
 }, {}>;
 export default _default;
-declare const FABGroupWithTheme: React.ComponentType<Pick<Props, "label" | "style" | "color" | "onPress" | "testID" | "accessibilityLabel" | "icon" | "visible" | "open" | "variant" | "actions" | "fabStyle" | "onStateChange" | "backdropColor"> & {
+declare const FABGroupWithTheme: React.ComponentType<Pick<Props, "label" | "style" | "visible" | "testID" | "accessibilityLabel" | "color" | "onPress" | "icon" | "open" | "variant" | "actions" | "fabStyle" | "onStateChange" | "backdropColor"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Props> & {
     ({ actions, icon, open, onPress, accessibilityLabel, theme, style, fabStyle, visible, label, testID, onStateChange, color: colorProp, variant, backdropColor: customBackdropColor, }: Props): JSX.Element;

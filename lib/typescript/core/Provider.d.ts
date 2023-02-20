@@ -1,6 +1,6 @@
 import * as React from 'react';
-import type { ThemeProp } from '../types';
 import { Settings } from './settings';
+import type { ThemeProp } from '../types';
 export declare type Props = {
     children: React.ReactNode;
     theme?: ThemeProp;

@@ -31,11 +31,11 @@ export declare type Props = {
      */
     testID?: string;
 };
-declare const _default: React.ComponentType<Pick<Props, "color" | "onPress" | "testID" | "disabled" | "status" | "uncheckedColor"> & {
+declare const _default: React.ComponentType<Pick<Props, "testID" | "color" | "onPress" | "disabled" | "status" | "uncheckedColor"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Props> & ((props: Props) => JSX.Element), {}>;
 export default _default;
-declare const CheckboxWithTheme: React.ComponentType<Pick<Props, "color" | "onPress" | "testID" | "disabled" | "status" | "uncheckedColor"> & {
+declare const CheckboxWithTheme: React.ComponentType<Pick<Props, "testID" | "color" | "onPress" | "disabled" | "status" | "uncheckedColor"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Props> & ((props: Props) => JSX.Element), {}>;
 export { CheckboxWithTheme as Checkbox };

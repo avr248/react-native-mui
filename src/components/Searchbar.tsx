@@ -15,13 +15,13 @@ import {
 
 import color from 'color';
 
-import { withInternalTheme } from '../core/theming';
-import type { InternalTheme } from '../types';
 import ActivityIndicator from './ActivityIndicator';
 import type { IconSource } from './Icon';
 import IconButton from './IconButton/IconButton';
 import MaterialCommunityIcon from './MaterialCommunityIcon';
 import Surface from './Surface';
+import { withInternalTheme } from '../core/theming';
+import type { InternalTheme } from '../types';
 
 export type Props = React.ComponentPropsWithRef<typeof TextInput> & {
   /**

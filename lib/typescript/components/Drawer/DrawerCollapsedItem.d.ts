@@ -79,7 +79,7 @@ declare const _default: React.ComponentType<Pick<import("react-native").ViewProp
      * TestID used for testing purposes
      */
     testID?: string | undefined;
-}, "label" | "onPress" | keyof import("react-native").ViewProps | keyof React.RefAttributes<View> | "active" | "focusedIcon" | "unfocusedIcon" | "badge"> & {
+}, "label" | keyof import("react-native").ViewProps | "onPress" | keyof React.RefAttributes<View> | "active" | "focusedIcon" | "unfocusedIcon" | "badge"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<import("react-native").ViewProps & React.RefAttributes<View> & {
     /**

@@ -46,7 +46,7 @@ declare const _default: React.ComponentType<Pick<import("react-native").ViewProp
      * @optional
      */
     theme: InternalTheme;
-}, "color" | "size" | keyof import("react-native").ViewProps | keyof React.RefAttributes<View> | "animating" | "hidesWhenStopped"> & {
+}, keyof import("react-native").ViewProps | "color" | "size" | keyof React.RefAttributes<View> | "animating" | "hidesWhenStopped"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<import("react-native").ViewProps & React.RefAttributes<View> & {
     /**

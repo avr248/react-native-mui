@@ -1,6 +1,6 @@
 declare const vis: {
     isRTL: {
-        direction: "rtl" | "ltr";
+        direction: "ltr" | "rtl";
     };
     rtl: {
         direction: "rtl";

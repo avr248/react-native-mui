@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Animated, StyleProp, View, ViewStyle } from 'react-native';
-import type { $RemoveChildren, InternalTheme } from '../types';
 import Button from './Button/Button';
 import { IconSource } from './Icon';
 import Surface from './Surface';
+import type { $RemoveChildren, InternalTheme } from '../types';
 export declare type Props = $RemoveChildren<typeof Surface> & {
     /**
      * Whether banner is currently visible.
@@ -56,7 +56,7 @@ export declare type Props = $RemoveChildren<typeof Surface> & {
      */
     onHideAnimationFinished?: Animated.EndCallback;
 };
-declare const _default: React.ComponentType<Pick<$RemoveChildren<React.ForwardRefExoticComponent<Pick<import("./Surface").Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View>>> & {
+declare const _default: React.ComponentType<Pick<$RemoveChildren<React.ForwardRefExoticComponent<Pick<import("./Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View>>> & {
     /**
      * Whether banner is currently visible.
      */
@@ -80,7 +80,7 @@ declare const _default: React.ComponentType<Pick<$RemoveChildren<React.ForwardRe
      */
     actions?: ({
         label: string;
-    } & Omit<Pick<Pick<import("./Surface").Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View> & {
+    } & Omit<Pick<Pick<import("./Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
         mode?: "text" | "outlined" | "contained" | "elevated" | "contained-tonal" | undefined;
         dark?: boolean | undefined;
         compact?: boolean | undefined;
@@ -104,7 +104,7 @@ declare const _default: React.ComponentType<Pick<$RemoveChildren<React.ForwardRe
         labelStyle?: StyleProp<import("react-native").TextStyle>;
         theme: InternalTheme;
         testID?: string | undefined;
-    }, "dark" | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "elevation" | keyof import("react-native").ViewProps | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "buttonColor" | "textColor" | "contentStyle"> & {
+    }, "dark" | "elevation" | keyof import("react-native").ViewProps | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "buttonColor" | "textColor" | "contentStyle"> & {
         theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
     }, "children">)[] | undefined;
     /**
@@ -133,9 +133,9 @@ declare const _default: React.ComponentType<Pick<$RemoveChildren<React.ForwardRe
      * Optional callback that will be called after the closing animation finished running normally
      */
     onHideAnimationFinished?: Animated.EndCallback | undefined;
-}, "style" | "children" | "pointerEvents" | "onLayout" | "testID" | "nativeID" | "accessible" | "accessibilityActions" | "accessibilityLabel" | "accessibilityRole" | "accessibilityState" | "accessibilityHint" | "accessibilityValue" | "onAccessibilityAction" | "accessibilityLabelledBy" | "accessibilityLiveRegion" | "importantForAccessibility" | "accessibilityElementsHidden" | "accessibilityLanguage" | "accessibilityViewIsModal" | "onAccessibilityEscape" | "onAccessibilityTap" | "onMagicTap" | "accessibilityIgnoresInvertColors" | "icon" | "visible" | "elevation" | "ref" | "key" | "hitSlop" | "removeClippedSubviews" | "collapsable" | "needsOffscreenAlphaCompositing" | "renderToHardwareTextureAndroid" | "focusable" | "shouldRasterizeIOS" | "isTVSelectable" | "hasTVPreferredFocus" | "tvParallaxProperties" | "tvParallaxShiftDistanceX" | "tvParallaxShiftDistanceY" | "tvParallaxTiltAngle" | "tvParallaxMagnification" | "onStartShouldSetResponder" | "onMoveShouldSetResponder" | "onResponderEnd" | "onResponderGrant" | "onResponderReject" | "onResponderMove" | "onResponderRelease" | "onResponderStart" | "onResponderTerminationRequest" | "onResponderTerminate" | "onStartShouldSetResponderCapture" | "onMoveShouldSetResponderCapture" | "onTouchStart" | "onTouchMove" | "onTouchEnd" | "onTouchCancel" | "onTouchEndCapture" | "onPointerEnter" | "onPointerEnterCapture" | "onPointerLeave" | "onPointerLeaveCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerDown" | "onPointerDownCapture" | "onPointerUp" | "onPointerUpCapture" | "contentStyle" | "actions" | "onShowAnimationFinished" | "onHideAnimationFinished"> & {
+}, "style" | "children" | "visible" | "testID" | "elevation" | "ref" | "hitSlop" | "onLayout" | "pointerEvents" | "removeClippedSubviews" | "nativeID" | "collapsable" | "needsOffscreenAlphaCompositing" | "renderToHardwareTextureAndroid" | "focusable" | "shouldRasterizeIOS" | "isTVSelectable" | "hasTVPreferredFocus" | "tvParallaxProperties" | "tvParallaxShiftDistanceX" | "tvParallaxShiftDistanceY" | "tvParallaxTiltAngle" | "tvParallaxMagnification" | "onStartShouldSetResponder" | "onMoveShouldSetResponder" | "onResponderEnd" | "onResponderGrant" | "onResponderReject" | "onResponderMove" | "onResponderRelease" | "onResponderStart" | "onResponderTerminationRequest" | "onResponderTerminate" | "onStartShouldSetResponderCapture" | "onMoveShouldSetResponderCapture" | "onTouchStart" | "onTouchMove" | "onTouchEnd" | "onTouchCancel" | "onTouchEndCapture" | "onPointerEnter" | "onPointerEnterCapture" | "onPointerLeave" | "onPointerLeaveCapture" | "onPointerMove" | "onPointerMoveCapture" | "onPointerCancel" | "onPointerCancelCapture" | "onPointerDown" | "onPointerDownCapture" | "onPointerUp" | "onPointerUpCapture" | "accessible" | "accessibilityActions" | "accessibilityLabel" | "accessibilityRole" | "accessibilityState" | "accessibilityHint" | "accessibilityValue" | "onAccessibilityAction" | "accessibilityLabelledBy" | "accessibilityLiveRegion" | "importantForAccessibility" | "accessibilityElementsHidden" | "accessibilityLanguage" | "accessibilityViewIsModal" | "onAccessibilityEscape" | "onAccessibilityTap" | "onMagicTap" | "accessibilityIgnoresInvertColors" | "icon" | "key" | "contentStyle" | "actions" | "onShowAnimationFinished" | "onHideAnimationFinished"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
-}> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<$RemoveChildren<React.ForwardRefExoticComponent<Pick<import("./Surface").Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View>>> & {
+}> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<$RemoveChildren<React.ForwardRefExoticComponent<Pick<import("./Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View>>> & {
     /**
      * Whether banner is currently visible.
      */
@@ -159,7 +159,7 @@ declare const _default: React.ComponentType<Pick<$RemoveChildren<React.ForwardRe
      */
     actions?: ({
         label: string;
-    } & Omit<Pick<Pick<import("./Surface").Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View> & {
+    } & Omit<Pick<Pick<import("./Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
         mode?: "text" | "outlined" | "contained" | "elevated" | "contained-tonal" | undefined;
         dark?: boolean | undefined;
         compact?: boolean | undefined;
@@ -183,7 +183,7 @@ declare const _default: React.ComponentType<Pick<$RemoveChildren<React.ForwardRe
         labelStyle?: StyleProp<import("react-native").TextStyle>;
         theme: InternalTheme;
         testID?: string | undefined;
-    }, "dark" | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "elevation" | keyof import("react-native").ViewProps | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "buttonColor" | "textColor" | "contentStyle"> & {
+    }, "dark" | "elevation" | keyof import("react-native").ViewProps | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "buttonColor" | "textColor" | "contentStyle"> & {
         theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
     }, "children">)[] | undefined;
     /**

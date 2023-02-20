@@ -114,7 +114,7 @@ declare type State = {
  * wrapping is not necessary if you use Paper's `Modal` instead.
  */
 declare class Menu extends React.Component<Props, State> {
-    static Item: React.ComponentType<Pick<import("./MenuItem").Props, "style" | "title" | "onPress" | "testID" | "disabled" | "accessibilityLabel" | "titleStyle" | "contentStyle" | "leadingIcon" | "trailingIcon" | "dense"> & {
+    static Item: React.ComponentType<Pick<import("./MenuItem").Props, "style" | "title" | "testID" | "accessibilityLabel" | "onPress" | "disabled" | "titleStyle" | "contentStyle" | "leadingIcon" | "trailingIcon" | "dense"> & {
         theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
     }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<import("./MenuItem").Props> & {
         ({ leadingIcon, trailingIcon, dense, title, disabled, onPress, style, contentStyle, testID, titleStyle, accessibilityLabel, theme, }: import("./MenuItem").Props): JSX.Element;

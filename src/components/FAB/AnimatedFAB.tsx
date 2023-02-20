@@ -20,6 +20,7 @@ import {
 
 import color from 'color';
 
+import { getCombinedStyles, getFABColors } from './utils';
 import { withInternalTheme } from '../../core/theming';
 import type { $RemoveChildren, InternalTheme } from '../../types';
 import type { IconSource } from '../Icon';
@@ -27,7 +28,6 @@ import Icon from '../Icon';
 import Surface from '../Surface';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
 import AnimatedText from '../Typography/AnimatedText';
-import { getCombinedStyles, getFABColors } from './utils';
 
 export type AnimatedFABIconMode = 'static' | 'dynamic';
 export type AnimatedFABAnimateFrom = 'left' | 'right';

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Animated, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
-import { withInternalTheme } from '../core/theming';
-import type { $RemoveChildren, InternalTheme } from '../types';
 import Button from './Button/Button';
 import Icon, { IconSource } from './Icon';
 import Surface from './Surface';
 import Text from './Typography/Text';
+import { withInternalTheme } from '../core/theming';
+import type { $RemoveChildren, InternalTheme } from '../types';
 
 const DEFAULT_MAX_WIDTH = 960;
 

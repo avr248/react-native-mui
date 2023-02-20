@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Animated, GestureResponderEvent, StyleProp, TextInput, TextInputProps, TextStyle, ViewStyle } from 'react-native';
-import type { InternalTheme } from '../types';
 import type { IconSource } from './Icon';
+import type { InternalTheme } from '../types';
 export declare type Props = React.ComponentPropsWithRef<typeof TextInput> & {
     /**
      * Accessibility label for the button. This is read by the screen reader when the user taps the button.
@@ -63,7 +63,7 @@ export declare type Props = React.ComponentPropsWithRef<typeof TextInput> & {
     theme: InternalTheme;
 };
 declare type TextInputHandles = Pick<TextInput, 'setNativeProps' | 'isFocused' | 'clear' | 'blur' | 'focus'>;
-declare const _default: React.ComponentType<Pick<Pick<Props, "theme" | "icon" | "elevation" | "key" | "loading" | "iconColor" | keyof TextInputProps | "clearAccessibilityLabel" | "clearIcon" | "inputStyle" | "onIconPress" | "searchAccessibilityLabel"> & React.RefAttributes<TextInputHandles>, "icon" | "elevation" | "loading" | "iconColor" | keyof TextInputProps | "clearAccessibilityLabel" | "clearIcon" | "inputStyle" | "onIconPress" | "searchAccessibilityLabel" | keyof React.RefAttributes<TextInputHandles>> & {
+declare const _default: React.ComponentType<Pick<Pick<Props, "theme" | "elevation" | "icon" | "key" | "loading" | "iconColor" | keyof TextInputProps | "clearAccessibilityLabel" | "clearIcon" | "inputStyle" | "onIconPress" | "searchAccessibilityLabel"> & React.RefAttributes<TextInputHandles>, "elevation" | "icon" | "loading" | "iconColor" | keyof TextInputProps | "clearAccessibilityLabel" | "clearIcon" | "inputStyle" | "onIconPress" | "searchAccessibilityLabel" | keyof React.RefAttributes<TextInputHandles>> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
-}> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Pick<Props, "theme" | "icon" | "elevation" | "key" | "loading" | "iconColor" | keyof TextInputProps | "clearAccessibilityLabel" | "clearIcon" | "inputStyle" | "onIconPress" | "searchAccessibilityLabel"> & React.RefAttributes<TextInputHandles>> & React.ForwardRefExoticComponent<Pick<Props, "theme" | "icon" | "elevation" | "key" | "loading" | "iconColor" | keyof TextInputProps | "clearAccessibilityLabel" | "clearIcon" | "inputStyle" | "onIconPress" | "searchAccessibilityLabel"> & React.RefAttributes<TextInputHandles>>, {}>;
+}> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Pick<Props, "theme" | "elevation" | "icon" | "key" | "loading" | "iconColor" | keyof TextInputProps | "clearAccessibilityLabel" | "clearIcon" | "inputStyle" | "onIconPress" | "searchAccessibilityLabel"> & React.RefAttributes<TextInputHandles>> & React.ForwardRefExoticComponent<Pick<Props, "theme" | "elevation" | "icon" | "key" | "loading" | "iconColor" | keyof TextInputProps | "clearAccessibilityLabel" | "clearIcon" | "inputStyle" | "onIconPress" | "searchAccessibilityLabel"> & React.RefAttributes<TextInputHandles>>, {}>;
 export default _default;

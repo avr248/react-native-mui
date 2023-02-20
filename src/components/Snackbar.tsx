@@ -12,14 +12,14 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import useEventCallback from 'use-event-callback';
 
-import { withInternalTheme } from '../core/theming';
-import type { InternalTheme } from '../types';
 import Button from './Button/Button';
 import type { IconSource } from './Icon';
 import IconButton from './IconButton/IconButton';
 import MaterialCommunityIcon from './MaterialCommunityIcon';
 import Surface from './Surface';
 import Text from './Typography/Text';
+import { withInternalTheme } from '../core/theming';
+import type { InternalTheme } from '../types';
 
 export type Props = React.ComponentProps<typeof Surface> & {
   /**

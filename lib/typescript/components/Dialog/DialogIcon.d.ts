@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { IconSource } from '../Icon';
 export declare type Props = {
     /**

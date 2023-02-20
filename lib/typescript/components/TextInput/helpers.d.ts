@@ -1,7 +1,7 @@
 import type { Animated } from 'react-native';
-import type { InternalTheme } from '../../types';
 import type { AdornmentConfig } from './Adornment/types';
 import type { TextInputLabelProp } from './types';
+import type { InternalTheme } from '../../types';
 declare type PaddingProps = {
     height: number | null;
     labelHalfHeight: number;

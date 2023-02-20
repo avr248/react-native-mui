@@ -10,13 +10,13 @@ import {
   ViewStyle,
 } from 'react-native';
 
+import { ListAccordionGroupContext } from './ListAccordionGroup';
+import { getAccordionColors } from './utils';
 import { withInternalTheme } from '../../core/theming';
 import type { InternalTheme } from '../../types';
 import MaterialCommunityIcon from '../MaterialCommunityIcon';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
 import Text from '../Typography/Text';
-import { ListAccordionGroupContext } from './ListAccordionGroup';
-import { getAccordionColors } from './utils';
 
 export type Props = {
   /**

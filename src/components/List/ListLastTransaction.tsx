@@ -6,17 +6,19 @@ import {
   TextStyle,
   View,
   Text,
-  ViewStyle
+  ViewStyle,
 } from 'react-native';
+
+import TextTicker from 'react-native-text-ticker';
+
 import { withInternalTheme } from '../../core/theming';
+import { vis } from '../../index';
 import type {
   $RemoveChildren,
   EllipsizeProp,
   InternalTheme,
 } from '../../types';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
-import { vis } from '../../index';
-import TextTicker from 'react-native-text-ticker';
 
 interface Style {
   marginLeft?: number;
@@ -46,47 +48,63 @@ export type Props = $RemoveChildren<typeof TouchableRipple> & {
 };
 
 const ListLastTransaction = ({
-    date,
-    time,
-    direction,
-    right,
-    amount,
-    description,
-    onPress,
-    theme,
-    style,
-    amountNumberOfLines = 1,
-    descriptionNumberOfLines = 2,
-    amountEllipsizeMode,
-    descriptionEllipsizeMode,
-    descriptionStyle,
-    amountStyle,
-    dateStyle,
-    timeStyle,
-    ...rest
+  date,
+  time,
+  direction,
+  right,
+  amount,
+  description,
+  onPress,
+  theme,
+  style,
+  amountNumberOfLines = 1,
+  descriptionNumberOfLines = 2,
+  amountEllipsizeMode,
+  descriptionEllipsizeMode,
+  descriptionStyle,
+  amountStyle,
+  dateStyle,
+  timeStyle,
+  ...rest
 }: Props) => {
-    let marqueeRef = React.useRef<TextTicker | null>(null);
-    const directionContainerStyle = [vis.w10, vis.row, vis.fc, vis.ac];
-    const amountContainerStyle = [vis.talRl, amountStyle];
-    return (
-        <TouchableRipple {...rest} style={[vis.w100, vis.row, vis.fc, vis.ac, vis.mb4]} onPress={onPress}>
-            <View style={[vis.w90, vis.rowRl, vis.sb, vis.ac, vis.h5]}>
-                <View style={directionContainerStyle}>
-                    {direction}
-                </View>
-                <View style={[vis.w50, vis.col, vis.h40p, vis.sb]}>
-                    <Text style={amountContainerStyle}>{amount}</Text>
-                    <TextTicker style={[vis.talRl, vis.fsRl, vis.w50, descriptionStyle]} duration={10000} isRTL={vis.isRTL.direction == 'rtl'} marqueeOnMount={false} ref={(c) => (marqueeRef.current = c) }>
-                        {description}
-                    </TextTicker>  
-                </View>
-                <View style={[vis.w20, vis.col, vis.h40p, vis.sb, vis.isRTL ? vis.ae : vis.as]}>
-                  <Text style={timeStyle}>{time}</Text>
-                  <Text style={dateStyle}>{date}</Text>
-                </View>       
-            </View>
-        </TouchableRipple>
-    );
+  let marqueeRef = React.useRef<TextTicker | null>(null);
+  const directionContainerStyle = [vis.w10, vis.row, vis.fc, vis.ac];
+  const amountContainerStyle = [vis.talRl, amountStyle];
+  return (
+    <TouchableRipple
+      {...rest}
+      style={[vis.w100, vis.row, vis.fc, vis.ac, vis.mb4]}
+      onPress={onPress}
+    >
+      <View style={[vis.w90, vis.rowRl, vis.sb, vis.ac, vis.h5]}>
+        <View style={directionContainerStyle}>{direction}</View>
+        <View style={[vis.w50, vis.col, vis.h40p, vis.sb]}>
+          <Text style={amountContainerStyle}>{amount}</Text>
+          <TextTicker
+            style={[vis.talRl, vis.fsRl, vis.w50, descriptionStyle]}
+            duration={10000}
+            isRTL={vis.isRTL.direction == 'rtl'}
+            marqueeOnMount={false}
+            ref={(c) => (marqueeRef.current = c)}
+          >
+            {description}
+          </TextTicker>
+        </View>
+        <View
+          style={[
+            vis.w20,
+            vis.col,
+            vis.h40p,
+            vis.sb,
+            vis.isRTL ? vis.ae : vis.as,
+          ]}
+        >
+          <Text style={timeStyle}>{time}</Text>
+          <Text style={dateStyle}>{date}</Text>
+        </View>
+      </View>
+    </TouchableRipple>
+  );
 };
 
 ListLastTransaction.displayName = 'List.LastTransaction';

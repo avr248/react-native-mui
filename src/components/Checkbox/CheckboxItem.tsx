@@ -8,13 +8,13 @@ import {
   ViewStyle,
 } from 'react-native';
 
+import Checkbox from './Checkbox';
+import CheckboxAndroid from './CheckboxAndroid';
+import CheckboxIOS from './CheckboxIOS';
 import { withInternalTheme } from '../../core/theming';
 import type { InternalTheme, MD3TypescaleKey } from '../../types';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
 import Text from '../Typography/Text';
-import Checkbox from './Checkbox';
-import CheckboxAndroid from './CheckboxAndroid';
-import CheckboxIOS from './CheckboxIOS';
 
 export type Props = {
   /**

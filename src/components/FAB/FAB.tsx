@@ -9,6 +9,7 @@ import {
   ViewStyle,
 } from 'react-native';
 
+import { getExtendedFabStyle, getFABColors, getFabStyle } from './utils';
 import { withInternalTheme } from '../../core/theming';
 import type { $RemoveChildren, InternalTheme } from '../../types';
 import ActivityIndicator from '../ActivityIndicator';
@@ -17,7 +18,6 @@ import Icon, { IconSource } from '../Icon';
 import Surface from '../Surface';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
 import Text from '../Typography/Text';
-import { getExtendedFabStyle, getFABColors, getFabStyle } from './utils';
 
 type FABSize = 'small' | 'medium' | 'large';
 

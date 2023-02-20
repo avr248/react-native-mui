@@ -11,16 +11,16 @@ import {
 
 import color from 'color';
 
-import { useInternalTheme } from '../../core/theming';
-import type { IconSource } from '../Icon';
-import Icon from '../Icon';
-import TouchableRipple from '../TouchableRipple/TouchableRipple';
-import Text from '../Typography/Text';
 import {
   getSegmentedButtonBorderRadius,
   getSegmentedButtonColors,
   getSegmentedButtonDensityPadding,
 } from './utils';
+import { useInternalTheme } from '../../core/theming';
+import type { IconSource } from '../Icon';
+import Icon from '../Icon';
+import TouchableRipple from '../TouchableRipple/TouchableRipple';
+import Text from '../Typography/Text';
 
 export type Props = {
   /**

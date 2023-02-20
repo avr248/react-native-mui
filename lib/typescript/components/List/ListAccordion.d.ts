@@ -87,7 +87,7 @@ export declare type Props = {
      */
     pointerEvents?: ViewProps['pointerEvents'];
 };
-declare const _default: React.ComponentType<Pick<Props, "style" | "title" | "children" | "pointerEvents" | "onPress" | "onLongPress" | "testID" | "accessibilityLabel" | "left" | "right" | "id" | "delayLongPress" | "description" | "expanded" | "titleStyle" | "descriptionStyle" | "titleNumberOfLines" | "descriptionNumberOfLines"> & {
+declare const _default: React.ComponentType<Pick<Props, "style" | "title" | "children" | "testID" | "left" | "right" | "pointerEvents" | "accessibilityLabel" | "onPress" | "onLongPress" | "id" | "delayLongPress" | "description" | "expanded" | "titleStyle" | "descriptionStyle" | "titleNumberOfLines" | "descriptionNumberOfLines"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Props> & {
     ({ left, right, title, description, children, theme, titleStyle, descriptionStyle, titleNumberOfLines, descriptionNumberOfLines, style, id, testID, onPress, onLongPress, delayLongPress, expanded: expandedProp, accessibilityLabel, pointerEvents, }: Props): JSX.Element;

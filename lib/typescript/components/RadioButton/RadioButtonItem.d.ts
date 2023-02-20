@@ -77,14 +77,14 @@ export declare type Props = {
      */
     position?: 'leading' | 'trailing';
 };
-declare const _default: React.ComponentType<Pick<Props, "label" | "style" | "color" | "onPress" | "testID" | "disabled" | "accessibilityLabel" | "position" | "value" | "mode" | "status" | "labelStyle" | "uncheckedColor" | "labelVariant"> & {
+declare const _default: React.ComponentType<Pick<Props, "label" | "style" | "testID" | "position" | "accessibilityLabel" | "color" | "onPress" | "disabled" | "value" | "mode" | "status" | "labelStyle" | "uncheckedColor" | "labelVariant"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Props> & {
     ({ value, label, style, labelStyle, onPress, disabled, color, uncheckedColor, status, theme, accessibilityLabel, testID, mode, position, labelVariant, }: Props): JSX.Element;
     displayName: string;
 }, {}>;
 export default _default;
-declare const RadioButtonItemWithTheme: React.ComponentType<Pick<Props, "label" | "style" | "color" | "onPress" | "testID" | "disabled" | "accessibilityLabel" | "position" | "value" | "mode" | "status" | "labelStyle" | "uncheckedColor" | "labelVariant"> & {
+declare const RadioButtonItemWithTheme: React.ComponentType<Pick<Props, "label" | "style" | "testID" | "position" | "accessibilityLabel" | "color" | "onPress" | "disabled" | "value" | "mode" | "status" | "labelStyle" | "uncheckedColor" | "labelVariant"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Props> & {
     ({ value, label, style, labelStyle, onPress, disabled, color, uncheckedColor, status, theme, accessibilityLabel, testID, mode, position, labelVariant, }: Props): JSX.Element;

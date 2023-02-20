@@ -103,7 +103,7 @@ export declare type Props = React.ComponentProps<typeof Surface> & {
      */
     testID?: string;
 };
-declare const _default: React.ComponentType<Pick<Pick<import("../Surface").Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View> & {
+declare const _default: React.ComponentType<Pick<Pick<import("../Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
     /**
      * Mode of the button. You can change the mode to adjust the styling to give it desired emphasis.
      * - `text` - flat button without background or outline, used for the lowest priority actions, especially when presenting multiple options.
@@ -202,9 +202,9 @@ declare const _default: React.ComponentType<Pick<Pick<import("../Surface").Props
      * testID to be used on tests.
      */
     testID?: string | undefined;
-}, "dark" | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "elevation" | keyof import("react-native").ViewProps | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "buttonColor" | "textColor" | "contentStyle"> & {
+}, "dark" | "elevation" | keyof import("react-native").ViewProps | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "buttonColor" | "textColor" | "contentStyle"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
-}> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Pick<import("../Surface").Props, "theme" | "elevation" | "key" | keyof import("react-native").ViewProps> & React.RefAttributes<View> & {
+}> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Pick<import("../Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
     /**
      * Mode of the button. You can change the mode to adjust the styling to give it desired emphasis.
      * - `text` - flat button without background or outline, used for the lowest priority actions, especially when presenting multiple options.

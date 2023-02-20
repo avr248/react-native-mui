@@ -58,7 +58,7 @@ declare const _default: React.ComponentType<Pick<import("react-native").ViewProp
      * @optional
      */
     theme: InternalTheme;
-}, "progress" | "color" | "visible" | keyof import("react-native").ViewProps | keyof React.RefAttributes<View> | "indeterminate" | "animatedValue"> & {
+}, "progress" | "visible" | keyof import("react-native").ViewProps | "color" | keyof React.RefAttributes<View> | "indeterminate" | "animatedValue"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<import("react-native").ViewProps & React.RefAttributes<View> & {
     /**

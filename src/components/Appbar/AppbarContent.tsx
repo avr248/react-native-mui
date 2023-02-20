@@ -12,6 +12,7 @@ import {
 
 import color from 'color';
 
+import { modeTextVariant } from './utils';
 import { withInternalTheme } from '../../core/theming';
 import { white } from '../../styles/themes/v2/colors';
 import type {
@@ -20,7 +21,6 @@ import type {
   MD3TypescaleKey,
 } from '../../types';
 import Text from '../Typography/Text';
-import { modeTextVariant } from './utils';
 
 export type Props = $RemoveChildren<typeof View> & {
   /**

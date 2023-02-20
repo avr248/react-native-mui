@@ -40,7 +40,7 @@ declare const _default: React.ComponentType<Pick<Animated.AnimatedProps<import("
      * @optional
      */
     theme: InternalTheme;
-}, "size" | "visible" | keyof import("react-native").TextProps | keyof React.RefAttributes<import("react-native").Text>> & {
+}, "visible" | "size" | keyof import("react-native").TextProps | keyof React.RefAttributes<import("react-native").Text>> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Animated.AnimatedProps<import("react-native").TextProps & React.RefAttributes<import("react-native").Text>> & {
     /**

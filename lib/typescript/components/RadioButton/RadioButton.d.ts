@@ -35,7 +35,7 @@ export declare type Props = {
      */
     testID?: string;
 };
-declare const _default: React.ComponentType<Pick<Props, "color" | "onPress" | "testID" | "disabled" | "value" | "status" | "uncheckedColor"> & {
+declare const _default: React.ComponentType<Pick<Props, "testID" | "color" | "onPress" | "disabled" | "value" | "status" | "uncheckedColor"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Props> & ((props: Props) => JSX.Element), {}>;
 export default _default;

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import type { InternalTheme } from '../types';
 import { IconSource } from './Icon';
+import type { InternalTheme } from '../types';
 declare type Props = {
     /**
      * Icon to display for the `CrossFadeIcon`.

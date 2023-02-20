@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Image, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
+import { getCardCoverStyle } from './utils';
 import { withInternalTheme } from '../../core/theming';
 import { grey200 } from '../../styles/themes/v2/colors';
 import type { InternalTheme } from '../../types';
-import { getCardCoverStyle } from './utils';
 
 export type Props = React.ComponentPropsWithRef<typeof Image> & {
   /**

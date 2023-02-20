@@ -11,6 +11,7 @@ import {
 
 import color from 'color';
 
+import { ButtonMode, getButtonColors } from './utils';
 import { withInternalTheme } from '../../core/theming';
 import type { InternalTheme } from '../../types';
 import ActivityIndicator from '../ActivityIndicator';
@@ -18,7 +19,6 @@ import Icon, { IconSource } from '../Icon';
 import Surface from '../Surface';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
 import Text from '../Typography/Text';
-import { ButtonMode, getButtonColors } from './utils';
 
 export type Props = React.ComponentProps<typeof Surface> & {
   /**

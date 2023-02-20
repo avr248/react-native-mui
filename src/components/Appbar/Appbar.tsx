@@ -3,9 +3,6 @@ import { Platform, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 import color from 'color';
 
-import { withInternalTheme } from '../../core/theming';
-import type { InternalTheme, MD3Elevation } from '../../types';
-import Surface from '../Surface';
 import AppbarAction from './AppbarAction';
 import AppbarBackAction from './AppbarBackAction';
 import AppbarContent from './AppbarContent';
@@ -17,6 +14,9 @@ import {
   modeAppbarHeight,
   renderAppbarContent,
 } from './utils';
+import { withInternalTheme } from '../../core/theming';
+import type { InternalTheme, MD3Elevation } from '../../types';
+import Surface from '../Surface';
 
 export type Props = Partial<React.ComponentPropsWithRef<typeof View>> & {
   /**

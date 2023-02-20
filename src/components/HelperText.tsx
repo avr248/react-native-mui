@@ -9,9 +9,9 @@ import {
 
 import color from 'color';
 
+import AnimatedText from './Typography/AnimatedText';
 import { withInternalTheme } from '../core/theming';
 import type { $Omit, InternalTheme } from '../types';
-import AnimatedText from './Typography/AnimatedText';
 
 export type Props = $Omit<
   $Omit<React.ComponentPropsWithRef<typeof AnimatedText>, 'padding'>,

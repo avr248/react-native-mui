@@ -73,14 +73,14 @@ export declare type Props = {
      */
     mode?: 'android' | 'ios';
 };
-declare const _default: React.ComponentType<Pick<Props, "label" | "style" | "color" | "onPress" | "testID" | "disabled" | "accessibilityLabel" | "position" | "mode" | "status" | "labelStyle" | "uncheckedColor" | "labelVariant"> & {
+declare const _default: React.ComponentType<Pick<Props, "label" | "style" | "testID" | "position" | "accessibilityLabel" | "color" | "onPress" | "disabled" | "mode" | "status" | "labelStyle" | "uncheckedColor" | "labelVariant"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Props> & {
     ({ style, status, label, onPress, labelStyle, theme, testID, mode, position, accessibilityLabel, disabled, labelVariant, ...props }: Props): JSX.Element;
     displayName: string;
 }, {}>;
 export default _default;
-declare const CheckboxItemWithTheme: React.ComponentType<Pick<Props, "label" | "style" | "color" | "onPress" | "testID" | "disabled" | "accessibilityLabel" | "position" | "mode" | "status" | "labelStyle" | "uncheckedColor" | "labelVariant"> & {
+declare const CheckboxItemWithTheme: React.ComponentType<Pick<Props, "label" | "style" | "testID" | "position" | "accessibilityLabel" | "color" | "onPress" | "disabled" | "mode" | "status" | "labelStyle" | "uncheckedColor" | "labelVariant"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Props> & {
     ({ style, status, label, onPress, labelStyle, theme, testID, mode, position, accessibilityLabel, disabled, labelVariant, ...props }: Props): JSX.Element;

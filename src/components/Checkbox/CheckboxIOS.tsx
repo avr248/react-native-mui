@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { GestureResponderEvent, StyleSheet, View } from 'react-native';
 
+import { getSelectionControlIOSColor } from './utils';
 import { withInternalTheme } from '../../core/theming';
 import type { $RemoveChildren, InternalTheme } from '../../types';
 import MaterialCommunityIcon from '../MaterialCommunityIcon';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
-import { getSelectionControlIOSColor } from './utils';
 
 export type Props = $RemoveChildren<typeof TouchableRipple> & {
   /**
