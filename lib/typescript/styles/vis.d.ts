@@ -1188,10 +1188,10 @@ declare const vis: {
         alignItems: "center";
     };
     ae: {
-        alignItems: "flex-start" | "flex-end";
+        alignItems: "flex-end";
     };
     aeRl: {
-        alignItems: "flex-end";
+        alignItems: "flex-start" | "flex-end";
     };
     sb: {
         justifyContent: "space-between";
@@ -1236,6 +1236,9 @@ declare const vis: {
         fontSize: number;
     };
     fos3: {
+        fontSize: number;
+    };
+    fos2_5: {
         fontSize: number;
     };
     fos2: {

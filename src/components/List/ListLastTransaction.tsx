@@ -9,8 +9,6 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import TextTicker from 'react-native-text-ticker';
-
 import { withInternalTheme } from '../../core/theming';
 import { vis } from '../../index';
 import type {
@@ -36,10 +34,11 @@ export type Props = $RemoveChildren<typeof TouchableRipple> & {
   onPress?: (e: GestureResponderEvent) => void;
   right?: (props: { color: string; style?: Style }) => React.ReactNode;
   direction?: any;
-
+  balance?: any;
   description?: any;
   theme: InternalTheme;
   style?: StyleProp<ViewStyle>;
+  balanceStyle?: StyleProp<ViewStyle>;
   amountStyle?: StyleProp<TextStyle>;
   descriptionStyle?: StyleProp<TextStyle>;
   amountNumberOfLines?: number;
@@ -70,9 +69,6 @@ const ListLastTransaction = ({
   timeStyle,
   ...rest
 }: Props) => {
-  let marqueeRef = React.useRef<TextTicker | null>(null);
-  const directionStyle = [vis.w10, vis.row, vis.fc, vis.ac];
-  const amountContainerStyle = [vis.talRl, amountStyle];
   return (
     <TouchableRipple
       {...rest}
