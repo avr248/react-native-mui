@@ -1202,10 +1202,10 @@ const vis = StyleSheet.create({
     alignItems: 'center',
   },
   ae: {
-    alignItems: !isRTL ? 'flex-end' : 'flex-start',
+    alignItems: 'flex-end',
   },
   aeRl: {
-    alignItems: 'flex-end',
+    alignItems: !isRTL ? 'flex-end' : 'flex-start',
   },
   sb: {
     justifyContent: 'space-between',
@@ -1252,6 +1252,9 @@ const vis = StyleSheet.create({
   },
   fos3: {
     fontSize: widthPercentageToDP('3%'),
+  },
+  fos2_5: {
+    fontSize: widthPercentageToDP('2.5%'),
   },
   fos2: {
     fontSize: widthPercentageToDP('2%'),

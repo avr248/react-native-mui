@@ -36,6 +36,7 @@ export type Props = $RemoveChildren<typeof TouchableRipple> & {
   onPress?: (e: GestureResponderEvent) => void;
   right?: (props: { color: string; style?: Style }) => React.ReactNode;
   direction?: any;
+
   description?: any;
   theme: InternalTheme;
   style?: StyleProp<ViewStyle>;
@@ -53,6 +54,7 @@ const ListLastTransaction = ({
   direction,
   right,
   amount,
+  balance,
   description,
   onPress,
   theme,
@@ -63,44 +65,45 @@ const ListLastTransaction = ({
   descriptionEllipsizeMode,
   descriptionStyle,
   amountStyle,
+  balanceStyle,
   dateStyle,
   timeStyle,
   ...rest
 }: Props) => {
   let marqueeRef = React.useRef<TextTicker | null>(null);
-  const directionContainerStyle = [vis.w10, vis.row, vis.fc, vis.ac];
+  const directionStyle = [vis.w10, vis.row, vis.fc, vis.ac];
   const amountContainerStyle = [vis.talRl, amountStyle];
   return (
     <TouchableRipple
       {...rest}
-      style={[vis.w100, vis.row, vis.fc, vis.ac, vis.mb4]}
+      style={[vis.w100, vis.rowRl, vis.fc, vis.ac, vis.mb5]}
       onPress={onPress}
     >
-      <View style={[vis.w90, vis.rowRl, vis.sb, vis.ac, vis.h5]}>
-        <View style={directionContainerStyle}>{direction}</View>
-        <View style={[vis.w50, vis.col, vis.h40p, vis.sb]}>
-          <Text style={amountContainerStyle}>{amount}</Text>
-          <TextTicker
-            style={[vis.talRl, vis.fsRl, vis.w50, descriptionStyle]}
-            duration={10000}
-            isRTL={vis.isRTL.direction == 'rtl'}
-            marqueeOnMount={false}
-            ref={(c) => (marqueeRef.current = c)}
-          >
-            {description}
-          </TextTicker>
+      <View
+        style={[
+          vis.w75,
+          vis.col,
+          vis.sb,
+          vis.ac,
+          { borderBottomWidth: 0.2, borderBottomColor: 'gray' },
+        ]}
+      >
+        <View
+          style={[vis.w75, vis.rowRl, vis.sb, vis.ac, { paddingBottom: 10 }]}
+        >
+          <View style={[vis.w30, vis.col, vis.h40p, vis.sb, vis.asRl]}>
+            <Text style={amountStyle}>{amount}</Text>
+            <Text style={balanceStyle}>Balance {balance}</Text>
+          </View>
+          <View style={[vis.w20, vis.col, vis.h40p, vis.sb, vis.aeRl]}>
+            <Text style={timeStyle}>{time}</Text>
+            <Text style={dateStyle}>{date}</Text>
+          </View>
         </View>
         <View
-          style={[
-            vis.w20,
-            vis.col,
-            vis.h40p,
-            vis.sb,
-            vis.isRTL ? vis.ae : vis.as,
-          ]}
+          style={[vis.w75, vis.col, vis.feRl, vis.ac, { paddingBottom: 10 }]}
         >
-          <Text style={timeStyle}>{time}</Text>
-          <Text style={dateStyle}>{date}</Text>
+          <Text style={descriptionStyle}>{description}</Text>
         </View>
       </View>
     </TouchableRipple>
@@ -108,5 +111,4 @@ const ListLastTransaction = ({
 };
 
 ListLastTransaction.displayName = 'List.LastTransaction';
-
 export default withInternalTheme(ListLastTransaction);
