@@ -69,41 +69,25 @@ const ListLastTransaction = ({
   timeStyle,
   ...rest
 }: Props) => {
-  return (
-    <TouchableRipple
-      {...rest}
-      style={[vis.w100, vis.rowRl, vis.fc, vis.ac, vis.mb5]}
-      onPress={onPress}
-    >
-      <View
-        style={[
-          vis.w75,
-          vis.col,
-          vis.sb,
-          vis.ac,
-          { borderBottomWidth: 0.2, borderBottomColor: 'gray' },
-        ]}
-      >
-        <View
-          style={[vis.w75, vis.rowRl, vis.sb, vis.ac, { paddingBottom: 10 }]}
-        >
-          <View style={[vis.w30, vis.col, vis.h40p, vis.sb, vis.asRl]}>
-            <Text style={amountStyle}>{amount}</Text>
-            <Text style={balanceStyle}>Balance {balance}</Text>
-          </View>
-          <View style={[vis.w20, vis.col, vis.h40p, vis.sb, vis.aeRl]}>
-            <Text style={timeStyle}>{time}</Text>
-            <Text style={dateStyle}>{date}</Text>
-          </View>
+    return (
+    <TouchableRipple {...rest} style={[vis.w100, vis.rowRl, vis.fc, vis.ac, vis.mb5]} onPress={onPress}>
+        <View style={[vis.w75, vis.col, vis.sb, vis.ac, { borderBottomWidth: 0.2, borderBottomColor: 'gray' }]}>
+            <View style={[vis.w75, vis.rowRl, vis.sb, vis.ac, { paddingBottom: 10 }]}>
+                <View style={[vis.w30, vis.col, vis.h40p, vis.sb, vis.asRl]}>
+                    <Text style={amountStyle}>{amount}</Text>
+                    <Text style={balanceStyle}>{balance}</Text>
+                </View>
+                <View style={[vis.w20, vis.col, vis.h40p, vis.sb, vis.aeRl]}>
+                    <Text style={timeStyle}>{time}</Text>
+                    <Text style={dateStyle}>{date}</Text>
+                </View>
+            </View>
+            <View style={[vis.w75, vis.col, vis.feRl, vis.ac, { paddingBottom: 10 }]}>
+                <Text style={descriptionStyle}>{description}</Text>
+            </View>
         </View>
-        <View
-          style={[vis.w75, vis.col, vis.feRl, vis.ac, { paddingBottom: 10 }]}
-        >
-          <Text style={descriptionStyle}>{description}</Text>
-        </View>
-      </View>
     </TouchableRipple>
-  );
+    );
 };
 
 ListLastTransaction.displayName = 'List.LastTransaction';
