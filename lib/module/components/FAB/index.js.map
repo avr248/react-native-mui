@@ -1,1 +1,0 @@
-{"version":3,"names":["FABComponent","FABGroup","FAB","Object","assign","Group"],"sourceRoot":"../../../../src","sources":["components/FAB/index.js"],"mappings":"AAAA,OAAOA,YAAY,MAAM,OAAO;AAChC,OAAOC,QAAQ,MAAM,YAAY;AACjC,MAAMC,GAAG,GAAGC,MAAM,CAACC,MAAM;AACzB;AACAJ,YAAY,EAAE;EACV;EACAK,KAAK,EAAEJ;AACX,CAAC,CAAC;AACF,eAAeC,GAAG"}
