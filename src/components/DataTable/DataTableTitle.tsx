@@ -13,8 +13,8 @@ import {
 
 import color from 'color';
 
-import { withInternalTheme } from '../../core/theming';
-import type { InternalTheme } from '../../types';
+import { useInternalTheme } from '../../core/theming';
+import type { ThemeProp } from '../../types';
 import MaterialCommunityIcon from '../MaterialCommunityIcon';
 import Text from '../Typography/Text';
 
@@ -49,18 +49,11 @@ export type Props = React.ComponentPropsWithRef<
   /**
    * @optional
    */
-  theme: InternalTheme;
+  theme?: ThemeProp;
 };
 
 /**
  * A component to display title in table header.
- *
- * <div class="screenshots">
- *   <figure>
- *     <img class="medium" src="screenshots/data-table-header.png" />
- *   </figure>
- * </div>
- *
  *
  * ## Usage
  * ```js
@@ -90,12 +83,13 @@ const DataTableTitle = ({
   children,
   onPress,
   sortDirection,
-  theme,
   textStyle,
   style,
+  theme: themeOverrides,
   numberOfLines = 1,
   ...rest
 }: Props) => {
+  const theme = useInternalTheme(themeOverrides);
   const { current: spinAnim } = React.useRef<Animated.Value>(
     new Animated.Value(sortDirection === 'ascending' ? 0 : 1)
   );
@@ -201,7 +195,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withInternalTheme(DataTableTitle);
+export default DataTableTitle;
 
 // @component-docs ignore-next-line
 export { DataTableTitle };

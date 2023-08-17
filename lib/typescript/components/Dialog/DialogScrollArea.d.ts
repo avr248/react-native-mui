@@ -1,21 +1,20 @@
 import * as React from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
+import type { ThemeProp } from 'src/types';
 export declare type Props = React.ComponentPropsWithRef<typeof View> & {
     /**
      * Content of the `DialogScrollArea`.
      */
     children: React.ReactNode;
     style?: StyleProp<ViewStyle>;
+    /**
+     * @optional
+     */
+    theme?: ThemeProp;
 };
 /**
  * A component to show a scrollable content in a Dialog. The component only provides appropriate styling.
  * For the scrollable content you can use `ScrollView`, `FlatList` etc. depending on your requirement.
- *
- * <div class="screenshots">
- *   <figure>
- *     <img class="small" src="screenshots/dialog-scroll-area.gif" />
- *   </figure>
- * </div>
  *
  * ## Usage
  * ```js
@@ -49,3 +48,4 @@ declare const DialogScrollArea: {
     displayName: string;
 };
 export default DialogScrollArea;
+//# sourceMappingURL=DialogScrollArea.d.ts.map

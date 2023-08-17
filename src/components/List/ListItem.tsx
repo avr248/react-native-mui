@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-  FlexAlignType,
   GestureResponderEvent,
   NativeSyntheticEvent,
   StyleProp,
@@ -13,15 +12,11 @@ import {
 
 import color from 'color';
 
-import { getLeftStyles, getRightStyles } from './utils';
-import { withInternalTheme } from '../../core/theming';
-import type {
-  $RemoveChildren,
-  EllipsizeProp,
-  InternalTheme,
-} from '../../types';
+import { useInternalTheme } from '../../core/theming';
+import type { $RemoveChildren, EllipsizeProp, ThemeProp } from '../../types';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
 import Text from '../Typography/Text';
+import { Style, getLeftStyles, getRightStyles } from './utils';
 
 type Title =
   | React.ReactNode
@@ -40,13 +35,6 @@ type Description =
       color: string;
       fontSize: number;
     }) => React.ReactNode);
-
-interface Style {
-  marginLeft?: number;
-  marginRight?: number;
-  marginVertical?: number;
-  alignSelf?: FlexAlignType;
-}
 
 export type Props = $RemoveChildren<typeof TouchableRipple> & {
   /**
@@ -72,7 +60,7 @@ export type Props = $RemoveChildren<typeof TouchableRipple> & {
   /**
    * @optional
    */
-  theme: InternalTheme;
+  theme?: ThemeProp;
   /**
    * Style that is passed to the wrapping TouchableRipple element.
    */
@@ -112,12 +100,6 @@ export type Props = $RemoveChildren<typeof TouchableRipple> & {
 /**
  * A component to show tiles inside a List.
  *
- * <div class="screenshots">
- *   <img class="medium" src="screenshots/list-item-1.png" />
- *   <img class="medium" src="screenshots/list-item-2.png" />
- *   <img class="medium" src="screenshots/list-item-3.png" />
- * </div>
- *
  * ## Usage
  * ```js
  * import * as React from 'react';
@@ -134,7 +116,7 @@ export type Props = $RemoveChildren<typeof TouchableRipple> & {
  * export default MyComponent;
  * ```
  *
- * @extends TouchableRipple props https://callstack.github.io/react-native-paper/touchable-ripple.html
+ * @extends TouchableRipple props https://callstack.github.io/react-native-paper/docs/components/TouchableRipple
  */
 const ListItem = ({
   left,
@@ -142,7 +124,7 @@ const ListItem = ({
   title,
   description,
   onPress,
-  theme,
+  theme: themeOverrides,
   style,
   titleStyle,
   titleNumberOfLines = 1,
@@ -152,6 +134,7 @@ const ListItem = ({
   descriptionStyle,
   ...rest
 }: Props) => {
+  const theme = useInternalTheme(themeOverrides);
   const [alignToTop, setAlignToTop] = React.useState(false);
 
   const onDescriptionTextLayout = (
@@ -225,6 +208,7 @@ const ListItem = ({
       {...rest}
       style={[theme.isV3 ? styles.containerV3 : styles.container, style]}
       onPress={onPress}
+      theme={theme}
     >
       <View style={theme.isV3 ? styles.rowV3 : styles.row}>
         {left
@@ -264,9 +248,11 @@ const styles = StyleSheet.create({
     paddingRight: 24,
   },
   row: {
+    width: '100%',
     flexDirection: 'row',
   },
   rowV3: {
+    width: '100%',
     flexDirection: 'row',
     marginVertical: 6,
   },
@@ -289,4 +275,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withInternalTheme(ListItem);
+export default ListItem;

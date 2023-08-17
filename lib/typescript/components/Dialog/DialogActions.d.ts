@@ -1,20 +1,19 @@
 import * as React from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
+import type { ThemeProp } from 'src/types';
 export declare type Props = React.ComponentPropsWithRef<typeof View> & {
     /**
      * Content of the `DialogActions`.
      */
     children: React.ReactNode;
     style?: StyleProp<ViewStyle>;
+    /**
+     * @optional
+     */
+    theme?: ThemeProp;
 };
 /**
  * A component to show a list of actions in a Dialog.
- *
- * <div class="screenshots">
- *   <figure>
- *     <img class="small" src="screenshots/dialog-actions.png" />
- *   </figure>
- * </div>
  *
  * ## Usage
  * ```js
@@ -46,3 +45,4 @@ declare const DialogActions: {
     displayName: string;
 };
 export default DialogActions;
+//# sourceMappingURL=DialogActions.d.ts.map

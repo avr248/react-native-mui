@@ -1,5 +1,6 @@
 /// <reference types="react" />
-import { GestureResponderEvent, StyleProp, ViewStyle } from 'react-native';
+import { ColorValue, GestureResponderEvent, StyleProp, TextStyle, ViewStyle } from 'react-native';
+import type { ThemeProp } from 'src/types';
 import type { IconSource } from '../Icon';
 export declare type Props = {
     /**
@@ -10,6 +11,20 @@ export declare type Props = {
      * Icon to display for the `SegmentedButtonItem`.
      */
     icon?: IconSource;
+    /**
+     * @supported Available in v5.x with theme version 3
+     * Custom color for unchecked Text and Icon.
+     */
+    uncheckedColor?: string;
+    /**
+     * @supported Available in v5.x with theme version 3
+     * Custom color for checked Text and Icon.
+     */
+    checkedColor?: string;
+    /**
+     * Color of the ripple effect.
+     */
+    rippleColor?: ColorValue;
     /**
      * Whether the button is disabled.
      */
@@ -44,11 +59,19 @@ export declare type Props = {
     density?: 'regular' | 'small' | 'medium' | 'high';
     style?: StyleProp<ViewStyle>;
     /**
+     * Style for the button label.
+     */
+    labelStyle?: StyleProp<TextStyle>;
+    /**
      * testID to be used on tests.
      */
     testID?: string;
+    /**
+     * @optional
+     */
+    theme?: ThemeProp;
 };
-declare const SegmentedButtonItem: ({ checked, accessibilityLabel, disabled, style, showSelectedCheck, icon, testID, label, onPress, segment, density, }: Props) => JSX.Element;
+declare const SegmentedButtonItem: ({ checked, accessibilityLabel, disabled, style, labelStyle, showSelectedCheck, checkedColor, uncheckedColor, rippleColor: customRippleColor, icon, testID, label, onPress, segment, density, theme: themeOverrides, }: Props) => JSX.Element;
 export default SegmentedButtonItem;
-declare const SegmentedButtonWithTheme: ({ checked, accessibilityLabel, disabled, style, showSelectedCheck, icon, testID, label, onPress, segment, density, }: Props) => JSX.Element;
-export { SegmentedButtonWithTheme as SegmentedButton };
+export { SegmentedButtonItem as SegmentedButton };
+//# sourceMappingURL=SegmentedButtonItem.d.ts.map

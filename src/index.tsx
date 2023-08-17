@@ -10,11 +10,11 @@ export {
 
 export * from './styles/themes';
 
-export { default as Provider } from './core/Provider';
+export { default as Provider } from './core/PaperProvider';
+export { default as PaperProvider } from './core/PaperProvider';
 export { default as shadow } from './styles/shadow';
 export { default as overlay } from './styles/overlay';
 export { default as configureFonts } from './styles/fonts';
-export { default as vis } from './styles/vis';
 
 import * as Avatar from './components/Avatar/Avatar';
 import * as Drawer from './components/Drawer/Drawer';
@@ -39,7 +39,7 @@ export { default as Dialog } from './components/Dialog/Dialog';
 export { default as Divider } from './components/Divider';
 export { default as FAB } from './components/FAB';
 export { default as AnimatedFAB } from './components/FAB/AnimatedFAB';
-export { default as HelperText } from './components/HelperText';
+export { default as HelperText } from './components/HelperText/HelperText';
 export { default as IconButton } from './components/IconButton/IconButton';
 export { default as Menu } from './components/Menu/Menu';
 export { default as Modal } from './components/Modal';
@@ -64,7 +64,7 @@ export {
   Subheading,
   Title,
 } from './components/Typography/v2';
-export { default as Text } from './components/Typography/Text';
+export { default as Text, customText } from './components/Typography/Text';
 
 // Types
 export type { Props as ActivityIndicatorProps } from './components/ActivityIndicator';
@@ -109,14 +109,12 @@ export type { Props as DrawerItemProps } from './components/Drawer/DrawerItem';
 export type { Props as DrawerSectionProps } from './components/Drawer/DrawerSection';
 export type { Props as FABProps } from './components/FAB/FAB';
 export type { Props as FABGroupProps } from './components/FAB/FABGroup';
-export type { Props as HelperTextProps } from './components/HelperText';
+export type { Props as HelperTextProps } from './components/HelperText/HelperText';
 export type { Props as IconButtonProps } from './components/IconButton/IconButton';
 export type { Props as ListAccordionProps } from './components/List/ListAccordion';
 export type { Props as ListAccordionGroupProps } from './components/List/ListAccordionGroup';
 export type { Props as ListIconProps } from './components/List/ListIcon';
 export type { Props as ListItemProps } from './components/List/ListItem';
-export type { Props as ListTransactionProps } from './components/List/ListTransaction';
-export type { Props as ListLastTransactionProps } from './components/List/ListLastTransaction';
 export type { Props as ListSectionProps } from './components/List/ListSection';
 export type { Props as ListSubheaderProps } from './components/List/ListSubheader';
 export type { Props as MenuProps } from './components/Menu/Menu';
@@ -125,7 +123,7 @@ export type { Props as ModalProps } from './components/Modal';
 export type { Props as PortalProps } from './components/Portal/Portal';
 export type { Props as PortalHostProps } from './components/Portal/PortalHost';
 export type { Props as ProgressBarProps } from './components/ProgressBar';
-export type { Props as ProviderProps } from './core/Provider';
+export type { Props as ProviderProps } from './core/PaperProvider';
 export type { Props as RadioButtonProps } from './components/RadioButton/RadioButton';
 export type { Props as RadioButtonAndroidProps } from './components/RadioButton/RadioButtonAndroid';
 export type { Props as RadioButtonGroupProps } from './components/RadioButton/RadioButtonGroup';
@@ -151,5 +149,17 @@ export type { Props as TextProps } from './components/Typography/Text';
 export type { Props as SegmentedButtonsProps } from './components/SegmentedButtons/SegmentedButtons';
 export type { Props as ListImageProps } from './components/List/ListImage';
 export type { Props as TooltipProps } from './components/Tooltip/Tooltip';
+export type {
+  MaterialBottomTabNavigationEventMap,
+  MaterialBottomTabNavigationOptions,
+  MaterialBottomTabNavigationProp,
+  MaterialBottomTabScreenProps,
+} from './react-navigation';
 
-export type { MD2Theme, MD3Theme, ThemeBase, MD3Elevation } from './types';
+export type {
+  MD2Theme,
+  MD3Theme,
+  ThemeBase,
+  MD3Elevation,
+  MD3TypescaleKey,
+} from './types';

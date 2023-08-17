@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { FlexAlignType, ColorValue, StyleSheet } from 'react-native';
 
 import color from 'color';
 import type { EllipsizeProp, InternalTheme } from 'src/types';
@@ -12,33 +12,11 @@ type Description =
       fontSize: number;
     }) => React.ReactNode);
 
-export const getDirectionStyles = (
-  alignToTop: boolean,
-  description: Description,
-  isV3: boolean
-) => {
-  const stylesV3 = {
-    marginRight: 0,
-    marginLeft: 16,
-    alignSelf: alignToTop ? 'flex-start' : 'center',
-  };
-
-  if (!description) {
-    return {
-      ...styles.iconMarginLeft,
-      ...styles.marginVerticalNone,
-      ...(isV3 && { ...stylesV3 }),
-    };
-  }
-
-  if (!isV3) {
-    return styles.iconMarginLeft;
-  }
-
-  return {
-    ...styles.iconMarginLeft,
-    ...stylesV3,
-  };
+export type Style = {
+  marginLeft?: number;
+  marginRight?: number;
+  marginVertical?: number;
+  alignSelf?: FlexAlignType;
 };
 
 export const getLeftStyles = (
@@ -107,9 +85,11 @@ const styles = StyleSheet.create({
 export const getAccordionColors = ({
   theme,
   isExpanded,
+  customRippleColor,
 }: {
   theme: InternalTheme;
   isExpanded?: boolean;
+  customRippleColor?: ColorValue;
 }) => {
   const titleColor = theme.isV3
     ? theme.colors.onSurface
@@ -121,7 +101,8 @@ export const getAccordionColors = ({
 
   const titleTextColor = isExpanded ? theme.colors?.primary : titleColor;
 
-  const rippleColor = color(titleTextColor).alpha(0.12).rgb().string();
+  const rippleColor =
+    customRippleColor || color(titleTextColor).alpha(0.12).rgb().string();
 
   return {
     titleColor,

@@ -10,12 +10,6 @@ export { default as Icon } from './ListIcon';
 // @component ./ListItem.tsx
 export { default as Item } from './ListItem';
 
-// @component ./ListCardTransaction.tsx
-export { default as Transaction } from './ListTransaction';
-
-// @component ./ListLastTransaction.tsx
-export { default as LastTransaction } from './ListLastTransaction';
-
 // @component ./ListSection.tsx
 export { default as Section } from './ListSection';
 
@@ -24,3 +18,9 @@ export { default as Subheader } from './ListSubheader';
 
 // @component ./ListImage.tsx
 export { default as Image } from './ListImage';
+
+// @component ./ListTransaction.tsx
+export { default as ListTransaction } from './ListTransaction';
+
+// @component ./ListLastTransaction.tsx
+export { default as ListLastTransaction } from './ListLastTransaction';

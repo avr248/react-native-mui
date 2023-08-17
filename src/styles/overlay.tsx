@@ -5,19 +5,17 @@ import color from 'color';
 import { MD2DarkTheme } from './themes/v2/DarkTheme';
 
 export const isAnimatedValue = (
-  /* @ts-ignore */
   it: number | string | Animated.AnimatedInterpolation<number | string>
 ): it is Animated.Value => it instanceof Animated.Value;
 
 export default function overlay<T extends Animated.Value | number>(
   elevation: T,
   surfaceColor: string = MD2DarkTheme.colors?.surface
-  /* @ts-ignore */
 ): T extends number ? string : Animated.AnimatedInterpolation<number | string> {
   if (isAnimatedValue(elevation)) {
     const inputRange = [0, 1, 2, 3, 8, 24];
 
-    /* @ts-ignore */
+    // @ts-expect-error: TS doesn't seem to refine the type correctly
     return elevation.interpolate({
       inputRange,
       outputRange: inputRange.map((elevation) => {
@@ -26,7 +24,7 @@ export default function overlay<T extends Animated.Value | number>(
     });
   }
 
-  /* @ts-ignore */
+  // @ts-expect-error: TS doesn't seem to refine the type correctly
   return calculateColor(surfaceColor, elevation);
 }
 

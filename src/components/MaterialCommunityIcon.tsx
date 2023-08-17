@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, Platform, TextProps, ViewProps } from 'react-native';
+import { StyleSheet, Text, Platform, ViewProps } from 'react-native';
 
 import { black } from '../styles/themes/v2/colors';
 
@@ -12,10 +12,10 @@ export type IconProps = {
 };
 
 let MaterialCommunityIcons: React.ComponentType<
-  TextProps & {
-    name: string;
+  React.ComponentProps<
+    typeof import('react-native-vector-icons/MaterialCommunityIcons').default
+  > & {
     color: string;
-    size: number;
     pointerEvents?: ViewProps['pointerEvents'];
   }
 >;
@@ -29,7 +29,7 @@ try {
 
   // Fallback component for icons
   MaterialCommunityIcons = ({ name, color, size, ...rest }) => {
-    /* @ts-ignore */
+    /* eslint-disable no-console */
     if (!isErrorLogged) {
       if (
         !/(Cannot find module|Module not found|Cannot resolve module)/.test(
@@ -41,7 +41,7 @@ try {
 
       console.warn(
         `Tried to use the icon '${name}' in a component from 'react-native-paper', but 'react-native-vector-icons/MaterialCommunityIcons' could not be loaded.`,
-        `To remove this warning, try installing 'react-native-vector-icons' or use another method to specify icon: https://callstack.github.io/react-native-paper/icons.html.`
+        `To remove this warning, try installing 'react-native-vector-icons' or use another method to specify icon: https://callstack.github.io/react-native-paper/docs/guides/icons`
       );
 
       isErrorLogged = true;
@@ -51,7 +51,7 @@ try {
       <Text
         {...rest}
         style={[styles.icon, { color, fontSize: size }]}
-        /* @ts-ignore */
+        // @ts-expect-error: Text doesn't support this, but it seems to affect TouchableNativeFeedback
         pointerEvents="none"
         selectable={false}
       >
@@ -99,6 +99,7 @@ const defaultIcon = ({
 );
 
 const styles = StyleSheet.create({
+  // eslint-disable-next-line react-native/no-color-literals
   icon: {
     backgroundColor: 'transparent',
   },

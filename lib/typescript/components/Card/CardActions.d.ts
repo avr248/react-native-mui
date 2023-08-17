@@ -1,20 +1,16 @@
 import * as React from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
+import type { ThemeProp } from 'src/types';
 export declare type Props = React.ComponentPropsWithRef<typeof View> & {
     /**
      * Items inside the `CardActions`.
      */
     children: React.ReactNode;
     style?: StyleProp<ViewStyle>;
+    theme?: ThemeProp;
 };
 /**
  * A component to show a list of actions inside a Card.
- *
- * <div class="screenshots">
- *   <figure>
- *     <img class="small" src="screenshots/card-actions.png" />
- *   </figure>
- * </div>
  *
  * ## Usage
  * ```js
@@ -38,3 +34,4 @@ declare const CardActions: {
     displayName: string;
 };
 export default CardActions;
+//# sourceMappingURL=CardActions.d.ts.map

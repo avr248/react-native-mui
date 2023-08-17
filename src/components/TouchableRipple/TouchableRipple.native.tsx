@@ -7,25 +7,33 @@ import {
   StyleSheet,
   Pressable,
   GestureResponderEvent,
+  View,
+  ColorValue,
 } from 'react-native';
 
+import { Settings, SettingsContext } from '../../core/settings';
+import { useInternalTheme } from '../../core/theming';
+import type { ThemeProp } from '../../types';
+import hasTouchHandler from '../../utils/hasTouchHandler';
 import { getTouchableRippleColors } from './utils';
-import { withInternalTheme } from '../../core/theming';
-import type { InternalTheme } from '../../types';
 
 const ANDROID_VERSION_LOLLIPOP = 21;
 const ANDROID_VERSION_PIE = 28;
 
-type Props = React.ComponentProps<typeof Pressable> & {
+export type Props = React.ComponentProps<typeof Pressable> & {
   borderless?: boolean;
   background?: PressableAndroidRippleConfig;
+  centered?: boolean;
   disabled?: boolean;
   onPress?: (e: GestureResponderEvent) => void | null;
-  rippleColor?: string;
+  onLongPress?: (e: GestureResponderEvent) => void;
+  onPressIn?: (e: GestureResponderEvent) => void;
+  onPressOut?: (e: GestureResponderEvent) => void;
+  rippleColor?: ColorValue;
   underlayColor?: string;
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
-  theme: InternalTheme;
+  theme?: ThemeProp;
 };
 
 const TouchableRipple = ({
@@ -36,12 +44,23 @@ const TouchableRipple = ({
   rippleColor,
   underlayColor,
   children,
-  theme,
+  theme: themeOverrides,
   ...rest
 }: Props) => {
-  const [showUnderlay, setShowUnderlay] = React.useState<boolean>(false);
+  const theme = useInternalTheme(themeOverrides);
+  const { rippleEffectEnabled } = React.useContext<Settings>(SettingsContext);
 
-  const disabled = disabledProp || !rest.onPress;
+  const { onPress, onLongPress, onPressIn, onPressOut } = rest;
+
+  const hasPassedTouchHandler = hasTouchHandler({
+    onPress,
+    onLongPress,
+    onPressIn,
+    onPressOut,
+  });
+
+  const disabled = disabledProp || !hasPassedTouchHandler;
+
   const { calculatedRippleColor, calculatedUnderlayColor } =
     getTouchableRippleColors({
       theme,
@@ -56,31 +75,21 @@ const TouchableRipple = ({
     Platform.Version >= ANDROID_VERSION_PIE &&
     borderless;
 
-  const handlePressIn = (e: GestureResponderEvent) => {
-    setShowUnderlay(true);
-    rest.onPressIn?.(e);
-  };
-
-  const handlePressOut = (e: GestureResponderEvent) => {
-    setShowUnderlay(false);
-    rest.onPressOut?.(e);
-  };
-
   if (TouchableRipple.supported) {
+    const androidRipple = rippleEffectEnabled
+      ? background ?? {
+          color: calculatedRippleColor,
+          borderless,
+          foreground: useForeground,
+        }
+      : undefined;
+
     return (
       <Pressable
         {...rest}
         disabled={disabled}
         style={[borderless && styles.overflowHidden, style]}
-        android_ripple={
-          background != null
-            ? background
-            : {
-                color: calculatedRippleColor,
-                borderless,
-                foreground: useForeground,
-              }
-        }
+        android_ripple={androidRipple}
       >
         {React.Children.only(children)}
       </Pressable>
@@ -91,15 +100,22 @@ const TouchableRipple = ({
     <Pressable
       {...rest}
       disabled={disabled}
-      style={[
-        borderless && styles.overflowHidden,
-        showUnderlay && { backgroundColor: calculatedUnderlayColor },
-        style,
-      ]}
-      onPressIn={handlePressIn}
-      onPressOut={handlePressOut}
+      style={[borderless && styles.overflowHidden, style]}
     >
-      {React.Children.only(children)}
+      {({ pressed }) => (
+        <>
+          {pressed && rippleEffectEnabled && (
+            <View
+              testID="touchable-ripple-underlay"
+              style={[
+                styles.underlay,
+                { backgroundColor: calculatedUnderlayColor },
+              ]}
+            />
+          )}
+          {React.Children.only(children)}
+        </>
+      )}
     </Pressable>
   );
 };
@@ -111,6 +127,10 @@ const styles = StyleSheet.create({
   overflowHidden: {
     overflow: 'hidden',
   },
+  underlay: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: 2,
+  },
 });
 
-export default withInternalTheme(TouchableRipple);
+export default TouchableRipple;

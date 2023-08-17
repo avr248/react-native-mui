@@ -23,12 +23,6 @@ export type Props = {
 /**
  * Toggle button row renders a group of toggle buttons in a row.
  *
- * <div class="screenshots">
- *   <figure>
- *     <img class="medium" src="screenshots/toggle-button-row.gif" />
- *   </figure>
- * </div>
- *
  * ## Usage
  * ```js
  * import * as React from 'react';
@@ -56,9 +50,9 @@ const ToggleButtonRow = ({ value, onValueChange, children, style }: Props) => {
     <ToggleButtonGroup value={value} onValueChange={onValueChange}>
       <View style={[styles.row, style]}>
         {React.Children.map(children, (child, i) => {
-          /* @ts-ignore */
+          // @ts-expect-error: TypeScript complains about child.type but it doesn't matter
           if (child && child.type === ToggleButton) {
-            /* @ts-ignore */
+            // @ts-expect-error: We're sure that child is a React Element
             return React.cloneElement(child, {
               style: [
                 styles.button,
@@ -67,7 +61,7 @@ const ToggleButtonRow = ({ value, onValueChange, children, style }: Props) => {
                   : i === count - 1
                   ? styles.last
                   : styles.middle,
-                /* @ts-ignore */
+                // @ts-expect-error: We're sure that child is a React Element
                 child.props.style,
               ],
             });

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   Animated,
+  ColorValue,
   GestureResponderEvent,
   StyleProp,
   StyleSheet,
@@ -11,16 +12,17 @@ import {
 
 import color from 'color';
 
-import { ButtonMode, getButtonColors } from './utils';
-import { withInternalTheme } from '../../core/theming';
-import type { InternalTheme } from '../../types';
+import { useInternalTheme } from '../../core/theming';
+import type { $Omit, ThemeProp } from '../../types';
+import hasTouchHandler from '../../utils/hasTouchHandler';
 import ActivityIndicator from '../ActivityIndicator';
 import Icon, { IconSource } from '../Icon';
 import Surface from '../Surface';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
 import Text from '../Typography/Text';
+import { ButtonMode, getButtonColors } from './utils';
 
-export type Props = React.ComponentProps<typeof Surface> & {
+export type Props = $Omit<React.ComponentProps<typeof Surface>, 'mode'> & {
   /**
    * Mode of the button. You can change the mode to adjust the styling to give it desired emphasis.
    * - `text` - flat button without background or outline, used for the lowest priority actions, especially when presenting multiple options.
@@ -53,6 +55,10 @@ export type Props = React.ComponentProps<typeof Surface> & {
    * Custom button's text color.
    */
   textColor?: string;
+  /**
+   * Color of the ripple effect.
+   */
+  rippleColor?: ColorValue;
   /**
    * Whether to show a loading indicator.
    */
@@ -106,7 +112,7 @@ export type Props = React.ComponentProps<typeof Surface> & {
    * Use this prop to apply custom height and width and to set the icon on the right with `flexDirection: 'row-reverse'`.
    */
   contentStyle?: StyleProp<ViewStyle>;
-  style?: StyleProp<ViewStyle>;
+  style?: Animated.WithAnimatedValue<StyleProp<ViewStyle>>;
   /**
    * Style for the button text.
    */
@@ -114,7 +120,7 @@ export type Props = React.ComponentProps<typeof Surface> & {
   /**
    * @optional
    */
-  theme: InternalTheme;
+  theme?: ThemeProp;
   /**
    * testID to be used on tests.
    */
@@ -123,29 +129,6 @@ export type Props = React.ComponentProps<typeof Surface> & {
 
 /**
  * A button is component that the user can press to trigger an action.
- *
- * <div class="screenshots">
- *   <figure>
- *     <img src="screenshots/button-1.png" />
- *     <figcaption>Text button</figcaption>
- *   </figure>
- *   <figure>
- *     <img src="screenshots/button-2.png" />
- *     <figcaption>Outlined button</figcaption>
- *   </figure>
- *   <figure>
- *     <img src="screenshots/button-3.png" />
- *     <figcaption>Contained button</figcaption>
- *   </figure>
- *   <figure>
- *     <img src="screenshots/button-4.png" />
- *     <figcaption>Elevated button</figcaption>
- *   </figure>
- *   <figure>
- *     <img src="screenshots/button-5.png" />
- *     <figcaption>Contained-tonal button</figcaption>
- *   </figure>
- * </div>
  *
  * ## Usage
  * ```js
@@ -170,6 +153,7 @@ const Button = ({
   icon,
   buttonColor: customButtonColor,
   textColor: customTextColor,
+  rippleColor: customRippleColor,
   children,
   accessibilityLabel,
   accessibilityHint,
@@ -179,14 +163,15 @@ const Button = ({
   onLongPress,
   delayLongPress,
   style,
-  theme,
-  uppercase = !theme.isV3,
+  theme: themeOverrides,
+  uppercase: uppercaseProp,
   contentStyle,
   labelStyle,
   testID = 'button',
   accessible,
   ...rest
 }: Props) => {
+  const theme = useInternalTheme(themeOverrides);
   const isMode = React.useCallback(
     (modeToCompare: ButtonMode) => {
       return mode === modeToCompare;
@@ -194,6 +179,14 @@ const Button = ({
     [mode]
   );
   const { roundness, isV3, animation } = theme;
+  const uppercase = uppercaseProp ?? !theme.isV3;
+
+  const hasPassedTouchHandler = hasTouchHandler({
+    onPress,
+    onPressIn,
+    onPressOut,
+    onLongPress,
+  });
 
   const isElevationEntitled =
     !disabled && (isV3 ? isMode('elevated') : isMode('contained'));
@@ -245,7 +238,8 @@ const Button = ({
       dark,
     });
 
-  const rippleColor = color(textColor).alpha(0.12).rgb().string();
+  const rippleColor =
+    customRippleColor || color(textColor).alpha(0.12).rgb().string();
 
   const buttonStyle = {
     backgroundColor,
@@ -290,6 +284,7 @@ const Button = ({
   return (
     <Surface
       {...rest}
+      testID={`${testID}-container`}
       style={
         [
           styles.button,
@@ -305,8 +300,8 @@ const Button = ({
         borderless
         onPress={onPress}
         onLongPress={onLongPress}
-        onPressIn={handlePressIn}
-        onPressOut={handlePressOut}
+        onPressIn={hasPassedTouchHandler ? handlePressIn : undefined}
+        onPressOut={hasPassedTouchHandler ? handlePressOut : undefined}
         delayLongPress={delayLongPress}
         accessibilityLabel={accessibilityLabel}
         accessibilityHint={accessibilityHint}
@@ -317,6 +312,7 @@ const Button = ({
         rippleColor={rippleColor}
         style={touchableStyle}
         testID={testID}
+        theme={theme}
       >
         <View style={[styles.content, contentStyle]}>
           {icon && loading !== true ? (
@@ -347,6 +343,7 @@ const Button = ({
             variant="labelLarge"
             selectable={false}
             numberOfLines={1}
+            testID={`${testID}-text`}
             style={[
               styles.label,
               !isV3 && styles.md2Label,
@@ -451,4 +448,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withInternalTheme(Button);
+export default Button;

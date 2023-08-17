@@ -1,22 +1,26 @@
 import * as React from 'react';
 import {
+  ColorValue,
   GestureResponderEvent,
   I18nManager,
+  NativeSyntheticEvent,
   StyleProp,
   StyleSheet,
   TextStyle,
+  TextLayoutEventData,
   View,
   ViewProps,
   ViewStyle,
 } from 'react-native';
 
-import { ListAccordionGroupContext } from './ListAccordionGroup';
-import { getAccordionColors } from './utils';
-import { withInternalTheme } from '../../core/theming';
-import type { InternalTheme } from '../../types';
+import { useInternalTheme } from '../../core/theming';
+import type { ThemeProp } from '../../types';
 import MaterialCommunityIcon from '../MaterialCommunityIcon';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
 import Text from '../Typography/Text';
+import { ListAccordionGroupContext } from './ListAccordionGroup';
+import type { Style } from './utils';
+import { getAccordionColors, getLeftStyles } from './utils';
 
 export type Props = {
   /**
@@ -30,7 +34,7 @@ export type Props = {
   /**
    * Callback which returns a React element to display on the left side.
    */
-  left?: (props: { color: string }) => React.ReactNode;
+  left?: (props: { color: string; style: Style }) => React.ReactNode;
   /**
    * Callback which returns a React element to display on the right side.
    */
@@ -60,7 +64,7 @@ export type Props = {
   /**
    * @optional
    */
-  theme: InternalTheme;
+  theme?: ThemeProp;
   /**
    * Style that is passed to the wrapping TouchableRipple element.
    */
@@ -73,6 +77,10 @@ export type Props = {
    * Style that is passed to Description element.
    */
   descriptionStyle?: StyleProp<TextStyle>;
+  /**
+   * Color of the ripple effect.
+   */
+  rippleColor?: ColorValue;
   /**
    * Truncate Title text such that the total number of lines does not
    * exceed this number.
@@ -103,12 +111,6 @@ export type Props = {
 
 /**
  * A component used to display an expandable list item.
- *
- * <div class="screenshots">
- *   <img class="medium" src="screenshots/list-accordion-1.png" />
- *   <img class="medium" src="screenshots/list-accordion-2.png" />
- *   <img class="medium" src="screenshots/list-accordion-3.png" />
- * </div>
  *
  * ## Usage
  * ```js
@@ -150,11 +152,12 @@ const ListAccordion = ({
   title,
   description,
   children,
-  theme,
+  theme: themeOverrides,
   titleStyle,
   descriptionStyle,
   titleNumberOfLines = 1,
   descriptionNumberOfLines = 2,
+  rippleColor: customRippleColor,
   style,
   id,
   testID,
@@ -165,9 +168,21 @@ const ListAccordion = ({
   accessibilityLabel,
   pointerEvents = 'none',
 }: Props) => {
+  const theme = useInternalTheme(themeOverrides);
   const [expanded, setExpanded] = React.useState<boolean>(
     expandedProp || false
   );
+  const [alignToTop, setAlignToTop] = React.useState(false);
+
+  const onDescriptionTextLayout = (
+    event: NativeSyntheticEvent<TextLayoutEventData>
+  ) => {
+    if (!theme.isV3) {
+      return;
+    }
+    const { nativeEvent } = event;
+    setAlignToTop(nativeEvent.lines.length >= 2);
+  };
 
   const handlePressAction = (e: GestureResponderEvent) => {
     onPress?.(e);
@@ -182,7 +197,7 @@ const ListAccordion = ({
   const expandedInternal = expandedProp !== undefined ? expandedProp : expanded;
 
   const groupContext = React.useContext(ListAccordionGroupContext);
-  if (groupContext !== null && !id) {
+  if (groupContext !== null && (id === undefined || id === null || id === '')) {
     throw new Error(
       'List.Accordion is used inside a List.AccordionGroup without specifying an id prop.'
     );
@@ -195,6 +210,7 @@ const ListAccordion = ({
     getAccordionColors({
       theme,
       isExpanded,
+      customRippleColor,
     });
 
   const handlePress =
@@ -205,7 +221,7 @@ const ListAccordion = ({
     <View>
       <View style={{ backgroundColor: theme?.colors?.background }}>
         <TouchableRipple
-          style={[styles.container, style]}
+          style={[theme.isV3 ? styles.containerV3 : styles.container, style]}
           onPress={handlePress}
           onLongPress={onLongPress}
           delayLongPress={delayLongPress}
@@ -214,15 +230,22 @@ const ListAccordion = ({
           accessibilityState={{ expanded: isExpanded }}
           accessibilityLabel={accessibilityLabel}
           testID={testID}
+          theme={theme}
           borderless
         >
-          <View style={styles.row} pointerEvents={pointerEvents}>
+          <View
+            style={theme.isV3 ? styles.rowV3 : styles.row}
+            pointerEvents={pointerEvents}
+          >
             {left
               ? left({
                   color: isExpanded ? theme.colors?.primary : descriptionColor,
+                  style: getLeftStyles(alignToTop, description, theme.isV3),
                 })
               : null}
-            <View style={[styles.item, styles.content]}>
+            <View
+              style={[theme.isV3 ? styles.itemV3 : styles.item, styles.content]}
+            >
               <Text
                 selectable={false}
                 numberOfLines={titleNumberOfLines}
@@ -247,6 +270,7 @@ const ListAccordion = ({
                     },
                     descriptionStyle,
                   ]}
+                  onTextLayout={onDescriptionTextLayout}
                 >
                   {description}
                 </Text>
@@ -281,7 +305,11 @@ const ListAccordion = ({
               !child.props.right
             ) {
               return React.cloneElement(child as React.ReactElement<any>, {
-                style: [styles.child, child.props.style],
+                style: [
+                  theme.isV3 ? styles.childV3 : styles.child,
+                  child.props.style,
+                ],
+                theme,
               });
             }
 
@@ -298,9 +326,17 @@ const styles = StyleSheet.create({
   container: {
     padding: 8,
   },
+  containerV3: {
+    paddingVertical: 8,
+    paddingRight: 24,
+  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  rowV3: {
+    flexDirection: 'row',
+    marginVertical: 6,
   },
   multiline: {
     height: 40,
@@ -314,10 +350,17 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   item: {
-    margin: 8,
+    marginVertical: 6,
+    paddingLeft: 8,
+  },
+  itemV3: {
+    paddingLeft: 16,
   },
   child: {
     paddingLeft: 64,
+  },
+  childV3: {
+    paddingLeft: 40,
   },
   content: {
     flex: 1,
@@ -325,4 +368,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withInternalTheme(ListAccordion);
+export default ListAccordion;

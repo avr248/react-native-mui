@@ -22,13 +22,6 @@ export declare type Props = React.ComponentPropsWithRef<typeof View> & {
 /**
  * A component to show content inside a Card.
  *
- * <div class="screenshots">
- *   <figure>
- *     <img class="small" src="screenshots/card-content-example.png" />
- *   </figure>
- * </div>
- *
- *
  * ## Usage
  * ```js
  * import * as React from 'react';
@@ -51,3 +44,4 @@ declare const CardContent: {
     displayName: string;
 };
 export default CardContent;
+//# sourceMappingURL=CardContent.d.ts.map

@@ -6,10 +6,10 @@ import {
   Platform,
 } from 'react-native';
 
-import { accessibilityProps } from './MaterialCommunityIcon';
 import { Consumer as SettingsConsumer } from '../core/settings';
-import { withInternalTheme } from '../core/theming';
-import type { InternalTheme } from '../types';
+import { useInternalTheme } from '../core/theming';
+import type { ThemeProp } from '../types';
+import { accessibilityProps } from './MaterialCommunityIcon';
 
 type IconSourceBase = string | ImageSourcePropType;
 
@@ -29,7 +29,7 @@ type Props = IconProps & {
   /**
    * @optional
    */
-  theme: InternalTheme;
+  theme?: ThemeProp;
 };
 
 const isImageSource = (source: any) =>
@@ -67,7 +67,14 @@ export const isValidIcon = (source: any) =>
 export const isEqualIcon = (a: any, b: any) =>
   a === b || getIconId(a) === getIconId(b);
 
-const Icon = ({ source, color, size, theme, ...rest }: Props) => {
+const Icon = ({
+  source,
+  color,
+  size,
+  theme: themeOverrides,
+  ...rest
+}: Props) => {
+  const theme = useInternalTheme(themeOverrides);
   const direction =
     typeof source === 'object' && source.direction && source.source
       ? source.direction === 'auto'
@@ -76,6 +83,7 @@ const Icon = ({ source, color, size, theme, ...rest }: Props) => {
           : 'ltr'
         : source.direction
       : null;
+
   const s =
     typeof source === 'object' && source.direction && source.source
       ? source.source
@@ -96,7 +104,7 @@ const Icon = ({ source, color, size, theme, ...rest }: Props) => {
             width: size,
             height: size,
             tintColor: color,
-            resizeMode: 'contain',
+            resizeMode: `contain`,
           },
         ]}
         {...accessibilityProps}
@@ -107,7 +115,7 @@ const Icon = ({ source, color, size, theme, ...rest }: Props) => {
     return (
       <SettingsConsumer>
         {({ icon }) => {
-          return icon({
+          return icon?.({
             name: s,
             color: iconColor,
             size,
@@ -123,4 +131,4 @@ const Icon = ({ source, color, size, theme, ...rest }: Props) => {
   return null;
 };
 
-export default withInternalTheme(Icon);
+export default Icon;

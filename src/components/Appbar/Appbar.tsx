@@ -1,8 +1,19 @@
 import * as React from 'react';
-import { Platform, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+import {
+  Animated,
+  Platform,
+  StyleProp,
+  StyleSheet,
+  View,
+  ViewStyle,
+  ColorValue,
+} from 'react-native';
 
 import color from 'color';
 
+import { useInternalTheme } from '../../core/theming';
+import type { MD3Elevation, ThemeProp } from '../../types';
+import Surface from '../Surface';
 import AppbarAction from './AppbarAction';
 import AppbarBackAction from './AppbarBackAction';
 import AppbarContent from './AppbarContent';
@@ -14,11 +25,11 @@ import {
   modeAppbarHeight,
   renderAppbarContent,
 } from './utils';
-import { withInternalTheme } from '../../core/theming';
-import type { InternalTheme, MD3Elevation } from '../../types';
-import Surface from '../Surface';
 
-export type Props = Partial<React.ComponentPropsWithRef<typeof View>> & {
+export type Props = Omit<
+  Partial<React.ComponentPropsWithRef<typeof View>>,
+  'style'
+> & {
   /**
    * Whether the background color is a dark color. A dark appbar will render light text and vice-versa.
    */
@@ -54,8 +65,8 @@ export type Props = Partial<React.ComponentPropsWithRef<typeof View>> & {
   /**
    * @optional
    */
-  theme: InternalTheme;
-  style?: StyleProp<ViewStyle>;
+  theme?: ThemeProp;
+  style?: Animated.WithAnimatedValue<StyleProp<ViewStyle>>;
 };
 
 /**
@@ -64,11 +75,7 @@ export type Props = Partial<React.ComponentPropsWithRef<typeof View>> & {
  * The bottom bar usually provides access to a drawer and up to four actions.
  *
  * By default Appbar uses primary color as a background, in dark theme with `adaptive` mode it will use surface colour instead.
- * See [Dark Theme](https://callstack.github.io/react-native-paper/theming.html#dark-theme) for more informations
- *
- * <div class="screenshots">
- *   <img class="small" src="screenshots/appbar.png" />
- * </div>
+ * See [Dark Theme](https://callstack.github.io/react-native-paper/docs/guides/theming#dark-theme) for more informations
  *
  * ## Usage
  * ### Top bar
@@ -152,18 +159,23 @@ const Appbar = ({
   children,
   dark,
   style,
-  theme,
   mode = 'small',
   elevated,
   safeAreaInsets,
+  theme: themeOverrides,
   ...rest
 }: Props) => {
+  const theme = useInternalTheme(themeOverrides);
   const { isV3 } = theme;
+  const flattenedStyle = StyleSheet.flatten(style);
   const {
     backgroundColor: customBackground,
     elevation = isV3 ? (elevated ? 2 : 0) : 4,
     ...restStyle
-  }: ViewStyle = StyleSheet.flatten(style) || {};
+  } = (flattenedStyle || {}) as Exclude<typeof flattenedStyle, number> & {
+    elevation?: number;
+    backgroundColor?: ColorValue;
+  };
 
   let isDark: boolean;
 
@@ -222,7 +234,7 @@ const Appbar = ({
   const filterAppbarActions = React.useCallback(
     (isLeading = false) =>
       React.Children.toArray(children).filter((child) =>
-        /* @ts-ignore */
+        // @ts-expect-error: TypeScript complains about the type of type but it doesn't matter
         isLeading ? child.props.isLeading : !child.props.isLeading
       ),
     [children]
@@ -257,6 +269,7 @@ const Appbar = ({
         renderAppbarContent({
           children,
           isDark,
+          theme,
           isV3,
           shouldCenterContent: isV3CenterAlignedMode || shouldCenterContent,
         })}
@@ -348,9 +361,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withInternalTheme(Appbar);
+export default Appbar;
 
 // @component-docs ignore-next-line
-const AppbarWithTheme = withInternalTheme(Appbar);
-// @component-docs ignore-next-line
-export { AppbarWithTheme as Appbar };
+export { Appbar };

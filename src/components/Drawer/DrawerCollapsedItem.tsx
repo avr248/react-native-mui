@@ -12,8 +12,8 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import { withInternalTheme } from '../../core/theming';
-import type { InternalTheme } from '../../types';
+import { useInternalTheme } from '../../core/theming';
+import type { ThemeProp } from '../../types';
 import Badge from '../Badge';
 import Icon, { IconSource } from '../Icon';
 import Text from '../Typography/Text';
@@ -28,11 +28,13 @@ export type Props = React.ComponentPropsWithRef<typeof View> & {
    */
   badge?: string | number | boolean;
   /**
-   * Icon to use as the focused destination icon, can be a string, an image source or a react component @renamed Renamed from 'icon' to 'focusedIcon' in v5.x
+   * @renamed Renamed from 'icon' to 'focusedIcon' in v5.x
+   * Icon to use as the focused destination icon, can be a string, an image source or a react component
    */
   focusedIcon?: IconSource;
   /**
-   * Icon to use as the unfocused destination icon, can be a string, an image source or a react component @renamed Renamed from 'icon' to 'focusedIcon' in v5.x
+   * @renamed Renamed from 'icon' to 'focusedIcon' in v5.x
+   * Icon to use as the unfocused destination icon, can be a string, an image source or a react component
    */
   unfocusedIcon?: IconSource;
   /**
@@ -51,7 +53,7 @@ export type Props = React.ComponentPropsWithRef<typeof View> & {
   /**
    * @optional
    */
-  theme: InternalTheme;
+  theme?: ThemeProp;
 
   /**
    * TestID used for testing purposes
@@ -65,14 +67,9 @@ const itemSize = 56;
 const outlineHeight = 32;
 
 /**
- * @supported Available in v5.x with theme version 3
- * Collapsed component used to show an action item with an icon and optionally label in a navigation drawer.
+ * Note: Available in v5.x with theme version 3
  *
- * <div class="screenshots">
- *   <figure>
- *     <img class="small" src="screenshots/drawer-collapsed.png" />
- *   </figure>
- * </div>
+ * Collapsed component used to show an action item with an icon and optionally label in a navigation drawer.
  *
  * ## Usage
  * ```js
@@ -95,7 +92,7 @@ const DrawerCollapsedItem = ({
   unfocusedIcon,
   label,
   active,
-  theme,
+  theme: themeOverrides,
   style,
   onPress,
   accessibilityLabel,
@@ -103,6 +100,7 @@ const DrawerCollapsedItem = ({
   testID = 'drawer-collapsed-item',
   ...rest
 }: Props) => {
+  const theme = useInternalTheme(themeOverrides);
   const { isV3 } = theme;
   const { scale } = theme.animation;
 
@@ -163,11 +161,11 @@ const DrawerCollapsedItem = ({
 
   return (
     <View {...rest}>
-      {/* @ts-ignore */}
+      {/* eslint-disable-next-line react-native-a11y/has-accessibility-props */}
       <TouchableWithoutFeedback
         onPress={onPress}
         onPressOut={onPress ? handlePressOut : undefined}
-        /* @ts-ignore */
+        // @ts-expect-error We keep old a11y props for backwards compat with old RN versions
         accessibilityTraits={active ? ['button', 'selected'] : 'button'}
         accessibilityComponentType="button"
         accessibilityRole="button"
@@ -269,4 +267,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withInternalTheme(DrawerCollapsedItem);
+export default DrawerCollapsedItem;

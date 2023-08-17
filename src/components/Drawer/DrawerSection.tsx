@@ -3,9 +3,9 @@ import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 
 import color from 'color';
 
-import { withInternalTheme } from '../../core/theming';
+import { useInternalTheme } from '../../core/theming';
 import { MD3Colors } from '../../styles/themes/v3/tokens';
-import type { InternalTheme } from '../../types';
+import type { ThemeProp } from '../../types';
 import Divider from '../Divider';
 import Text from '../Typography/Text';
 
@@ -26,17 +26,11 @@ export type Props = React.ComponentPropsWithRef<typeof View> & {
   /**
    * @optional
    */
-  theme: InternalTheme;
+  theme?: ThemeProp;
 };
 
 /**
  * A component to group content inside a navigation drawer.
- *
- * <div class="screenshots">
- *   <figure>
- *     <img class="small" src="screenshots/drawer-section.png" />
- *   </figure>
- * </div>
  *
  * ## Usage
  * ```js
@@ -68,11 +62,12 @@ export type Props = React.ComponentPropsWithRef<typeof View> & {
 const DrawerSection = ({
   children,
   title,
-  theme,
+  theme: themeOverrides,
   style,
   showDivider = true,
   ...rest
 }: Props) => {
+  const theme = useInternalTheme(themeOverrides);
   const { isV3 } = theme;
   const titleColor = isV3
     ? theme.colors.onSurfaceVariant
@@ -106,6 +101,7 @@ const DrawerSection = ({
         <Divider
           {...(isV3 && { horizontalInset: true, bold: true })}
           style={[styles.divider, isV3 && styles.v3Divider]}
+          theme={theme}
         />
       )}
     </View>
@@ -133,4 +129,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default withInternalTheme(DrawerSection);
+export default DrawerSection;

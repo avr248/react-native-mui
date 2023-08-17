@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { GestureResponderEvent, StyleProp, TextStyle, ViewProps, ViewStyle } from 'react-native';
-import type { InternalTheme } from '../../types';
+import { ColorValue, GestureResponderEvent, StyleProp, TextStyle, ViewProps, ViewStyle } from 'react-native';
+import type { ThemeProp } from '../../types';
+import type { Style } from './utils';
 export declare type Props = {
     /**
      * Title text for the list accordion.
@@ -15,6 +16,7 @@ export declare type Props = {
      */
     left?: (props: {
         color: string;
+        style: Style;
     }) => React.ReactNode;
     /**
      * Callback which returns a React element to display on the right side.
@@ -47,7 +49,7 @@ export declare type Props = {
     /**
      * @optional
      */
-    theme: InternalTheme;
+    theme?: ThemeProp;
     /**
      * Style that is passed to the wrapping TouchableRipple element.
      */
@@ -60,6 +62,10 @@ export declare type Props = {
      * Style that is passed to Description element.
      */
     descriptionStyle?: StyleProp<TextStyle>;
+    /**
+     * Color of the ripple effect.
+     */
+    rippleColor?: ColorValue;
     /**
      * Truncate Title text such that the total number of lines does not
      * exceed this number.
@@ -87,10 +93,46 @@ export declare type Props = {
      */
     pointerEvents?: ViewProps['pointerEvents'];
 };
-declare const _default: React.ComponentType<Pick<Props, "style" | "title" | "children" | "testID" | "left" | "right" | "pointerEvents" | "accessibilityLabel" | "onPress" | "onLongPress" | "id" | "delayLongPress" | "description" | "expanded" | "titleStyle" | "descriptionStyle" | "titleNumberOfLines" | "descriptionNumberOfLines"> & {
-    theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
-}> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Props> & {
-    ({ left, right, title, description, children, theme, titleStyle, descriptionStyle, titleNumberOfLines, descriptionNumberOfLines, style, id, testID, onPress, onLongPress, delayLongPress, expanded: expandedProp, accessibilityLabel, pointerEvents, }: Props): JSX.Element;
+/**
+ * A component used to display an expandable list item.
+ *
+ * ## Usage
+ * ```js
+ * import * as React from 'react';
+ * import { List } from 'react-native-paper';
+ *
+ * const MyComponent = () => {
+ *   const [expanded, setExpanded] = React.useState(true);
+ *
+ *   const handlePress = () => setExpanded(!expanded);
+ *
+ *   return (
+ *     <List.Section title="Accordions">
+ *       <List.Accordion
+ *         title="Uncontrolled Accordion"
+ *         left={props => <List.Icon {...props} icon="folder" />}>
+ *         <List.Item title="First item" />
+ *         <List.Item title="Second item" />
+ *       </List.Accordion>
+ *
+ *       <List.Accordion
+ *         title="Controlled Accordion"
+ *         left={props => <List.Icon {...props} icon="folder" />}
+ *         expanded={expanded}
+ *         onPress={handlePress}>
+ *         <List.Item title="First item" />
+ *         <List.Item title="Second item" />
+ *       </List.Accordion>
+ *     </List.Section>
+ *   );
+ * };
+ *
+ * export default MyComponent;
+ * ```
+ */
+declare const ListAccordion: {
+    ({ left, right, title, description, children, theme: themeOverrides, titleStyle, descriptionStyle, titleNumberOfLines, descriptionNumberOfLines, rippleColor: customRippleColor, style, id, testID, onPress, onLongPress, delayLongPress, expanded: expandedProp, accessibilityLabel, pointerEvents, }: Props): JSX.Element;
     displayName: string;
-}, {}>;
-export default _default;
+};
+export default ListAccordion;
+//# sourceMappingURL=ListAccordion.d.ts.map

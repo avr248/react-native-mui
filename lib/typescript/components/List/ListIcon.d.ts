@@ -1,18 +1,44 @@
-import * as React from 'react';
+/// <reference types="react" />
 import { ViewStyle, StyleProp } from 'react-native';
-import type { InternalTheme } from '../../types';
+import type { ThemeProp } from '../../types';
 import { IconSource } from '../Icon';
 export declare type Props = {
+    /**
+     * Icon to show.
+     */
     icon: IconSource;
+    /**
+     * Color for the icon.
+     */
     color?: string;
     style?: StyleProp<ViewStyle>;
-    size: number;
-    theme: InternalTheme;
+    /**
+     * @optional
+     */
+    theme?: ThemeProp;
 };
-declare const _default: React.ComponentType<Pick<Props, "style" | "color" | "size" | "icon"> & {
-    theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
-}> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Props> & {
-    ({ icon, color: iconColor, style, size, theme }: Props): JSX.Element;
+/**
+ * A component to show an icon in a list item.
+ *
+ * ## Usage
+ * ```js
+ * import * as React from 'react';
+ * import { List, MD3Colors } from 'react-native-paper';
+ *
+ * const MyComponent = () => (
+ *   <>
+ *     <List.Icon color={MD3Colors.tertiary70} icon="folder" />
+ *     <List.Icon color={MD3Colors.tertiary70} icon="equal" />
+ *     <List.Icon color={MD3Colors.tertiary70} icon="calendar" />
+ *   </>
+ * );
+ *
+ * export default MyComponent;
+ * ```
+ */
+declare const ListIcon: {
+    ({ icon, color: iconColor, style, theme: themeOverrides, }: Props): JSX.Element;
     displayName: string;
-}, {}>;
-export default _default;
+};
+export default ListIcon;
+//# sourceMappingURL=ListIcon.d.ts.map

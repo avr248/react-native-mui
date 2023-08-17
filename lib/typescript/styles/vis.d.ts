@@ -1,6 +1,6 @@
 declare const vis: {
     isRTL: {
-        direction: "ltr" | "rtl";
+        direction: "rtl" | "ltr";
     };
     rtl: {
         direction: "rtl";
@@ -1778,3 +1778,4 @@ declare const vis: {
     };
 };
 export default vis;
+//# sourceMappingURL=vis.d.ts.map

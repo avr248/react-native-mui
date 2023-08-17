@@ -2,7 +2,7 @@ import React from 'react';
 import { Animated, Platform, View, ViewProps } from 'react-native';
 
 interface Props extends ViewProps {
-  visibility?: any;
+  visibility?: 0 | 1 | Animated.AnimatedInterpolation<number>;
   index: number;
 }
 

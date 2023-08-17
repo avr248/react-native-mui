@@ -8,15 +8,15 @@ import {
   ViewStyle,
 } from 'react-native';
 
+import { useInternalTheme } from '../../core/theming';
+import type { InternalTheme, MD3TypescaleKey } from '../../types';
+import TouchableRipple from '../TouchableRipple/TouchableRipple';
+import Text from '../Typography/Text';
 import RadioButton from './RadioButton';
 import RadioButtonAndroid from './RadioButtonAndroid';
 import { RadioButtonContext, RadioButtonContextType } from './RadioButtonGroup';
 import RadioButtonIOS from './RadioButtonIOS';
 import { handlePress, isChecked } from './utils';
-import { withInternalTheme } from '../../core/theming';
-import type { InternalTheme, MD3TypescaleKey } from '../../types';
-import TouchableRipple from '../TouchableRipple/TouchableRipple';
-import Text from '../Typography/Text';
 
 export type Props = {
   /**
@@ -79,7 +79,7 @@ export type Props = {
   /**
    * @optional
    */
-  theme: InternalTheme;
+  theme?: InternalTheme;
   /**
    * testID to be used on tests.
    */
@@ -97,13 +97,6 @@ export type Props = {
 
 /**
  * RadioButton.Item allows you to press the whole row (item) instead of only the RadioButton.
- *
- * <div class="screenshots">
- *   <figure>
- *     <img class="medium" src="screenshots/radio-item.ios.png" />
- *     <figcaption>Pressed</figcaption>
- *   </figure>
- * </div>
  *
  * ## Usage
  * ```js
@@ -134,13 +127,14 @@ const RadioButtonItem = ({
   color,
   uncheckedColor,
   status,
-  theme,
+  theme: themeOverrides,
   accessibilityLabel = label,
   testID,
   mode,
   position = 'trailing',
   labelVariant = 'bodyLarge',
 }: Props) => {
+  const theme = useInternalTheme(themeOverrides);
   const radioButtonProps = { value, disabled, status, color, uncheckedColor };
   const isLeading = position === 'leading';
   let radioButton: any;
@@ -191,6 +185,7 @@ const RadioButtonItem = ({
             }}
             testID={testID}
             disabled={disabled}
+            theme={theme}
           >
             <View style={[styles.container, style]} pointerEvents="none">
               {isLeading && radioButton}
@@ -216,12 +211,10 @@ const RadioButtonItem = ({
 
 RadioButtonItem.displayName = 'RadioButton.Item';
 
-export default withInternalTheme(RadioButtonItem);
+export default RadioButtonItem;
 
 // @component-docs ignore-next-line
-const RadioButtonItemWithTheme = withInternalTheme(RadioButtonItem);
-// @component-docs ignore-next-line
-export { RadioButtonItemWithTheme as RadioButtonItem };
+export { RadioButtonItem };
 
 const styles = StyleSheet.create({
   container: {

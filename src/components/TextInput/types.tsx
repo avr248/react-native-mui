@@ -8,7 +8,7 @@ import type {
   ViewProps,
 } from 'react-native';
 
-import type { $Omit } from './../../types';
+import type { $Omit, InternalTheme, ThemeProp } from './../../types';
 import type { Props as TextInputProps } from './TextInput';
 
 export type TextInputLabelProp = string | React.ReactElement;
@@ -20,6 +20,7 @@ export type RenderProps = {
   placeholderTextColor?: ColorValue;
   editable?: boolean;
   selectionColor?: string;
+  cursorColor?: string;
   onFocus?: (args: any) => void;
   onBlur?: (args: any) => void;
   underlineColorAndroid?: string;
@@ -52,11 +53,15 @@ export type ChildTextInputProps = {
   onLayoutAnimatedText: (args: any) => void;
   onLeftAffixLayoutChange: (event: LayoutChangeEvent) => void;
   onRightAffixLayoutChange: (event: LayoutChangeEvent) => void;
-} & TextInputTypesWithoutMode;
+} & $Omit<TextInputTypesWithoutMode, 'theme'> & { theme: InternalTheme };
+
 export type LabelProps = {
   mode?: 'flat' | 'outlined';
   placeholderStyle: any;
-  placeholderOpacity: any;
+  placeholderOpacity:
+    | number
+    | Animated.Value
+    | Animated.AnimatedInterpolation<number>;
   baseLabelTranslateX: number;
   baseLabelTranslateY: number;
   wiggleOffsetX: number;
@@ -66,7 +71,8 @@ export type LabelProps = {
   fontWeight: TextStyle['fontWeight'];
   font: any;
   topPosition: number;
-  paddingOffset?: { paddingLeft: number; paddingRight: number } | null;
+  paddingLeft?: number;
+  paddingRight?: number;
   labelTranslationXOffset?: number;
   placeholderColor: string | null;
   backgroundColor?: ColorValue;
@@ -74,23 +80,30 @@ export type LabelProps = {
   hasActiveOutline?: boolean | null;
   activeColor: string;
   errorColor?: string;
-  error?: boolean | null;
+  labelError?: boolean | null;
   onLayoutAnimatedText: (args: any) => void;
   roundness: number;
   maxFontSizeMultiplier?: number | undefined | null;
   testID?: string;
   contentStyle?: StyleProp<ViewProps>;
+  theme?: ThemeProp;
 };
 export type InputLabelProps = {
-  parentState: State;
-  labelProps: LabelProps;
+  labeled: Animated.Value;
+  error: Animated.Value;
+  focused: boolean;
+  wiggle: boolean;
+  opacity: number;
+  labelLayoutMeasured: boolean;
+  labelLayoutWidth: number;
   labelBackground?: any;
   maxFontSizeMultiplier?: number | undefined | null;
-};
+} & LabelProps;
 
 export type LabelBackgroundProps = {
-  labelProps: LabelProps;
   labelStyle: any;
-  parentState: State;
+  labeled: Animated.Value;
+  labelLayoutWidth: number;
   maxFontSizeMultiplier?: number | undefined | null;
-};
+  theme?: ThemeProp;
+} & LabelProps;
