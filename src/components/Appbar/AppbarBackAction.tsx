@@ -8,7 +8,6 @@ import type {
 
 import type { $Omit } from './../../types';
 import AppbarAction from './AppbarAction';
-import AppbarBackIcon from './AppbarBackIcon';
 
 export type Props = $Omit<
 	React.ComponentPropsWithoutRef<typeof AppbarAction>,
@@ -65,7 +64,7 @@ const AppbarBackAction = React.forwardRef<View, Props>(
 		<AppbarAction
 			accessibilityLabel={accessibilityLabel}
 			{...rest}
-			icon={AppbarBackIcon}
+			icon={require('../../assets/back.png')}
 			isLeading
 			ref={ref}
 		/>

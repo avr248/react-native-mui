@@ -45,7 +45,7 @@ type RenderAppbarContentProps = {
 	shouldCenterContent?: boolean;
 	isV3: boolean;
 	renderOnly?: (React.ComponentType<any> | false)[];
-    renderExcept?: React.ComponentType<any>[];
+	renderExcept?: React.ComponentType<any>[];
 	mode?: AppbarModes;
 };
 
@@ -78,15 +78,15 @@ export const renderAppbarContent = ({
 	return (
 		React.Children.toArray(children as React.ReactNode | React.ReactNode[])
 			.filter((child) => child != null && typeof child !== 'boolean')
-			.filter((child) =>(
+			.filter((child) =>
 				/* @ts-ignore */
 				renderExcept ? !renderExcept.includes(child.type) : child
-			))
+			)
 			/* @ts-ignore */
-			.filter((child) =>(
+			.filter((child) =>
 				/* @ts-ignore */
 				renderOnly ? renderOnly.includes(child.type) : child
-			))
+			)
 			.map((child, i) => {
 				if (
 					!React.isValidElement(child) ||
