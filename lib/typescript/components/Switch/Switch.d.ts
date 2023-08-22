@@ -47,7 +47,9 @@ declare const _default: React.ComponentType<Pick<import("react-native").SwitchPr
      */
     theme: InternalTheme;
 }, "color" | keyof import("react-native").SwitchProps | keyof React.RefAttributes<NativeSwitch>> & {
-    theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
+    theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined; /**
+     * Custom color for switch.
+     */
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<import("react-native").SwitchProps & React.RefAttributes<NativeSwitch> & {
     /**
      * Disable toggling the switch.

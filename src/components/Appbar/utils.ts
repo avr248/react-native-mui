@@ -84,6 +84,7 @@ export const renderAppbarContent = ({
 			)
 			/* @ts-ignore */
 			.filter((child) =>
+				/* @ts-ignore */
 				renderOnly ? renderOnly.includes(child.type) : child
 			)
 			.map((child, i) => {

@@ -25,9 +25,7 @@ export declare type Props = {
     theme: InternalTheme;
 };
 declare const _default: React.ComponentType<Pick<Props, "style" | "children" | "visible" | "onDismiss" | "dismissable"> & {
-    theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined; /**
-     * Callback that is called when the user dismisses the dialog.
-     */
+    theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Props> & {
     ({ children, dismissable, onDismiss, visible, style, theme, }: Props): JSX.Element;
     Content: {
@@ -45,9 +43,7 @@ declare const _default: React.ComponentType<Pick<Props, "style" | "children" | "
         style?: StyleProp<import("react-native").TextStyle>;
         theme: InternalTheme;
     }, keyof import("react-native").TextProps> & {
-        theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined; /**
-         * Callback that is called when the user dismisses the dialog.
-         */
+        theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
     }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<import("react-native").TextProps & {
         children: React.ReactNode;
     } & {

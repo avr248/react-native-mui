@@ -18,7 +18,7 @@ import type {
 	InternalTheme,
 } from '../../types';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
-import Chip from '../Chip/Chip'
+import Chip from '../Chip/Chip';
 interface Style {
 	marginLeft?: number;
 	marginRight?: number;
@@ -33,6 +33,7 @@ export type Props = $RemoveChildren<typeof TouchableRipple> & {
 	dateStyle?: StyleProp<TextStyle>;
 	timeStyle?: StyleProp<TextStyle>;
 	attachStyle?: StyleProp<TextStyle>;
+	balanceTitle: string;
 	onPress?: (e: GestureResponderEvent) => void;
 	right?: (props: { color: string; style?: Style }) => React.ReactNode;
 	direction?: any;
@@ -48,8 +49,8 @@ export type Props = $RemoveChildren<typeof TouchableRipple> & {
 	amountEllipsizeMode?: EllipsizeProp;
 	descriptionEllipsizeMode?: EllipsizeProp;
 	receiptAttached?: any;
-    receiptOnClick?:any;
-    attachmentTitle?: any;
+	receiptOnClick?: any;
+	attachmentTitle?: any;
 };
 
 const ListTransaction = ({
@@ -68,15 +69,15 @@ const ListTransaction = ({
 	descriptionNumberOfLines = 2,
 	amountEllipsizeMode,
 	descriptionEllipsizeMode,
-    receiptAttached,
-    receiptOnClick,
-    attachmentTitle,
+	receiptAttached,
+	receiptOnClick,
+	attachmentTitle,
 	descriptionStyle,
 	amountStyle,
 	balanceStyle,
 	dateStyle,
 	timeStyle,
-    attachStyle,
+	attachStyle,
 	...rest
 }: Props) => {
 	return (
@@ -99,32 +100,49 @@ const ListTransaction = ({
 						<Text style={timeStyle}>{balance}</Text>
 						<Text style={balanceStyle}>{balanceTitle}</Text>
 					</View>
-                    
-                    <View style={[vis.w30, vis.col, vis.sb, vis.aeRl]}>
+
+					<View style={[vis.w30, vis.col, vis.sb, vis.aeRl]}>
 						<Text style={timeStyle}>{time}</Text>
 						<Text style={dateStyle}>{date}</Text>
 					</View>
 				</View>
-				<View style={[vis.w75, vis.col, vis.feRl, vis.ac, (!receiptAttached && vis.pb2)]}>
+				<View
+					style={[
+						vis.w75,
+						vis.col,
+						vis.feRl,
+						vis.ac,
+						!receiptAttached && vis.pb2,
+					]}
+				>
 					<Text style={[amountStyle, vis.fos4, vis.mb1]}>
 						{amount}
 					</Text>
 					<Text style={descriptionStyle}>{description}</Text>
 				</View>
-			        {
-                        receiptAttached &&
-                        <View style={[vis.w75, vis.col, vis.feRl, vis.fc, vis.ac, vis.mt2, vis.mb2]}>
-                            <Chip
-                                icon={Attachment} 
-                                onPress={receiptOnClick}
-                                style={[{height: 40}]}
-                                mode={'outlined'}
-                            >
-                            {attachmentTitle}
-                            </Chip>
-                        </View>
-                    }
-                </View>
+				{receiptAttached && (
+					<View
+						style={[
+							vis.w75,
+							vis.col,
+							vis.feRl,
+							vis.fc,
+							vis.ac,
+							vis.mt2,
+							vis.mb2,
+						]}
+					>
+						<Chip
+							icon={Attachment}
+							onPress={receiptOnClick}
+							style={[{ height: 40 }]}
+							mode={'outlined'}
+						>
+							{attachmentTitle}
+						</Chip>
+					</View>
+				)}
+			</View>
 		</TouchableRipple>
 	);
 };

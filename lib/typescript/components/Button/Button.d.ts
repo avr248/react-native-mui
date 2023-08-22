@@ -112,7 +112,7 @@ declare const _default: React.ComponentType<Pick<Pick<import("../Surface").Props
      * - `elevated` - button with a background color and elevation, used when absolutely necessary e.g. button requires visual separation from a patterned background. @supported Available in v5.x with theme version 3
      * - `contained-tonal` - button with a secondary background color, an alternative middle ground between contained and outlined buttons. @supported Available in v5.x with theme version 3
      */
-    mode?: "text" | "outlined" | "contained" | "elevated" | "contained-tonal" | undefined;
+    mode?: "text" | "outlined" | "elevated" | "contained" | "contained-tonal" | undefined;
     /**
      * Whether the color is a dark color. A dark button will render light text and vice-versa. Only applicable for:
      *  * `contained` mode for theme version 2
@@ -202,7 +202,7 @@ declare const _default: React.ComponentType<Pick<Pick<import("../Surface").Props
      * testID to be used on tests.
      */
     testID?: string | undefined;
-}, "dark" | "elevation" | keyof import("react-native").ViewProps | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "buttonColor" | "textColor" | "contentStyle"> & {
+}, "dark" | "elevation" | keyof import("react-native").ViewProps | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "textColor" | "contentStyle" | "buttonColor"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Pick<import("../Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
     /**
@@ -213,7 +213,7 @@ declare const _default: React.ComponentType<Pick<Pick<import("../Surface").Props
      * - `elevated` - button with a background color and elevation, used when absolutely necessary e.g. button requires visual separation from a patterned background. @supported Available in v5.x with theme version 3
      * - `contained-tonal` - button with a secondary background color, an alternative middle ground between contained and outlined buttons. @supported Available in v5.x with theme version 3
      */
-    mode?: "text" | "outlined" | "contained" | "elevated" | "contained-tonal" | undefined;
+    mode?: "text" | "outlined" | "elevated" | "contained" | "contained-tonal" | undefined;
     /**
      * Whether the color is a dark color. A dark button will render light text and vice-versa. Only applicable for:
      *  * `contained` mode for theme version 2

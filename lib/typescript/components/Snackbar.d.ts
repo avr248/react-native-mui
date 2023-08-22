@@ -71,7 +71,10 @@ declare const _default: React.ComponentType<Pick<Pick<import("./Surface").Props,
      * - `onPress` - Callback that is called when action button is pressed.
      */
     action?: (Omit<Pick<Pick<import("./Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
-        mode?: "text" | "outlined" | "contained" | "elevated" | "contained-tonal" | undefined;
+        mode?: "text" | "outlined" | "elevated" | "contained" | "contained-tonal" | undefined;
+        /**
+         * The duration for which the Snackbar is shown.
+         */
         dark?: boolean | undefined;
         compact?: boolean | undefined;
         color?: string | undefined;
@@ -94,7 +97,7 @@ declare const _default: React.ComponentType<Pick<Pick<import("./Surface").Props,
         labelStyle?: StyleProp<import("react-native").TextStyle>;
         theme: InternalTheme;
         testID?: string | undefined;
-    }, "dark" | "elevation" | keyof import("react-native").ViewProps | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "buttonColor" | "textColor" | "contentStyle"> & {
+    }, "dark" | "elevation" | keyof import("react-native").ViewProps | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "textColor" | "contentStyle" | "buttonColor"> & {
         theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
     }, "children"> & {
         label: string;
@@ -154,7 +157,10 @@ declare const _default: React.ComponentType<Pick<Pick<import("./Surface").Props,
      * - `onPress` - Callback that is called when action button is pressed.
      */
     action?: (Omit<Pick<Pick<import("./Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
-        mode?: "text" | "outlined" | "contained" | "elevated" | "contained-tonal" | undefined;
+        mode?: "text" | "outlined" | "elevated" | "contained" | "contained-tonal" | undefined;
+        /**
+         * The duration for which the Snackbar is shown.
+         */
         dark?: boolean | undefined;
         compact?: boolean | undefined;
         color?: string | undefined;
@@ -177,7 +183,7 @@ declare const _default: React.ComponentType<Pick<Pick<import("./Surface").Props,
         labelStyle?: StyleProp<import("react-native").TextStyle>;
         theme: InternalTheme;
         testID?: string | undefined;
-    }, "dark" | "elevation" | keyof import("react-native").ViewProps | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "buttonColor" | "textColor" | "contentStyle"> & {
+    }, "dark" | "elevation" | keyof import("react-native").ViewProps | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "textColor" | "contentStyle" | "buttonColor"> & {
         theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
     }, "children"> & {
         label: string;
