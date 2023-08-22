@@ -1,5 +1,5 @@
 {
-  "name": "pai-ui-mui",
+  "name": "react-native-mui",
   "version": "5.1.4",
   "description": "Material design for React Native",
   "main": "lib/commonjs/index.js",
@@ -15,14 +15,14 @@
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/callstack/pai-ui-mui.git"
+    "url": "https://github.com/callstack/react-native-mui.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/callstack/pai-ui-mui/issues"
+    "url": "https://github.com/callstack/react-native-mui/issues"
   },
-  "homepage": "https://callstack.github.io/pai-ui-mui",
+  "homepage": "https://callstack.github.io/react-native-mui",
   "keywords": [
     "android",
     "ios",
