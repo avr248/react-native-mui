@@ -88,7 +88,9 @@ const ListLastTransaction = ({
 					{ borderBottomWidth: 0.2, borderBottomColor: 'gray' },
 				]}
 			>
-				<View style={[vis.w90, vis.rowRl, vis.sb, vis.ac, contentStyle]}>
+				<View
+					style={[vis.w90, vis.rowRl, vis.sb, vis.ac, contentStyle]}
+				>
 					<View style={[vis.w30, vis.col, vis.sb, vis.asRl]}>
 						<Text style={timeStyle}>{balance}</Text>
 						<Text style={balanceStyle}>{balanceTitle}</Text>

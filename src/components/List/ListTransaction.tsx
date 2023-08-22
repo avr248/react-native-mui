@@ -17,8 +17,8 @@ import type {
 	EllipsizeProp,
 	InternalTheme,
 } from '../../types';
-import TouchableRipple from '../TouchableRipple/TouchableRipple';
 import Chip from '../Chip/Chip';
+import TouchableRipple from '../TouchableRipple/TouchableRipple';
 interface Style {
 	marginLeft?: number;
 	marginRight?: number;
