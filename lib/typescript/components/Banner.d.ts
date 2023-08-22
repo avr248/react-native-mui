@@ -104,7 +104,7 @@ declare const _default: React.ComponentType<Pick<$RemoveChildren<React.ForwardRe
         labelStyle?: StyleProp<import("react-native").TextStyle>;
         theme: InternalTheme;
         testID?: string | undefined;
-    }, "dark" | "elevation" | keyof import("react-native").ViewProps | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "textColor" | "contentStyle" | "buttonColor"> & {
+    }, "dark" | "elevation" | keyof import("react-native").ViewProps | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "textColor" | "buttonColor" | "contentStyle"> & {
         theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
     }, "children">)[] | undefined;
     /**
@@ -183,7 +183,7 @@ declare const _default: React.ComponentType<Pick<$RemoveChildren<React.ForwardRe
         labelStyle?: StyleProp<import("react-native").TextStyle>;
         theme: InternalTheme;
         testID?: string | undefined;
-    }, "dark" | "elevation" | keyof import("react-native").ViewProps | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "textColor" | "contentStyle" | "buttonColor"> & {
+    }, "dark" | "elevation" | keyof import("react-native").ViewProps | "color" | "onPress" | "onPressIn" | "onPressOut" | "onLongPress" | "disabled" | "icon" | "mode" | "loading" | "uppercase" | "labelStyle" | "delayLongPress" | keyof React.RefAttributes<View> | "compact" | "textColor" | "buttonColor" | "contentStyle"> & {
         theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
     }, "children">)[] | undefined;
     /**

@@ -7,34 +7,34 @@ import { withInternalTheme } from '../../core/theming';
 import type { InternalTheme } from '../../types';
 
 export type Props = {
-  /**
-   * Status of checkbox.
-   */
-  status: 'checked' | 'unchecked' | 'indeterminate';
-  /**
-   * Whether checkbox is disabled.
-   */
-  disabled?: boolean;
-  /**
-   * Function to execute on press.
-   */
-  onPress?: (e: GestureResponderEvent) => void;
-  /**
-   * Custom color for unchecked checkbox.
-   */
-  uncheckedColor?: string;
-  /**
-   * Custom color for checkbox.
-   */
-  color?: string;
-  /**
-   * @optional
-   */
-  theme: InternalTheme;
-  /**
-   * testID to be used on tests.
-   */
-  testID?: string;
+	/**
+	 * Status of checkbox.
+	 */
+	status: 'checked' | 'unchecked' | 'indeterminate';
+	/**
+	 * Whether checkbox is disabled.
+	 */
+	disabled?: boolean;
+	/**
+	 * Function to execute on press.
+	 */
+	onPress?: (e: GestureResponderEvent) => void;
+	/**
+	 * Custom color for unchecked checkbox.
+	 */
+	uncheckedColor?: string;
+	/**
+	 * Custom color for checkbox.
+	 */
+	color?: string;
+	/**
+	 * @optional
+	 */
+	theme: InternalTheme;
+	/**
+	 * testID to be used on tests.
+	 */
+	testID?: string;
 };
 
 /**
@@ -81,11 +81,11 @@ export type Props = {
  * ```
  */
 const Checkbox = (props: Props) =>
-  Platform.OS === 'ios' ? (
-    <CheckboxIOS {...props} />
-  ) : (
-    <CheckboxAndroid {...props} />
-  );
+	Platform.OS === 'ios' ? (
+		<CheckboxIOS {...props} />
+	) : (
+		<CheckboxAndroid {...props} />
+	);
 
 export default withInternalTheme(Checkbox);
 

@@ -7,38 +7,38 @@ import { withInternalTheme } from '../../core/theming';
 import type { InternalTheme } from '../../types';
 
 export type Props = {
-  /**
-   * Value of the radio button
-   */
-  value: string;
-  /**
-   * Status of radio button.
-   */
-  status?: 'checked' | 'unchecked';
-  /**
-   * Whether radio is disabled.
-   */
-  disabled?: boolean;
-  /**
-   * Function to execute on press.
-   */
-  onPress?: (e: GestureResponderEvent) => void;
-  /**
-   * Custom color for unchecked radio.
-   */
-  uncheckedColor?: string;
-  /**
-   * Custom color for radio.
-   */
-  color?: string;
-  /**
-   * @optional
-   */
-  theme: InternalTheme;
-  /**
-   * testID to be used on tests.
-   */
-  testID?: string;
+	/**
+	 * Value of the radio button
+	 */
+	value: string;
+	/**
+	 * Status of radio button.
+	 */
+	status?: 'checked' | 'unchecked';
+	/**
+	 * Whether radio is disabled.
+	 */
+	disabled?: boolean;
+	/**
+	 * Function to execute on press.
+	 */
+	onPress?: (e: GestureResponderEvent) => void;
+	/**
+	 * Custom color for unchecked radio.
+	 */
+	uncheckedColor?: string;
+	/**
+	 * Custom color for radio.
+	 */
+	color?: string;
+	/**
+	 * @optional
+	 */
+	theme: InternalTheme;
+	/**
+	 * testID to be used on tests.
+	 */
+	testID?: string;
 };
 
 /**
@@ -92,12 +92,12 @@ export type Props = {
  * ```
  */
 const RadioButton = (props: Props) => {
-  const Button = Platform.select({
-    default: RadioButtonAndroid,
-    ios: RadioButtonIOS,
-  });
+	const Button = Platform.select({
+		default: RadioButtonAndroid,
+		ios: RadioButtonIOS,
+	});
 
-  return <Button {...props} />;
+	return <Button {...props} />;
 };
 
 export default withInternalTheme(RadioButton);

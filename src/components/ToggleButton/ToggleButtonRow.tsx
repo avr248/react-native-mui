@@ -5,19 +5,19 @@ import ToggleButton from './ToggleButton';
 import ToggleButtonGroup from './ToggleButtonGroup';
 
 export type Props = {
-  /**
-   * Function to execute on selection change.
-   */
-  onValueChange: (value: string) => void;
-  /**
-   * Value of the currently selected toggle button.
-   */
-  value: string;
-  /**
-   * React elements containing toggle buttons.
-   */
-  children: React.ReactNode;
-  style?: StyleProp<ViewStyle>;
+	/**
+	 * Function to execute on selection change.
+	 */
+	onValueChange: (value: string) => void;
+	/**
+	 * Value of the currently selected toggle button.
+	 */
+	value: string;
+	/**
+	 * React elements containing toggle buttons.
+	 */
+	children: React.ReactNode;
+	style?: StyleProp<ViewStyle>;
 };
 
 /**
@@ -50,61 +50,61 @@ export type Props = {
  *```
  */
 const ToggleButtonRow = ({ value, onValueChange, children, style }: Props) => {
-  const count = React.Children.count(children);
+	const count = React.Children.count(children);
 
-  return (
-    <ToggleButtonGroup value={value} onValueChange={onValueChange}>
-      <View style={[styles.row, style]}>
-        {React.Children.map(children, (child, i) => {
-          /* @ts-ignore */
-          if (child && child.type === ToggleButton) {
-            /* @ts-ignore */
-            return React.cloneElement(child, {
-              style: [
-                styles.button,
-                i === 0
-                  ? styles.first
-                  : i === count - 1
-                  ? styles.last
-                  : styles.middle,
-                /* @ts-ignore */
-                child.props.style,
-              ],
-            });
-          }
+	return (
+		<ToggleButtonGroup value={value} onValueChange={onValueChange}>
+			<View style={[styles.row, style]}>
+				{React.Children.map(children, (child, i) => {
+					/* @ts-ignore */
+					if (child && child.type === ToggleButton) {
+						/* @ts-ignore */
+						return React.cloneElement(child, {
+							style: [
+								styles.button,
+								i === 0
+									? styles.first
+									: i === count - 1
+									? styles.last
+									: styles.middle,
+								/* @ts-ignore */
+								child.props.style,
+							],
+						});
+					}
 
-          return child;
-        })}
-      </View>
-    </ToggleButtonGroup>
-  );
+					return child;
+				})}
+			</View>
+		</ToggleButtonGroup>
+	);
 };
 
 ToggleButtonRow.displayName = 'ToggleButton.Row';
 
 const styles = StyleSheet.create({
-  row: {
-    flexDirection: 'row',
-  },
-  button: {
-    borderWidth: StyleSheet.hairlineWidth,
-  },
+	row: {
+		flexDirection: 'row',
+	},
+	button: {
+		borderWidth: StyleSheet.hairlineWidth,
+	},
 
-  first: {
-    borderTopRightRadius: 0,
-    borderBottomRightRadius: 0,
-  },
+	first: {
+		borderTopRightRadius: 0,
+		borderBottomRightRadius: 0,
+	},
 
-  middle: {
-    borderRadius: 0,
-    borderLeftWidth: 0,
-  },
+	middle: {
+		borderRadius: 0,
+		borderLeftWidth: 0,
+	},
 
-  last: {
-    borderLeftWidth: 0,
-    borderTopLeftRadius: 0,
-    borderBottomLeftRadius: 0,
-  },
+	last: {
+		borderLeftWidth: 0,
+		borderTopLeftRadius: 0,
+		borderBottomLeftRadius: 0,
+	},
 });
 
 export default ToggleButtonRow;

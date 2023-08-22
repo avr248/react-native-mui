@@ -97,6 +97,7 @@ export type { Props as ListTransactionProps } from './components/List/ListTransa
 export type { Props as ListLastTransactionProps } from './components/List/ListLastTransaction';
 export type { Props as ListSectionProps } from './components/List/ListSection';
 export type { Props as ListSubheaderProps } from './components/List/ListSubheader';
+export type { Props as ListPaymentTransactionProps } from './components/List/ListPaymentTransaction';
 export type { Props as MenuProps } from './components/Menu/Menu';
 export type { Props as MenuItemProps } from './components/Menu/MenuItem';
 export type { Props as ModalProps } from './components/Modal';

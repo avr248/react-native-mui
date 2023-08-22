@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {
-  StyleProp,
-  StyleSheet,
-  TextStyle,
-  useWindowDimensions,
-  View,
-  ViewStyle,
+	StyleProp,
+	StyleSheet,
+	TextStyle,
+	useWindowDimensions,
+	View,
+	ViewStyle,
 } from 'react-native';
 
 import { withInternalTheme } from '../../core/theming';
@@ -17,30 +17,30 @@ import Text from '../Typography/Text';
 const defaultSize = 64;
 
 export type Props = React.ComponentPropsWithRef<typeof View> & {
-  /**
-   * Initials to show as the text in the `Avatar`.
-   */
-  label: string;
-  /**
-   * Size of the avatar.
-   */
-  size?: number;
-  /**
-   * Custom color for the text.
-   */
-  color?: string;
-  /**
-   * Style for text container
-   */
-  style?: StyleProp<ViewStyle>;
-  /**
-   * Style for the title.
-   */
-  labelStyle?: StyleProp<TextStyle>;
-  /**
-   * @optional
-   */
-  theme: InternalTheme;
+	/**
+	 * Initials to show as the text in the `Avatar`.
+	 */
+	label: string;
+	/**
+	 * Size of the avatar.
+	 */
+	size?: number;
+	/**
+	 * Custom color for the text.
+	 */
+	color?: string;
+	/**
+	 * Style for text container
+	 */
+	style?: StyleProp<ViewStyle>;
+	/**
+	 * Style for the title.
+	 */
+	labelStyle?: StyleProp<TextStyle>;
+	/**
+	 * @optional
+	 */
+	theme: InternalTheme;
 };
 
 /**
@@ -63,64 +63,64 @@ export type Props = React.ComponentPropsWithRef<typeof View> & {
  * ```
  */
 const AvatarText = ({
-  label,
-  size = defaultSize,
-  style,
-  theme,
-  labelStyle,
-  color: customColor,
-  ...rest
+	label,
+	size = defaultSize,
+	style,
+	theme,
+	labelStyle,
+	color: customColor,
+	...rest
 }: Props) => {
-  const { backgroundColor = theme.colors?.primary, ...restStyle } =
-    StyleSheet.flatten(style) || {};
-  const textColor =
-    customColor ??
-    getContrastingColor(backgroundColor, white, 'rgba(0, 0, 0, .54)');
-  const { fontScale } = useWindowDimensions();
+	const { backgroundColor = theme.colors?.primary, ...restStyle } =
+		StyleSheet.flatten(style) || {};
+	const textColor =
+		customColor ??
+		getContrastingColor(backgroundColor, white, 'rgba(0, 0, 0, .54)');
+	const { fontScale } = useWindowDimensions();
 
-  return (
-    <View
-      style={[
-        {
-          width: size,
-          height: size,
-          borderRadius: size / 2,
-          backgroundColor,
-        },
-        styles.container,
-        restStyle,
-      ]}
-      {...rest}
-    >
-      <Text
-        style={[
-          styles.text,
-          {
-            color: textColor,
-            fontSize: size / 2,
-            lineHeight: size / fontScale,
-          },
-          labelStyle,
-        ]}
-        numberOfLines={1}
-      >
-        {label}
-      </Text>
-    </View>
-  );
+	return (
+		<View
+			style={[
+				{
+					width: size,
+					height: size,
+					borderRadius: size / 2,
+					backgroundColor,
+				},
+				styles.container,
+				restStyle,
+			]}
+			{...rest}
+		>
+			<Text
+				style={[
+					styles.text,
+					{
+						color: textColor,
+						fontSize: size / 2,
+						lineHeight: size / fontScale,
+					},
+					labelStyle,
+				]}
+				numberOfLines={1}
+			>
+				{label}
+			</Text>
+		</View>
+	);
 };
 
 AvatarText.displayName = 'Avatar.Text';
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    textAlign: 'center',
-    textAlignVertical: 'center',
-  },
+	container: {
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	text: {
+		textAlign: 'center',
+		textAlignVertical: 'center',
+	},
 });
 
 export default withInternalTheme(AvatarText);

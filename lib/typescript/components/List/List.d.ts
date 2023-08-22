@@ -7,3 +7,4 @@ export { default as LastTransaction } from './ListLastTransaction';
 export { default as Section } from './ListSection';
 export { default as Subheader } from './ListSubheader';
 export { default as Image } from './ListImage';
+export { default as PaymentTransaction } from './ListPaymentTransaction';

@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  Animated,
-  LayoutChangeEvent,
-  StyleProp,
-  StyleSheet,
-  Text,
-  TextStyle,
-  ViewStyle,
+	Animated,
+	LayoutChangeEvent,
+	StyleProp,
+	StyleSheet,
+	Text,
+	TextStyle,
+	ViewStyle,
 } from 'react-native';
 
 import color from 'color';
@@ -17,70 +17,70 @@ import type { InternalTheme } from '../../../types';
 import { getConstants } from '../helpers';
 
 export type Props = {
-  /**
-   * Text to show.
-   */
-  text: string;
-  onLayout?: (event: LayoutChangeEvent) => void;
-  /**
-   * Style that is passed to the Text element.
-   */
-  textStyle?: StyleProp<TextStyle>;
-  /**
-   * @optional
-   */
-  theme: InternalTheme;
+	/**
+	 * Text to show.
+	 */
+	text: string;
+	onLayout?: (event: LayoutChangeEvent) => void;
+	/**
+	 * Style that is passed to the Text element.
+	 */
+	textStyle?: StyleProp<TextStyle>;
+	/**
+	 * @optional
+	 */
+	theme: InternalTheme;
 };
 
 type ContextState = {
-  topPosition: number | null;
-  onLayout?: (event: LayoutChangeEvent) => void;
-  visible?: Animated.Value;
-  textStyle?: StyleProp<TextStyle>;
-  side: AdornmentSide;
-  paddingHorizontal?: number | string;
-  maxFontSizeMultiplier?: number | undefined | null;
-  testID?: string;
+	topPosition: number | null;
+	onLayout?: (event: LayoutChangeEvent) => void;
+	visible?: Animated.Value;
+	textStyle?: StyleProp<TextStyle>;
+	side: AdornmentSide;
+	paddingHorizontal?: number | string;
+	maxFontSizeMultiplier?: number | undefined | null;
+	testID?: string;
 };
 
 const AffixContext = React.createContext<ContextState>({
-  textStyle: { fontFamily: '', color: '' },
-  topPosition: null,
-  side: AdornmentSide.Left,
+	textStyle: { fontFamily: '', color: '' },
+	topPosition: null,
+	side: AdornmentSide.Left,
 });
 
 const AffixAdornment: React.FunctionComponent<
-  {
-    affix: React.ReactNode;
-    testID: string;
-  } & ContextState
+	{
+		affix: React.ReactNode;
+		testID: string;
+	} & ContextState
 > = ({
-  affix,
-  side,
-  textStyle,
-  topPosition,
-  onLayout,
-  visible,
-  paddingHorizontal,
-  maxFontSizeMultiplier,
-  testID,
+	affix,
+	side,
+	textStyle,
+	topPosition,
+	onLayout,
+	visible,
+	paddingHorizontal,
+	maxFontSizeMultiplier,
+	testID,
 }) => {
-  return (
-    <AffixContext.Provider
-      value={{
-        side,
-        textStyle,
-        topPosition,
-        onLayout,
-        visible,
-        paddingHorizontal,
-        maxFontSizeMultiplier,
-        testID,
-      }}
-    >
-      {affix}
-    </AffixContext.Provider>
-  );
+	return (
+		<AffixContext.Provider
+			value={{
+				side,
+				textStyle,
+				topPosition,
+				onLayout,
+				visible,
+				paddingHorizontal,
+				maxFontSizeMultiplier,
+				testID,
+			}}
+		>
+			{affix}
+		</AffixContext.Provider>
+	);
 };
 
 /**
@@ -115,67 +115,69 @@ const AffixAdornment: React.FunctionComponent<
  */
 
 const TextInputAffix = ({ text, textStyle: labelStyle, theme }: Props) => {
-  const { AFFIX_OFFSET } = getConstants(theme.isV3);
+	const { AFFIX_OFFSET } = getConstants(theme.isV3);
 
-  const {
-    textStyle,
-    onLayout,
-    topPosition,
-    side,
-    visible,
-    paddingHorizontal,
-    maxFontSizeMultiplier,
-    testID,
-  } = React.useContext(AffixContext);
+	const {
+		textStyle,
+		onLayout,
+		topPosition,
+		side,
+		visible,
+		paddingHorizontal,
+		maxFontSizeMultiplier,
+		testID,
+	} = React.useContext(AffixContext);
 
-  const textColor = color(
-    theme.isV3 ? theme.colors.onSurface : theme.colors?.text
-  )
-    .alpha(theme.dark ? 0.7 : 0.54)
-    .rgb()
-    .string();
+	const textColor = color(
+		theme.isV3 ? theme.colors.onSurface : theme.colors?.text
+	)
+		.alpha(theme.dark ? 0.7 : 0.54)
+		.rgb()
+		.string();
 
-  const offset =
-    typeof paddingHorizontal === 'number' ? paddingHorizontal : AFFIX_OFFSET;
+	const offset =
+		typeof paddingHorizontal === 'number'
+			? paddingHorizontal
+			: AFFIX_OFFSET;
 
-  const style = {
-    top: topPosition,
-    [side]: offset,
-  } as ViewStyle;
+	const style = {
+		top: topPosition,
+		[side]: offset,
+	} as ViewStyle;
 
-  return (
-    <Animated.View
-      style={[
-        styles.container,
-        style,
-        {
-          opacity:
-            visible?.interpolate({
-              inputRange: [0, 1],
-              outputRange: [1, 0],
-            }) || 1,
-        },
-      ]}
-      onLayout={onLayout}
-      testID={testID}
-    >
-      <Text
-        maxFontSizeMultiplier={maxFontSizeMultiplier}
-        style={[{ color: textColor }, textStyle, labelStyle]}
-      >
-        {text}
-      </Text>
-    </Animated.View>
-  );
+	return (
+		<Animated.View
+			style={[
+				styles.container,
+				style,
+				{
+					opacity:
+						visible?.interpolate({
+							inputRange: [0, 1],
+							outputRange: [1, 0],
+						}) || 1,
+				},
+			]}
+			onLayout={onLayout}
+			testID={testID}
+		>
+			<Text
+				maxFontSizeMultiplier={maxFontSizeMultiplier}
+				style={[{ color: textColor }, textStyle, labelStyle]}
+			>
+				{text}
+			</Text>
+		</Animated.View>
+	);
 };
 TextInputAffix.displayName = 'TextInput.Affix';
 
 const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+	container: {
+		position: 'absolute',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 });
 
 export default withInternalTheme(TextInputAffix);

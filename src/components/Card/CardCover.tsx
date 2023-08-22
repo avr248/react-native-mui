@@ -7,19 +7,19 @@ import { grey200 } from '../../styles/themes/v2/colors';
 import type { InternalTheme } from '../../types';
 
 export type Props = React.ComponentPropsWithRef<typeof Image> & {
-  /**
-   * @internal
-   */
-  index?: number;
-  /**
-   * @internal
-   */
-  total?: number;
-  style?: StyleProp<ViewStyle>;
-  /**
-   * @optional
-   */
-  theme: InternalTheme;
+	/**
+	 * @internal
+	 */
+	index?: number;
+	/**
+	 * @internal
+	 */
+	total?: number;
+	style?: StyleProp<ViewStyle>;
+	/**
+	 * @optional
+	 */
+	theme: InternalTheme;
 };
 
 /**
@@ -48,33 +48,33 @@ export type Props = React.ComponentPropsWithRef<typeof Image> & {
  * @extends Image props https://reactnative.dev/docs/image#props
  */
 const CardCover = ({ index, total, style, theme, ...rest }: Props) => {
-  const coverStyle = getCardCoverStyle({ theme, index, total });
+	const coverStyle = getCardCoverStyle({ theme, index, total });
 
-  return (
-    <View style={[styles.container, coverStyle, style]}>
-      <Image
-        {...rest}
-        style={[styles.image, coverStyle]}
-        accessibilityIgnoresInvertColors
-      />
-    </View>
-  );
+	return (
+		<View style={[styles.container, coverStyle, style]}>
+			<Image
+				{...rest}
+				style={[styles.image, coverStyle]}
+				accessibilityIgnoresInvertColors
+			/>
+		</View>
+	);
 };
 
 CardCover.displayName = 'Card.Cover';
 const styles = StyleSheet.create({
-  container: {
-    height: 195,
-    backgroundColor: grey200,
-    overflow: 'hidden',
-  },
-  image: {
-    flex: 1,
-    height: undefined,
-    width: undefined,
-    padding: 16,
-    justifyContent: 'flex-end',
-  },
+	container: {
+		height: 195,
+		backgroundColor: grey200,
+		overflow: 'hidden',
+	},
+	image: {
+		flex: 1,
+		height: undefined,
+		width: undefined,
+		padding: 16,
+		justifyContent: 'flex-end',
+	},
 });
 
 export default withInternalTheme(CardCover);

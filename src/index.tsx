@@ -1,11 +1,11 @@
 export { MD3Colors } from './styles/themes/v3/tokens';
 
 export {
-  useTheme,
-  withTheme,
-  ThemeProvider,
-  DefaultTheme,
-  adaptNavigationTheme,
+	useTheme,
+	withTheme,
+	ThemeProvider,
+	DefaultTheme,
+	adaptNavigationTheme,
 } from './core/theming';
 
 export * from './styles/themes';
@@ -58,11 +58,11 @@ export { default as SegmentedButtons } from './components/SegmentedButtons/Segme
 export { default as Tooltip } from './components/Tooltip/Tooltip';
 
 export {
-  Caption,
-  Headline,
-  Paragraph,
-  Subheading,
-  Title,
+	Caption,
+	Headline,
+	Paragraph,
+	Subheading,
+	Title,
 } from './components/Typography/v2';
 export { default as Text } from './components/Typography/Text';
 

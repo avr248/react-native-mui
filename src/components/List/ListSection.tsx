@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {
-  StyleProp,
-  StyleSheet,
-  TextStyle,
-  View,
-  ViewStyle,
+	StyleProp,
+	StyleSheet,
+	TextStyle,
+	View,
+	ViewStyle,
 } from 'react-native';
 
 import ListSubheader from './ListSubheader';
@@ -12,23 +12,23 @@ import { withInternalTheme } from '../../core/theming';
 import type { InternalTheme } from '../../types';
 
 export type Props = React.ComponentPropsWithRef<typeof View> & {
-  /**
-   * Title text for the section.
-   */
-  title?: string;
-  /**
-   * Content of the section.
-   */
-  children: React.ReactNode;
-  /**
-   * @optional
-   */
-  theme: InternalTheme;
-  /**
-   * Style that is passed to Title element.
-   */
-  titleStyle?: StyleProp<TextStyle>;
-  style?: StyleProp<ViewStyle>;
+	/**
+	 * Title text for the section.
+	 */
+	title?: string;
+	/**
+	 * Content of the section.
+	 */
+	children: React.ReactNode;
+	/**
+	 * @optional
+	 */
+	theme: InternalTheme;
+	/**
+	 * Style that is passed to Title element.
+	 */
+	titleStyle?: StyleProp<TextStyle>;
+	style?: StyleProp<ViewStyle>;
 };
 
 /**
@@ -58,24 +58,26 @@ export type Props = React.ComponentPropsWithRef<typeof View> & {
  * ```
  */
 const ListSection = ({
-  children,
-  title,
-  titleStyle,
-  style,
-  ...rest
+	children,
+	title,
+	titleStyle,
+	style,
+	...rest
 }: Props) => (
-  <View {...rest} style={[styles.container, style]}>
-    {title ? <ListSubheader style={titleStyle}>{title}</ListSubheader> : null}
-    {children}
-  </View>
+	<View {...rest} style={[styles.container, style]}>
+		{title ? (
+			<ListSubheader style={titleStyle}>{title}</ListSubheader>
+		) : null}
+		{children}
+	</View>
 );
 
 ListSection.displayName = 'List.Section';
 
 const styles = StyleSheet.create({
-  container: {
-    marginVertical: 8,
-  },
+	container: {
+		marginVertical: 8,
+	},
 });
 
 export default withInternalTheme(ListSection);

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {
-  Animated,
-  StyleProp,
-  StyleSheet,
-  TextStyle,
-  useWindowDimensions,
+	Animated,
+	StyleProp,
+	StyleSheet,
+	TextStyle,
+	useWindowDimensions,
 } from 'react-native';
 
 import { withInternalTheme } from '../core/theming';
@@ -15,24 +15,24 @@ import getContrastingColor from '../utils/getContrastingColor';
 const defaultSize = 20;
 
 export type Props = React.ComponentProps<typeof Animated.Text> & {
-  /**
-   * Whether the badge is visible
-   */
-  visible?: boolean;
-  /**
-   * Content of the `Badge`.
-   */
-  children?: string | number;
-  /**
-   * Size of the `Badge`.
-   */
-  size?: number;
-  style?: StyleProp<TextStyle>;
-  ref?: React.RefObject<typeof Animated.Text>;
-  /**
-   * @optional
-   */
-  theme: InternalTheme;
+	/**
+	 * Whether the badge is visible
+	 */
+	visible?: boolean;
+	/**
+	 * Content of the `Badge`.
+	 */
+	children?: string | number;
+	/**
+	 * Size of the `Badge`.
+	 */
+	size?: number;
+	style?: StyleProp<TextStyle>;
+	ref?: React.RefObject<typeof Animated.Text>;
+	/**
+	 * @optional
+	 */
+	theme: InternalTheme;
 };
 
 /**
@@ -63,86 +63,86 @@ export type Props = React.ComponentProps<typeof Animated.Text> & {
  * ```
  */
 const Badge = ({
-  children,
-  size = defaultSize,
-  style,
-  theme,
-  visible = true,
-  ...rest
+	children,
+	size = defaultSize,
+	style,
+	theme,
+	visible = true,
+	...rest
 }: Props) => {
-  const { current: opacity } = React.useRef<Animated.Value>(
-    new Animated.Value(visible ? 1 : 0)
-  );
-  const { fontScale } = useWindowDimensions();
+	const { current: opacity } = React.useRef<Animated.Value>(
+		new Animated.Value(visible ? 1 : 0)
+	);
+	const { fontScale } = useWindowDimensions();
 
-  const isFirstRendering = React.useRef<boolean>(true);
+	const isFirstRendering = React.useRef<boolean>(true);
 
-  const {
-    animation: { scale },
-  } = theme;
+	const {
+		animation: { scale },
+	} = theme;
 
-  React.useEffect(() => {
-    // Do not run animation on very first rendering
-    if (isFirstRendering.current) {
-      isFirstRendering.current = false;
-      return;
-    }
+	React.useEffect(() => {
+		// Do not run animation on very first rendering
+		if (isFirstRendering.current) {
+			isFirstRendering.current = false;
+			return;
+		}
 
-    Animated.timing(opacity, {
-      toValue: visible ? 1 : 0,
-      duration: 150 * scale,
-      useNativeDriver: true,
-    }).start();
-  }, [visible, opacity, scale]);
+		Animated.timing(opacity, {
+			toValue: visible ? 1 : 0,
+			duration: 150 * scale,
+			useNativeDriver: true,
+		}).start();
+	}, [visible, opacity, scale]);
 
-  const {
-    backgroundColor = theme.isV3
-      ? theme.colors.error
-      : theme.colors?.notification,
-    ...restStyle
-  } = (StyleSheet.flatten(style) || {}) as TextStyle;
+	const {
+		backgroundColor = theme.isV3
+			? theme.colors.error
+			: theme.colors?.notification,
+		...restStyle
+	} = (StyleSheet.flatten(style) || {}) as TextStyle;
 
-  const textColor = theme.isV3
-    ? theme.colors.onError
-    : getContrastingColor(backgroundColor, white, black);
+	const textColor = theme.isV3
+		? theme.colors.onError
+		: getContrastingColor(backgroundColor, white, black);
 
-  const borderRadius = size / 2;
+	const borderRadius = size / 2;
 
-  const paddingHorizontal = theme.isV3 ? 3 : 4;
+	const paddingHorizontal = theme.isV3 ? 3 : 4;
 
-  return (
-    <Animated.Text
-      numberOfLines={1}
-      style={[
-        {
-          opacity,
-          backgroundColor,
-          color: textColor,
-          fontSize: size * 0.5,
-          ...(!theme.isV3 && theme.fonts.regular),
-          lineHeight: size / fontScale,
-          height: size,
-          minWidth: size,
-          borderRadius,
-          paddingHorizontal,
-        },
-        styles.container,
-        restStyle,
-      ]}
-      {...rest}
-    >
-      {children}
-    </Animated.Text>
-  );
+	return (
+		<Animated.Text
+			numberOfLines={1}
+			style={[
+				{
+					opacity,
+					backgroundColor,
+					color: textColor,
+					fontSize: size * 0.5,
+					...(!theme.isV3 && theme.fonts.regular),
+					lineHeight: size / fontScale,
+					height: size,
+					minWidth: size,
+					borderRadius,
+					paddingHorizontal,
+				},
+				styles.container,
+				restStyle,
+			]}
+			{...rest}
+		>
+			{children}
+		</Animated.Text>
+	);
 };
 
 export default withInternalTheme(Badge);
 
 const styles = StyleSheet.create({
-  container: {
-    alignSelf: 'flex-end',
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    overflow: 'hidden',
-  },
+	container: {
+		alignSelf: 'flex-end',
+		textAlign: 'center',
+		textAlignVertical: 'center',
+		overflow: 'hidden',
+	},
 });

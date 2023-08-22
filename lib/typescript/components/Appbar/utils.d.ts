@@ -8,7 +8,7 @@ declare type RenderAppbarContentProps = {
     isDark: boolean;
     shouldCenterContent?: boolean;
     isV3: boolean;
-    renderOnly?: (React.ComponentType<any> | false)[];
+    renderOnly?: React.ComponentType<any>[];
     renderExcept?: React.ComponentType<any>[];
     mode?: AppbarModes;
 };

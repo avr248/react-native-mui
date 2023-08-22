@@ -3,26 +3,26 @@ import { StyleSheet, StyleProp, View, ViewStyle } from 'react-native';
 
 import DataTableCell from './DataTableCell';
 import DataTableHeader, {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  DataTableHeader as _DataTableHeader,
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	DataTableHeader as _DataTableHeader,
 } from './DataTableHeader';
 import DataTablePagination, {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  DataTablePagination as _DataTablePagination,
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	DataTablePagination as _DataTablePagination,
 } from './DataTablePagination';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import DataTableRow, { DataTableRow as _DataTableRow } from './DataTableRow';
 import DataTableTitle, {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  DataTableTitle as _DataTableTitle,
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	DataTableTitle as _DataTableTitle,
 } from './DataTableTitle';
 
 export type Props = React.ComponentPropsWithRef<typeof View> & {
-  /**
-   * Content of the `DataTable`.
-   */
-  children: React.ReactNode;
-  style?: StyleProp<ViewStyle>;
+	/**
+	 * Content of the `DataTable`.
+	 */
+	children: React.ReactNode;
+	style?: StyleProp<ViewStyle>;
 };
 
 /**
@@ -89,9 +89,9 @@ export type Props = React.ComponentPropsWithRef<typeof View> & {
  * ```
  */
 const DataTable = ({ children, style, ...rest }: Props) => (
-  <View {...rest} style={[styles.container, style]}>
-    {children}
-  </View>
+	<View {...rest} style={[styles.container, style]}>
+		{children}
+	</View>
 );
 
 // @component ./DataTableHeader.tsx
@@ -110,9 +110,9 @@ DataTable.Cell = DataTableCell;
 DataTable.Pagination = DataTablePagination;
 
 const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-  },
+	container: {
+		width: '100%',
+	},
 });
 
 export default DataTable;

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {
-  Animated,
-  LayoutChangeEvent,
-  StyleProp,
-  StyleSheet,
-  TextStyle,
+	Animated,
+	LayoutChangeEvent,
+	StyleProp,
+	StyleSheet,
+	TextStyle,
 } from 'react-native';
 
 import color from 'color';
@@ -14,34 +14,34 @@ import { withInternalTheme } from '../core/theming';
 import type { $Omit, InternalTheme } from '../types';
 
 export type Props = $Omit<
-  $Omit<React.ComponentPropsWithRef<typeof AnimatedText>, 'padding'>,
-  'type'
+	$Omit<React.ComponentPropsWithRef<typeof AnimatedText>, 'padding'>,
+	'type'
 > & {
-  /**
-   * Type of the helper text.
-   */
-  type: 'error' | 'info';
-  /**
-   * Whether to display the helper text.
-   */
-  visible?: boolean;
-  /**
-   * Whether to apply padding to the helper text.
-   */
-  padding?: 'none' | 'normal';
-  /**
-   * Text content of the HelperText.
-   */
-  children: React.ReactNode;
-  style?: StyleProp<TextStyle>;
-  /**
-   * @optional
-   */
-  theme: InternalTheme;
-  /**
-   * TestID used for testing purposes
-   */
-  testID?: string;
+	/**
+	 * Type of the helper text.
+	 */
+	type: 'error' | 'info';
+	/**
+	 * Whether to display the helper text.
+	 */
+	visible?: boolean;
+	/**
+	 * Whether to apply padding to the helper text.
+	 */
+	padding?: 'none' | 'normal';
+	/**
+	 * Text content of the HelperText.
+	 */
+	children: React.ReactNode;
+	style?: StyleProp<TextStyle>;
+	/**
+	 * @optional
+	 */
+	theme: InternalTheme;
+	/**
+	 * TestID used for testing purposes
+	 */
+	testID?: string;
 };
 
 /**
@@ -80,96 +80,96 @@ export type Props = $Omit<
  * ```
  */
 const HelperText = ({
-  style,
-  type = 'info',
-  visible = true,
-  theme,
-  onLayout,
-  padding = 'normal',
-  ...rest
+	style,
+	type = 'info',
+	visible = true,
+	theme,
+	onLayout,
+	padding = 'normal',
+	...rest
 }: Props) => {
-  const { current: shown } = React.useRef<Animated.Value>(
-    new Animated.Value(visible ? 1 : 0)
-  );
+	const { current: shown } = React.useRef<Animated.Value>(
+		new Animated.Value(visible ? 1 : 0)
+	);
 
-  let { current: textHeight } = React.useRef<number>(0);
+	let { current: textHeight } = React.useRef<number>(0);
 
-  const { scale } = theme.animation;
+	const { scale } = theme.animation;
 
-  const { maxFontSizeMultiplier = 1.5 } = rest;
+	const { maxFontSizeMultiplier = 1.5 } = rest;
 
-  React.useEffect(() => {
-    if (visible) {
-      // show text
-      Animated.timing(shown, {
-        toValue: 1,
-        duration: 150 * scale,
-        useNativeDriver: true,
-      }).start();
-    } else {
-      // hide text
-      Animated.timing(shown, {
-        toValue: 0,
-        duration: 180 * scale,
-        useNativeDriver: true,
-      }).start();
-    }
-  }, [visible, scale, shown]);
+	React.useEffect(() => {
+		if (visible) {
+			// show text
+			Animated.timing(shown, {
+				toValue: 1,
+				duration: 150 * scale,
+				useNativeDriver: true,
+			}).start();
+		} else {
+			// hide text
+			Animated.timing(shown, {
+				toValue: 0,
+				duration: 180 * scale,
+				useNativeDriver: true,
+			}).start();
+		}
+	}, [visible, scale, shown]);
 
-  const handleTextLayout = (e: LayoutChangeEvent) => {
-    onLayout?.(e);
-    textHeight = e.nativeEvent.layout.height;
-  };
+	const handleTextLayout = (e: LayoutChangeEvent) => {
+		onLayout?.(e);
+		textHeight = e.nativeEvent.layout.height;
+	};
 
-  const { colors, dark } = theme;
+	const { colors, dark } = theme;
 
-  const textColor =
-    type === 'error'
-      ? colors?.error
-      : color(theme.isV3 ? theme.colors.onSurface : theme?.colors?.text)
-          .alpha(dark ? 0.7 : 0.54)
-          .rgb()
-          .string();
+	const textColor =
+		type === 'error'
+			? colors?.error
+			: color(theme.isV3 ? theme.colors.onSurface : theme?.colors?.text)
+					.alpha(dark ? 0.7 : 0.54)
+					.rgb()
+					.string();
 
-  return (
-    <AnimatedText
-      onLayout={handleTextLayout}
-      style={[
-        styles.text,
-        padding !== 'none' ? styles.padding : {},
-        {
-          color: textColor,
-          opacity: shown,
-          transform:
-            visible && type === 'error'
-              ? [
-                  {
-                    translateY: shown.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [-textHeight / 2, 0],
-                    }),
-                  },
-                ]
-              : [],
-        },
-        style,
-      ]}
-      maxFontSizeMultiplier={maxFontSizeMultiplier}
-      {...rest}
-    >
-      {rest.children}
-    </AnimatedText>
-  );
+	return (
+		<AnimatedText
+			onLayout={handleTextLayout}
+			style={[
+				styles.text,
+				padding !== 'none' ? styles.padding : {},
+				{
+					color: textColor,
+					opacity: shown,
+					transform:
+						visible && type === 'error'
+							? [
+									{
+										translateY: shown.interpolate({
+											inputRange: [0, 1],
+											outputRange: [-textHeight / 2, 0],
+										}),
+									},
+							  ]
+							: [],
+				},
+				style,
+			]}
+			maxFontSizeMultiplier={maxFontSizeMultiplier}
+			{...rest}
+		>
+			{rest.children}
+		</AnimatedText>
+	);
 };
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 12,
-    paddingVertical: 4,
-  },
-  padding: {
-    paddingHorizontal: 12,
-  },
+	text: {
+		fontSize: 12,
+		paddingVertical: 4,
+	},
+	padding: {
+		paddingHorizontal: 12,
+	},
 });
 
 export default withInternalTheme(HelperText);

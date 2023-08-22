@@ -8,30 +8,30 @@ import MaterialCommunityIcon from '../MaterialCommunityIcon';
 import TouchableRipple from '../TouchableRipple/TouchableRipple';
 
 export type Props = $RemoveChildren<typeof TouchableRipple> & {
-  /**
-   * Status of checkbox.
-   */
-  status: 'checked' | 'unchecked' | 'indeterminate';
-  /**
-   * Whether checkbox is disabled.
-   */
-  disabled?: boolean;
-  /**
-   * Function to execute on press.
-   */
-  onPress?: (e: GestureResponderEvent) => void;
-  /**
-   * Custom color for checkbox.
-   */
-  color?: string;
-  /**
-   * @optional
-   */
-  theme: InternalTheme;
-  /**
-   * testID to be used on tests.
-   */
-  testID?: string;
+	/**
+	 * Status of checkbox.
+	 */
+	status: 'checked' | 'unchecked' | 'indeterminate';
+	/**
+	 * Whether checkbox is disabled.
+	 */
+	disabled?: boolean;
+	/**
+	 * Function to execute on press.
+	 */
+	onPress?: (e: GestureResponderEvent) => void;
+	/**
+	 * Custom color for checkbox.
+	 */
+	color?: string;
+	/**
+	 * @optional
+	 */
+	theme: InternalTheme;
+	/**
+	 * testID to be used on tests.
+	 */
+	testID?: string;
 };
 
 /**
@@ -51,57 +51,57 @@ export type Props = $RemoveChildren<typeof TouchableRipple> & {
  * </div>
  */
 const CheckboxIOS = ({
-  status,
-  disabled,
-  onPress,
-  theme,
-  testID,
-  ...rest
+	status,
+	disabled,
+	onPress,
+	theme,
+	testID,
+	...rest
 }: Props) => {
-  const checked = status === 'checked';
-  const indeterminate = status === 'indeterminate';
+	const checked = status === 'checked';
+	const indeterminate = status === 'indeterminate';
 
-  const { checkedColor, rippleColor } = getSelectionControlIOSColor({
-    theme,
-    disabled,
-    customColor: rest.color,
-  });
+	const { checkedColor, rippleColor } = getSelectionControlIOSColor({
+		theme,
+		disabled,
+		customColor: rest.color,
+	});
 
-  const icon = indeterminate ? 'minus' : 'check';
+	const icon = indeterminate ? 'minus' : 'check';
 
-  return (
-    <TouchableRipple
-      {...rest}
-      borderless
-      rippleColor={rippleColor}
-      onPress={onPress}
-      disabled={disabled}
-      accessibilityRole="checkbox"
-      accessibilityState={{ disabled, checked }}
-      accessibilityLiveRegion="polite"
-      style={styles.container}
-      testID={testID}
-    >
-      <View style={{ opacity: indeterminate || checked ? 1 : 0 }}>
-        <MaterialCommunityIcon
-          allowFontScaling={false}
-          name={icon}
-          size={24}
-          color={checkedColor}
-          direction="ltr"
-        />
-      </View>
-    </TouchableRipple>
-  );
+	return (
+		<TouchableRipple
+			{...rest}
+			borderless
+			rippleColor={rippleColor}
+			onPress={onPress}
+			disabled={disabled}
+			accessibilityRole="checkbox"
+			accessibilityState={{ disabled, checked }}
+			accessibilityLiveRegion="polite"
+			style={styles.container}
+			testID={testID}
+		>
+			<View style={{ opacity: indeterminate || checked ? 1 : 0 }}>
+				<MaterialCommunityIcon
+					allowFontScaling={false}
+					name={icon}
+					size={24}
+					color={checkedColor}
+					direction="ltr"
+				/>
+			</View>
+		</TouchableRipple>
+	);
 };
 
 CheckboxIOS.displayName = 'Checkbox.IOS';
 
 const styles = StyleSheet.create({
-  container: {
-    borderRadius: 18,
-    padding: 6,
-  },
+	container: {
+		borderRadius: 18,
+		padding: 6,
+	},
 });
 
 export default withInternalTheme(CheckboxIOS);
