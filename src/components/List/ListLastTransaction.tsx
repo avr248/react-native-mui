@@ -35,12 +35,14 @@ export type Props = $RemoveChildren<typeof TouchableRipple> & {
 	right?: (props: { color: string; style?: Style }) => React.ReactNode;
 	direction?: any;
 	balance?: any;
+	balanceTitle: string;
 	description?: any;
 	theme: InternalTheme;
 	style?: StyleProp<ViewStyle>;
 	balanceStyle?: StyleProp<ViewStyle>;
 	amountStyle?: StyleProp<TextStyle>;
 	descriptionStyle?: StyleProp<TextStyle>;
+	contentStyle?: StyleProp<TextStyle>;
 	amountNumberOfLines?: number;
 	descriptionNumberOfLines?: number;
 	amountEllipsizeMode?: EllipsizeProp;
@@ -54,6 +56,7 @@ const ListLastTransaction = ({
 	right,
 	amount,
 	balance,
+	balanceTitle,
 	description,
 	onPress,
 	theme,
@@ -67,6 +70,7 @@ const ListLastTransaction = ({
 	balanceStyle,
 	dateStyle,
 	timeStyle,
+	contentStyle,
 	...rest
 }: Props) => {
 	return (
@@ -77,44 +81,27 @@ const ListLastTransaction = ({
 		>
 			<View
 				style={[
-					vis.w75,
+					vis.w90,
 					vis.col,
 					vis.sb,
 					vis.ac,
 					{ borderBottomWidth: 0.2, borderBottomColor: 'gray' },
 				]}
 			>
-				<View
-					style={[
-						vis.w75,
-						vis.rowRl,
-						vis.sb,
-						vis.ac,
-						{ paddingBottom: 10 },
-					]}
-				>
-					<View
-						style={[vis.w30, vis.col, vis.h40p, vis.sb, vis.asRl]}
-					>
-						<Text style={amountStyle}>{amount}</Text>
-						<Text style={balanceStyle}>{balance}</Text>
+				<View style={[vis.w90, vis.rowRl, vis.sb, vis.ac, contentStyle]}>
+					<View style={[vis.w30, vis.col, vis.sb, vis.asRl]}>
+						<Text style={timeStyle}>{balance}</Text>
+						<Text style={balanceStyle}>{balanceTitle}</Text>
 					</View>
-					<View
-						style={[vis.w20, vis.col, vis.h40p, vis.sb, vis.aeRl]}
-					>
+					<View style={[vis.w20, vis.col, vis.sb, vis.aeRl]}>
 						<Text style={timeStyle}>{time}</Text>
 						<Text style={dateStyle}>{date}</Text>
 					</View>
 				</View>
-				<View
-					style={[
-						vis.w75,
-						vis.col,
-						vis.feRl,
-						vis.ac,
-						{ paddingBottom: 10 },
-					]}
-				>
+				<View style={[vis.w75, vis.col, vis.feRl, vis.ac, vis.pb2]}>
+					<Text style={[amountStyle, vis.fos4, vis.mb1]}>
+						{amount}
+					</Text>
 					<Text style={descriptionStyle}>{description}</Text>
 				</View>
 			</View>

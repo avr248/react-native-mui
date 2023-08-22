@@ -414,10 +414,6 @@
       "path": "lib/module/components/List/ListSubheader",
       "name": "Props"
     },
-    "ListPaymentTransactionProps": {
-      "path": "lib/module/components/List/ListPaymentTransaction",
-      "name": "Props"
-    },
     "MenuProps": {
       "path": "lib/module/components/Menu/Menu",
       "name": "Props"

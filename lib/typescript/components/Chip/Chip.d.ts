@@ -186,7 +186,7 @@ declare const _default: React.ComponentType<Pick<Pick<import("../Surface").Props
      * Ellipsize Mode for the children text
      */
     ellipsizeMode?: EllipsizeProp | undefined;
-}, "elevation" | keyof import("react-native").ViewProps | "ellipsizeMode" | "onPress" | "onLongPress" | "disabled" | "icon" | "mode" | "onClose" | "selected" | "delayLongPress" | keyof React.RefAttributes<View> | "selectedColor" | "showSelectedOverlay" | "avatar" | "closeIconAccessibilityLabel" | "closeIcon" | "textStyle" | "compact" | "elevated"> & {
+}, "elevation" | keyof import("react-native").ViewProps | "ellipsizeMode" | "onPress" | "onLongPress" | "disabled" | "icon" | "mode" | "onClose" | "selected" | "delayLongPress" | keyof React.RefAttributes<View> | "elevated" | "compact" | "selectedColor" | "showSelectedOverlay" | "avatar" | "closeIconAccessibilityLabel" | "closeIcon" | "textStyle"> & {
     theme?: import("@callstack/react-theme-provider").$DeepPartial<unknown> | undefined;
 }> & import("@callstack/react-theme-provider/typings/hoist-non-react-statics").NonReactStatics<React.ComponentType<Pick<import("../Surface").Props, "theme" | "elevation" | keyof import("react-native").ViewProps | "key"> & React.RefAttributes<View> & {
     /**
