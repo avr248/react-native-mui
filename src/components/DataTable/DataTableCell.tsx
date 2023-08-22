@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {
-	StyleSheet,
-	StyleProp,
-	ViewStyle,
-	TextStyle,
-	GestureResponderEvent,
+  StyleSheet,
+  StyleProp,
+  ViewStyle,
+  TextStyle,
+  GestureResponderEvent,
 } from 'react-native';
 
 import type { $RemoveChildren } from '../../types';
@@ -12,23 +12,23 @@ import TouchableRipple from '../TouchableRipple/TouchableRipple';
 import Text from '../Typography/Text';
 
 export type Props = $RemoveChildren<typeof TouchableRipple> & {
-	/**
-	 * Content of the `DataTableCell`.
-	 */
-	children: React.ReactNode;
-	/**
-	 * Align the text to the right. Generally monetary or number fields are aligned to right.
-	 */
-	numeric?: boolean;
-	/**
-	 * Function to execute on press.
-	 */
-	onPress?: (e: GestureResponderEvent) => void;
-	style?: StyleProp<ViewStyle>;
-	/**
-	 * Text content style of the `DataTableCell`.
-	 */
-	textStyle?: StyleProp<TextStyle>;
+  /**
+   * Content of the `DataTableCell`.
+   */
+  children: React.ReactNode;
+  /**
+   * Align the text to the right. Generally monetary or number fields are aligned to right.
+   */
+  numeric?: boolean;
+  /**
+   * Function to execute on press.
+   */
+  onPress?: (e: GestureResponderEvent) => void;
+  style?: StyleProp<ViewStyle>;
+  /**
+   * Text content style of the `DataTableCell`.
+   */
+  textStyle?: StyleProp<TextStyle>;
 };
 
 /**
@@ -63,34 +63,34 @@ export type Props = $RemoveChildren<typeof TouchableRipple> & {
  */
 
 const DataTableCell = ({
-	children,
-	textStyle,
-	style,
-	numeric,
-	...rest
+  children,
+  textStyle,
+  style,
+  numeric,
+  ...rest
 }: Props) => (
-	<TouchableRipple
-		{...rest}
-		style={[styles.container, numeric && styles.right, style]}
-	>
-		<Text style={textStyle} numberOfLines={1}>
-			{children}
-		</Text>
-	</TouchableRipple>
+  <TouchableRipple
+    {...rest}
+    style={[styles.container, numeric && styles.right, style]}
+  >
+    <Text style={textStyle} numberOfLines={1}>
+      {children}
+    </Text>
+  </TouchableRipple>
 );
 
 DataTableCell.displayName = 'DataTable.Cell';
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		flexDirection: 'row',
-		alignItems: 'center',
-	},
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 
-	right: {
-		justifyContent: 'flex-end',
-	},
+  right: {
+    justifyContent: 'flex-end',
+  },
 });
 
 export default DataTableCell;

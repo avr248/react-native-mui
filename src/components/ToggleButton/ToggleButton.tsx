@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {
-	GestureResponderEvent,
-	StyleProp,
-	StyleSheet,
-	ViewStyle,
-	View,
+  GestureResponderEvent,
+  StyleProp,
+  StyleSheet,
+  ViewStyle,
+  View,
 } from 'react-native';
 
 import color from 'color';
@@ -18,44 +18,44 @@ import type { IconSource } from '../Icon';
 import IconButton from '../IconButton/IconButton';
 
 export type Props = {
-	/**
-	 * Icon to display for the `ToggleButton`.
-	 */
-	icon: IconSource;
-	/**
-	 * Size of the icon.
-	 */
-	size?: number;
-	/**
-	 * Custom text color for button.
-	 */
-	color?: string;
-	/**
-	 * Whether the button is disabled.
-	 */
-	disabled?: boolean;
-	/**
-	 * Accessibility label for the `ToggleButton`. This is read by the screen reader when the user taps the button.
-	 */
-	accessibilityLabel?: string;
-	/**
-	 * Function to execute on press.
-	 */
-	onPress?: (value?: GestureResponderEvent | string) => void;
-	/**
-	 * Value of button.
-	 */
-	value?: string;
-	/**
-	 * Status of button.
-	 */
-	status?: 'checked' | 'unchecked';
-	style?: StyleProp<ViewStyle>;
-	/**
-	 * @optional
-	 */
-	theme: InternalTheme;
-	ref?: React.RefObject<View>;
+  /**
+   * Icon to display for the `ToggleButton`.
+   */
+  icon: IconSource;
+  /**
+   * Size of the icon.
+   */
+  size?: number;
+  /**
+   * Custom text color for button.
+   */
+  color?: string;
+  /**
+   * Whether the button is disabled.
+   */
+  disabled?: boolean;
+  /**
+   * Accessibility label for the `ToggleButton`. This is read by the screen reader when the user taps the button.
+   */
+  accessibilityLabel?: string;
+  /**
+   * Function to execute on press.
+   */
+  onPress?: (value?: GestureResponderEvent | string) => void;
+  /**
+   * Value of button.
+   */
+  value?: string;
+  /**
+   * Status of button.
+   */
+  status?: 'checked' | 'unchecked';
+  style?: StyleProp<ViewStyle>;
+  /**
+   * @optional
+   */
+  theme: InternalTheme;
+  ref?: React.RefObject<View>;
 };
 
 /**
@@ -93,90 +93,81 @@ export type Props = {
  * ```
  */
 const ToggleButton = React.forwardRef<View, Props>(
-	(
-		{
-			icon,
-			size,
-			theme,
-			accessibilityLabel,
-			disabled,
-			style,
-			value,
-			status,
-			onPress,
-			...rest
-		}: Props,
-		ref
-	) => {
-		const borderRadius = theme.roundness;
+  (
+    {
+      icon,
+      size,
+      theme,
+      accessibilityLabel,
+      disabled,
+      style,
+      value,
+      status,
+      onPress,
+      ...rest
+    }: Props,
+    ref
+  ) => {
+    const borderRadius = theme.roundness;
 
-		return (
-			<ToggleButtonGroupContext.Consumer>
-				{(
-					context: {
-						value: string | null;
-						onValueChange: Function;
-					} | null
-				) => {
-					const checked: boolean | null =
-						(context && context.value === value) ||
-						status === 'checked';
+    return (
+      <ToggleButtonGroupContext.Consumer>
+        {(
+          context: { value: string | null; onValueChange: Function } | null
+        ) => {
+          const checked: boolean | null =
+            (context && context.value === value) || status === 'checked';
 
-					const backgroundColor = getToggleButtonColor({
-						theme,
-						checked,
-					});
-					const borderColor = theme.isV3
-						? theme.colors.outline
-						: color(theme.dark ? white : black)
-								.alpha(0.29)
-								.rgb()
-								.string();
+          const backgroundColor = getToggleButtonColor({ theme, checked });
+          const borderColor = theme.isV3
+            ? theme.colors.outline
+            : color(theme.dark ? white : black)
+                .alpha(0.29)
+                .rgb()
+                .string();
 
-					return (
-						<IconButton
-							borderless={false}
-							icon={icon}
-							onPress={(e?: GestureResponderEvent | string) => {
-								if (onPress) {
-									onPress(e);
-								}
+          return (
+            <IconButton
+              borderless={false}
+              icon={icon}
+              onPress={(e?: GestureResponderEvent | string) => {
+                if (onPress) {
+                  onPress(e);
+                }
 
-								if (context) {
-									context.onValueChange(
-										!checked ? value : null
-									);
-								}
-							}}
-							size={size}
-							accessibilityLabel={accessibilityLabel}
-							accessibilityState={{ disabled, selected: checked }}
-							disabled={disabled}
-							style={[
-								styles.content,
-								{
-									backgroundColor,
-									borderRadius,
-									borderColor,
-								},
-								style,
-							]}
-							ref={ref}
-							{...rest}
-						/>
-					);
-				}}
-			</ToggleButtonGroupContext.Consumer>
-		);
-	}
+                if (context) {
+                  context.onValueChange(!checked ? value : null);
+                }
+              }}
+              size={size}
+              accessibilityLabel={accessibilityLabel}
+              accessibilityState={{ disabled, selected: checked }}
+              disabled={disabled}
+              style={[
+                styles.content,
+                {
+                  backgroundColor,
+                  borderRadius,
+                  borderColor,
+                },
+                style,
+              ]}
+              ref={ref}
+              {...rest}
+            />
+          );
+        }}
+      </ToggleButtonGroupContext.Consumer>
+    );
+  }
 );
 
 const styles = StyleSheet.create({
-	content: {
-		width: 42,
-		height: 42,
-		margin: 0,
-	},
+  content: {
+    width: 42,
+    height: 42,
+    margin: 0,
+  },
 });
 
 export default withInternalTheme(ToggleButton);

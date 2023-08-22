@@ -5,18 +5,18 @@ import { useInternalTheme } from '../../core/theming';
 import Icon, { IconSource } from '../Icon';
 
 export type Props = {
-	/**
-	 *  Custom color for action icon.
-	 */
-	color?: string;
-	/**
-	 * Name of the icon to show.
-	 */
-	icon: IconSource;
-	/**
-	 * Optional icon size.
-	 */
-	size?: number;
+  /**
+   *  Custom color for action icon.
+   */
+  color?: string;
+  /**
+   * Name of the icon to show.
+   */
+  icon: IconSource;
+  /**
+   * Optional icon size.
+   */
+  size?: number;
 };
 
 /**
@@ -61,30 +61,30 @@ export type Props = {
  * ```
  */
 const DialogIcon = ({ size = 24, color, icon }: Props) => {
-	const theme = useInternalTheme();
+  const theme = useInternalTheme();
 
-	if (!theme.isV3) {
-		return null;
-	}
+  if (!theme.isV3) {
+    return null;
+  }
 
-	//@ts-ignore
-	const iconColor = color || theme.colors.secondary;
+  //@ts-ignore
+  const iconColor = color || theme.colors.secondary;
 
-	return (
-		<View style={styles.wrapper}>
-			<Icon source={icon} color={iconColor} size={size} />
-		</View>
-	);
+  return (
+    <View style={styles.wrapper}>
+      <Icon source={icon} color={iconColor} size={size} />
+    </View>
+  );
 };
 
 DialogIcon.displayName = 'Dialog.Icon';
 
 const styles = StyleSheet.create({
-	wrapper: {
-		alignItems: 'center',
-		justifyContent: 'center',
-		paddingTop: 24,
-	},
+  wrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 24,
+  },
 });
 
 export default DialogIcon;

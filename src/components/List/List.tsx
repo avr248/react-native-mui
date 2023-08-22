@@ -24,3 +24,6 @@ export { default as Subheader } from './ListSubheader';
 
 // @component ./ListImage.tsx
 export { default as Image } from './ListImage';
+
+// @component ./ListPaymentTransaction.tsx
+export { default as PaymentTransaction } from './ListPaymentTransaction';

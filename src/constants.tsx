@@ -4,10 +4,10 @@ import { NativeModules, Platform } from 'react-native';
 // status bar is translucent on Android. This should be replaced in the future
 // with react-native-safe-area-context.
 const estimatedStatusBarHeight =
-	NativeModules.NativeUnimoduleProxy?.modulesConstants?.ExponentConstants
-		?.statusBarHeight ?? 0;
+  NativeModules.NativeUnimoduleProxy?.modulesConstants?.ExponentConstants
+    ?.statusBarHeight ?? 0;
 
 export const APPROX_STATUSBAR_HEIGHT = Platform.select({
-	android: estimatedStatusBarHeight,
-	ios: Platform.Version < 11 ? estimatedStatusBarHeight : 0,
+  android: estimatedStatusBarHeight,
+  ios: Platform.Version < 11 ? estimatedStatusBarHeight : 0,
 });

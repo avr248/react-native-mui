@@ -5,50 +5,50 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Appbar } from './Appbar';
 import {
-	DEFAULT_APPBAR_HEIGHT,
-	getAppbarColor,
-	modeAppbarHeight,
+  DEFAULT_APPBAR_HEIGHT,
+  getAppbarColor,
+  modeAppbarHeight,
 } from './utils';
 import { withInternalTheme } from '../../core/theming';
 import shadow from '../../styles/shadow';
 import type { InternalTheme } from '../../types';
 
 export type Props = React.ComponentProps<typeof Appbar> & {
-	/**
-	 * Whether the background color is a dark color. A dark header will render light text and vice-versa.
-	 */
-	dark?: boolean;
-	/**
-	 * Extra padding to add at the top of header to account for translucent status bar.
-	 * This is automatically handled on iOS >= 11 including iPhone X using `SafeAreaView`.
-	 * If you are using Expo, we assume translucent status bar and set a height for status bar automatically.
-	 * Pass `0` or a custom value to disable the default behaviour, and customize the height.
-	 */
-	statusBarHeight?: number;
-	/**
-	 * Content of the header.
-	 */
-	children: React.ReactNode;
-	/**
-	 * @supported Available in v5.x with theme version 3
-	 *
-	 * Mode of the Appbar.
-	 * - `small` - Appbar with default height (56).
-	 * - `medium` - Appbar with medium height (112).
-	 * - `large` - Appbar with large height (152).
-	 * - `center-aligned` - Appbar with default height and center-aligned title.
-	 */
-	mode?: 'small' | 'medium' | 'large' | 'center-aligned';
-	/**
-	 * @supported Available in v5.x with theme version 3
-	 * Whether Appbar background should have the elevation along with primary color pigment.
-	 */
-	elevated?: boolean;
-	/**
-	 * @optional
-	 */
-	theme: InternalTheme;
-	style?: StyleProp<ViewStyle>;
+  /**
+   * Whether the background color is a dark color. A dark header will render light text and vice-versa.
+   */
+  dark?: boolean;
+  /**
+   * Extra padding to add at the top of header to account for translucent status bar.
+   * This is automatically handled on iOS >= 11 including iPhone X using `SafeAreaView`.
+   * If you are using Expo, we assume translucent status bar and set a height for status bar automatically.
+   * Pass `0` or a custom value to disable the default behaviour, and customize the height.
+   */
+  statusBarHeight?: number;
+  /**
+   * Content of the header.
+   */
+  children: React.ReactNode;
+  /**
+   * @supported Available in v5.x with theme version 3
+   *
+   * Mode of the Appbar.
+   * - `small` - Appbar with default height (56).
+   * - `medium` - Appbar with medium height (112).
+   * - `large` - Appbar with large height (152).
+   * - `center-aligned` - Appbar with default height and center-aligned title.
+   */
+  mode?: 'small' | 'medium' | 'large' | 'center-aligned';
+  /**
+   * @supported Available in v5.x with theme version 3
+   * Whether Appbar background should have the elevation along with primary color pigment.
+   */
+  elevated?: boolean;
+  /**
+   * @optional
+   */
+  theme: InternalTheme;
+  style?: StyleProp<ViewStyle>;
 };
 
 /**
@@ -100,66 +100,66 @@ export type Props = React.ComponentProps<typeof Appbar> & {
  * ```
  */
 const AppbarHeader = ({
-	// Don't use default props since we check it to know whether we should use SafeAreaView
-	statusBarHeight,
-	style,
-	dark,
-	mode = Platform.OS === 'ios' ? 'center-aligned' : 'small',
-	elevated = false,
-	...rest
+  // Don't use default props since we check it to know whether we should use SafeAreaView
+  statusBarHeight,
+  style,
+  dark,
+  mode = Platform.OS === 'ios' ? 'center-aligned' : 'small',
+  elevated = false,
+  ...rest
 }: Props) => {
-	const { isV3 } = rest.theme;
+  const { isV3 } = rest.theme;
 
-	const {
-		height = isV3 ? modeAppbarHeight[mode] : DEFAULT_APPBAR_HEIGHT,
-		elevation = isV3 ? (elevated ? 2 : 0) : 4,
-		backgroundColor: customBackground,
-		zIndex = isV3 && elevated ? 1 : 0,
-		...restStyle
-	}: ViewStyle = StyleSheet.flatten(style) || {};
+  const {
+    height = isV3 ? modeAppbarHeight[mode] : DEFAULT_APPBAR_HEIGHT,
+    elevation = isV3 ? (elevated ? 2 : 0) : 4,
+    backgroundColor: customBackground,
+    zIndex = isV3 && elevated ? 1 : 0,
+    ...restStyle
+  }: ViewStyle = StyleSheet.flatten(style) || {};
 
-	const backgroundColor = getAppbarColor(
-		rest.theme,
-		elevation,
-		customBackground,
-		elevated
-	);
+  const backgroundColor = getAppbarColor(
+    rest.theme,
+    elevation,
+    customBackground,
+    elevated
+  );
 
-	const { top, left, right } = useSafeAreaInsets();
+  const { top, left, right } = useSafeAreaInsets();
 
-	return (
-		<View
-			style={
-				[
-					{
-						backgroundColor,
-						zIndex,
-						elevation,
-						paddingTop: statusBarHeight ?? top,
-						paddingHorizontal: Math.max(left, right),
-					},
-					shadow(elevation),
-				] as StyleProp<ViewStyle>
-			}
-		>
-			<Appbar
-				style={[{ height, backgroundColor }, styles.appbar, restStyle]}
-				dark={dark}
-				{...(isV3 && {
-					mode,
-				})}
-				{...rest}
-			/>
-		</View>
-	);
+  return (
+    <View
+      style={
+        [
+          {
+            backgroundColor,
+            zIndex,
+            elevation,
+            paddingTop: statusBarHeight ?? top,
+            paddingHorizontal: Math.max(left, right),
+          },
+          shadow(elevation),
+        ] as StyleProp<ViewStyle>
+      }
+    >
+      <Appbar
+        style={[{ height, backgroundColor }, styles.appbar, restStyle]}
+        dark={dark}
+        {...(isV3 && {
+          mode,
+        })}
+        {...rest}
+      />
+    </View>
+  );
 };
 
 AppbarHeader.displayName = 'Appbar.Header';
 
 const styles = StyleSheet.create({
-	appbar: {
-		elevation: 0,
-	},
+  appbar: {
+    elevation: 0,
+  },
 });
 
 export default withInternalTheme(AppbarHeader);

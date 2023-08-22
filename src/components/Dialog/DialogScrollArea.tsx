@@ -4,11 +4,11 @@ import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { useInternalTheme } from '../../core/theming';
 
 export type Props = React.ComponentPropsWithRef<typeof View> & {
-	/**
-	 * Content of the `DialogScrollArea`.
-	 */
-	children: React.ReactNode;
-	style?: StyleProp<ViewStyle>;
+  /**
+   * Content of the `DialogScrollArea`.
+   */
+  children: React.ReactNode;
+  style?: StyleProp<ViewStyle>;
 };
 
 /**
@@ -49,40 +49,40 @@ export type Props = React.ComponentPropsWithRef<typeof View> & {
  * ```
  */
 const DialogScrollArea = (props: Props) => {
-	const theme = useInternalTheme();
-	const borderStyles = {
-		borderColor: theme.isV3
-			? theme.colors.surfaceVariant
-			: 'rgba(0, 0, 0, .12)',
-		borderTopWidth: theme.isV3 ? 1 : StyleSheet.hairlineWidth,
-		borderBottomWidth: theme.isV3 ? 1 : StyleSheet.hairlineWidth,
-	};
-	return (
-		<View
-			{...props}
-			style={[
-				styles.container,
-				borderStyles,
-				theme.isV3 && styles.v3Container,
-				props.style,
-			]}
-		>
-			{props.children}
-		</View>
-	);
+  const theme = useInternalTheme();
+  const borderStyles = {
+    borderColor: theme.isV3
+      ? theme.colors.surfaceVariant
+      : 'rgba(0, 0, 0, .12)',
+    borderTopWidth: theme.isV3 ? 1 : StyleSheet.hairlineWidth,
+    borderBottomWidth: theme.isV3 ? 1 : StyleSheet.hairlineWidth,
+  };
+  return (
+    <View
+      {...props}
+      style={[
+        styles.container,
+        borderStyles,
+        theme.isV3 && styles.v3Container,
+        props.style,
+      ]}
+    >
+      {props.children}
+    </View>
+  );
 };
 
 DialogScrollArea.displayName = 'Dialog.ScrollArea';
 
 const styles = StyleSheet.create({
-	container: {
-		paddingHorizontal: 24,
-		flexGrow: 1,
-		flexShrink: 1,
-	},
-	v3Container: {
-		marginBottom: 24,
-	},
+  container: {
+    paddingHorizontal: 24,
+    flexGrow: 1,
+    flexShrink: 1,
+  },
+  v3Container: {
+    marginBottom: 24,
+  },
 });
 
 export default DialogScrollArea;

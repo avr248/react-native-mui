@@ -1,18 +1,18 @@
 import { Dimensions, LayoutRectangle } from 'react-native';
 
 type ChildrenMeasurement = {
-	width: number;
-	height: number;
-	pageX: number;
-	pageY: number;
+  width: number;
+  height: number;
+  pageX: number;
+  pageY: number;
 };
 
 type TooltipLayout = LayoutRectangle;
 
 export type Measurement = {
-	children: ChildrenMeasurement;
-	tooltip: TooltipLayout;
-	measured: boolean;
+  children: ChildrenMeasurement;
+  tooltip: TooltipLayout;
+  measured: boolean;
 };
 
 /**
@@ -20,7 +20,7 @@ export type Measurement = {
  * The tooltip will be placed at the starting x-coordinate from the wrapped element.
  */
 const overflowLeft = (center: number): boolean => {
-	return center < 0;
+  return center < 0;
 };
 
 /**
@@ -28,9 +28,9 @@ const overflowLeft = (center: number): boolean => {
  * The tooltip width will grow from right to left relative to the wrapped element.
  */
 const overflowRight = (center: number, tooltipWidth: number): boolean => {
-	const { width: layoutWidth } = Dimensions.get('window');
+  const { width: layoutWidth } = Dimensions.get('window');
 
-	return center + tooltipWidth > layoutWidth;
+  return center + tooltipWidth > layoutWidth;
 };
 
 /**
@@ -38,48 +38,48 @@ const overflowRight = (center: number, tooltipWidth: number): boolean => {
  * The tooltip will be placed at the top of the wrapped element.
  */
 const overflowBottom = (
-	childrenY: number,
-	childrenHeight: number,
-	tooltipHeight: number
+  childrenY: number,
+  childrenHeight: number,
+  tooltipHeight: number
 ): boolean => {
-	const { height: layoutHeight } = Dimensions.get('window');
+  const { height: layoutHeight } = Dimensions.get('window');
 
-	return childrenY + childrenHeight + tooltipHeight > layoutHeight;
+  return childrenY + childrenHeight + tooltipHeight > layoutHeight;
 };
 
 const getTooltipXPosition = (
-	{ pageX: childrenX, width: childrenWidth }: ChildrenMeasurement,
-	{ width: tooltipWidth }: TooltipLayout
+  { pageX: childrenX, width: childrenWidth }: ChildrenMeasurement,
+  { width: tooltipWidth }: TooltipLayout
 ): number => {
-	const center = childrenX + (childrenWidth - tooltipWidth) / 2;
+  const center = childrenX + (childrenWidth - tooltipWidth) / 2;
 
-	if (overflowLeft(center)) return childrenX;
+  if (overflowLeft(center)) return childrenX;
 
-	if (overflowRight(center, tooltipWidth))
-		return childrenX + childrenWidth - tooltipWidth;
+  if (overflowRight(center, tooltipWidth))
+    return childrenX + childrenWidth - tooltipWidth;
 
-	return center;
+  return center;
 };
 
 const getTooltipYPosition = (
-	{ pageY: childrenY, height: childrenHeight }: ChildrenMeasurement,
-	{ height: tooltipHeight }: TooltipLayout
+  { pageY: childrenY, height: childrenHeight }: ChildrenMeasurement,
+  { height: tooltipHeight }: TooltipLayout
 ): number => {
-	if (overflowBottom(childrenY, childrenHeight, tooltipHeight))
-		return childrenY - tooltipHeight;
+  if (overflowBottom(childrenY, childrenHeight, tooltipHeight))
+    return childrenY - tooltipHeight;
 
-	return childrenY + childrenHeight;
+  return childrenY + childrenHeight;
 };
 
 export const getTooltipPosition = ({
-	children,
-	tooltip,
-	measured,
+  children,
+  tooltip,
+  measured,
 }: Measurement): {} | { left: number; top: number } => {
-	if (!measured) return {};
+  if (!measured) return {};
 
-	return {
-		left: getTooltipXPosition(children, tooltip),
-		top: getTooltipYPosition(children, tooltip),
-	};
+  return {
+    left: getTooltipXPosition(children, tooltip),
+    top: getTooltipYPosition(children, tooltip),
+  };
 };

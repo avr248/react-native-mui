@@ -5,20 +5,20 @@ import type { InternalTheme } from 'src/types';
 import PortalConsumer from './PortalConsumer';
 import PortalHost, { PortalContext, PortalMethods } from './PortalHost';
 import {
-	Consumer as SettingsConsumer,
-	Provider as SettingsProvider,
+  Consumer as SettingsConsumer,
+  Provider as SettingsProvider,
 } from '../../core/settings';
 import { ThemeProvider, withInternalTheme } from '../../core/theming';
 
 export type Props = {
-	/**
-	 * Content of the `Portal`.
-	 */
-	children: React.ReactNode;
-	/**
-	 * @optional
-	 */
-	theme: InternalTheme;
+  /**
+   * Content of the `Portal`.
+   */
+  children: React.ReactNode;
+  /**
+   * @optional
+   */
+  theme: InternalTheme;
 };
 
 /**
@@ -42,31 +42,29 @@ export type Props = {
  * ```
  */
 class Portal extends React.Component<Props> {
-	// @component ./PortalHost.tsx
-	static Host = PortalHost;
+  // @component ./PortalHost.tsx
+  static Host = PortalHost;
 
-	render() {
-		const { children, theme } = this.props;
+  render() {
+    const { children, theme } = this.props;
 
-		return (
-			<SettingsConsumer>
-				{(settings) => (
-					<PortalContext.Consumer>
-						{(manager) => (
-							<PortalConsumer manager={manager as PortalMethods}>
-								<SettingsProvider value={settings}>
-									{/* @ts-ignore */}
-									<ThemeProvider theme={theme}>
-										{children}
-									</ThemeProvider>
-								</SettingsProvider>
-							</PortalConsumer>
-						)}
-					</PortalContext.Consumer>
-				)}
-			</SettingsConsumer>
-		);
-	}
+    return (
+      <SettingsConsumer>
+        {(settings) => (
+          <PortalContext.Consumer>
+            {(manager) => (
+              <PortalConsumer manager={manager as PortalMethods}>
+                <SettingsProvider value={settings}>
+                  {/* @ts-ignore */}
+                  <ThemeProvider theme={theme}>{children}</ThemeProvider>
+                </SettingsProvider>
+              </PortalConsumer>
+            )}
+          </PortalContext.Consumer>
+        )}
+      </SettingsConsumer>
+    );
+  }
 }
 
 export default withInternalTheme(Portal);

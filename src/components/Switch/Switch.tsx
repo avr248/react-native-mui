@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {
-	NativeModules,
-	Platform,
-	StyleProp,
-	Switch as NativeSwitch,
-	ViewStyle,
+  NativeModules,
+  Platform,
+  StyleProp,
+  Switch as NativeSwitch,
+  ViewStyle,
 } from 'react-native';
 
 import { getSwitchColor } from './utils';
@@ -12,31 +12,31 @@ import { withInternalTheme } from '../../core/theming';
 import type { InternalTheme } from '../../types';
 
 const version = NativeModules.PlatformConstants
-	? NativeModules.PlatformConstants.reactNativeVersion
-	: undefined;
+  ? NativeModules.PlatformConstants.reactNativeVersion
+  : undefined;
 
 export type Props = React.ComponentPropsWithRef<typeof NativeSwitch> & {
-	/**
-	 * Disable toggling the switch.
-	 */
-	disabled?: boolean;
-	/**
-	 * Value of the switch, true means 'on', false means 'off'.
-	 */
-	value?: boolean;
-	/**
-	 * Custom color for switch.
-	 */
-	color?: string;
-	/**
-	 * Callback called with the new value when it changes.
-	 */
-	onValueChange?: Function;
-	style?: StyleProp<ViewStyle>;
-	/**
-	 * @optional
-	 */
-	theme: InternalTheme;
+  /**
+   * Disable toggling the switch.
+   */
+  disabled?: boolean;
+  /**
+   * Value of the switch, true means 'on', false means 'off'.
+   */
+  value?: boolean;
+  /**
+   * Custom color for switch.
+   */
+  color?: string;
+  /**
+   * Callback called with the new value when it changes.
+   */
+  onValueChange?: Function;
+  style?: StyleProp<ViewStyle>;
+  /**
+   * @optional
+   */
+  theme: InternalTheme;
 };
 
 /**
@@ -78,49 +78,49 @@ export type Props = React.ComponentPropsWithRef<typeof NativeSwitch> & {
  * ```
  */
 const Switch = ({
-	value,
-	disabled,
-	onValueChange,
-	color,
-	theme,
-	...rest
+  value,
+  disabled,
+  onValueChange,
+  color,
+  theme,
+  ...rest
 }: Props) => {
-	const { checkedColor, onTintColor, thumbTintColor } = getSwitchColor({
-		theme,
-		disabled,
-		value,
-		color,
-	});
+  const { checkedColor, onTintColor, thumbTintColor } = getSwitchColor({
+    theme,
+    disabled,
+    value,
+    color,
+  });
 
-	const props =
-		version && version.major === 0 && version.minor <= 56
-			? {
-					onTintColor,
-					thumbTintColor,
-			  }
-			: Platform.OS === 'web'
-			? {
-					activeTrackColor: onTintColor,
-					thumbColor: thumbTintColor,
-					activeThumbColor: checkedColor,
-			  }
-			: {
-					thumbColor: thumbTintColor,
-					trackColor: {
-						true: onTintColor,
-						false: onTintColor,
-					},
-			  };
+  const props =
+    version && version.major === 0 && version.minor <= 56
+      ? {
+          onTintColor,
+          thumbTintColor,
+        }
+      : Platform.OS === 'web'
+      ? {
+          activeTrackColor: onTintColor,
+          thumbColor: thumbTintColor,
+          activeThumbColor: checkedColor,
+        }
+      : {
+          thumbColor: thumbTintColor,
+          trackColor: {
+            true: onTintColor,
+            false: onTintColor,
+          },
+        };
 
-	return (
-		<NativeSwitch
-			value={value}
-			disabled={disabled}
-			onValueChange={disabled ? undefined : onValueChange}
-			{...props}
-			{...rest}
-		/>
-	);
+  return (
+    <NativeSwitch
+      value={value}
+      disabled={disabled}
+      onValueChange={disabled ? undefined : onValueChange}
+      {...props}
+      {...rest}
+    />
+  );
 };
 
 export default withInternalTheme(Switch);

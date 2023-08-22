@@ -1,11 +1,11 @@
 export { MD3Colors } from './styles/themes/v3/tokens';
 
 export {
-	useTheme,
-	withTheme,
-	ThemeProvider,
-	DefaultTheme,
-	adaptNavigationTheme,
+  useTheme,
+  withTheme,
+  ThemeProvider,
+  DefaultTheme,
+  adaptNavigationTheme,
 } from './core/theming';
 
 export * from './styles/themes';
@@ -58,11 +58,11 @@ export { default as SegmentedButtons } from './components/SegmentedButtons/Segme
 export { default as Tooltip } from './components/Tooltip/Tooltip';
 
 export {
-	Caption,
-	Headline,
-	Paragraph,
-	Subheading,
-	Title,
+  Caption,
+  Headline,
+  Paragraph,
+  Subheading,
+  Title,
 } from './components/Typography/v2';
 export { default as Text } from './components/Typography/Text';
 
@@ -119,6 +119,7 @@ export type { Props as ListTransactionProps } from './components/List/ListTransa
 export type { Props as ListLastTransactionProps } from './components/List/ListLastTransaction';
 export type { Props as ListSectionProps } from './components/List/ListSection';
 export type { Props as ListSubheaderProps } from './components/List/ListSubheader';
+export type { Props as ListPaymentTransactionProps } from './components/List/ListPaymentTransaction';
 export type { Props as MenuProps } from './components/Menu/Menu';
 export type { Props as MenuItemProps } from './components/Menu/MenuItem';
 export type { Props as ModalProps } from './components/Modal';

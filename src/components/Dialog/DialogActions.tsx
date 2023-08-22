@@ -4,11 +4,11 @@ import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { useInternalTheme } from '../../core/theming';
 
 export type Props = React.ComponentPropsWithRef<typeof View> & {
-	/**
-	 * Content of the `DialogActions`.
-	 */
-	children: React.ReactNode;
-	style?: StyleProp<ViewStyle>;
+  /**
+   * Content of the `DialogActions`.
+   */
+  children: React.ReactNode;
+  style?: StyleProp<ViewStyle>;
 };
 
 /**
@@ -46,46 +46,46 @@ export type Props = React.ComponentPropsWithRef<typeof View> & {
  * ```
  */
 const DialogActions = (props: Props) => {
-	const { isV3 } = useInternalTheme();
-	const actionsLength = React.Children.toArray(props.children).length;
+  const { isV3 } = useInternalTheme();
+  const actionsLength = React.Children.toArray(props.children).length;
 
-	return (
-		<View
-			{...props}
-			style={[isV3 ? styles.v3Container : styles.container, props.style]}
-		>
-			{React.Children.map(props.children, (child, i) =>
-				React.isValidElement(child)
-					? React.cloneElement(child as React.ReactElement<any>, {
-							compact: true,
-							uppercase: !isV3,
-							style: isV3 && {
-								paddingRight: i + 1 === actionsLength ? 0 : 8,
-							},
-					  })
-					: child
-			)}
-		</View>
-	);
+  return (
+    <View
+      {...props}
+      style={[isV3 ? styles.v3Container : styles.container, props.style]}
+    >
+      {React.Children.map(props.children, (child, i) =>
+        React.isValidElement(child)
+          ? React.cloneElement(child as React.ReactElement<any>, {
+              compact: true,
+              uppercase: !isV3,
+              style: isV3 && {
+                paddingRight: i + 1 === actionsLength ? 0 : 8,
+              },
+            })
+          : child
+      )}
+    </View>
+  );
 };
 
 DialogActions.displayName = 'Dialog.Actions';
 
 const styles = StyleSheet.create({
-	container: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'flex-end',
-		padding: 8,
-	},
-	v3Container: {
-		flexDirection: 'row',
-		flexGrow: 1,
-		alignItems: 'center',
-		justifyContent: 'flex-end',
-		paddingBottom: 24,
-		paddingHorizontal: 24,
-	},
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: 8,
+  },
+  v3Container: {
+    flexDirection: 'row',
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    paddingBottom: 24,
+    paddingHorizontal: 24,
+  },
 });
 
 export default DialogActions;
