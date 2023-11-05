@@ -154,7 +154,7 @@ declare const _default: React.ComponentType<Pick<$RemoveChildren<React.Component
     receiptOnClick?: any;
     attachmentTitle?: any;
 }> & {
-    ({ date, time, direction, right, amount, balance, balanceTitle, description, onPress, theme, style, amountNumberOfLines, descriptionNumberOfLines, amountEllipsizeMode, descriptionEllipsizeMode, receiptAttached, receiptOnClick, attachmentTitle, descriptionStyle, amountStyle, balanceStyle, dateStyle, timeStyle, attachStyle, ...rest }: Props): JSX.Element;
+    ({ key, date, time, direction, right, amount, balance, balanceTitle, description, onPress, theme, style, amountNumberOfLines, descriptionNumberOfLines, amountEllipsizeMode, descriptionEllipsizeMode, receiptAttached, receiptOnClick, attachmentTitle, descriptionStyle, amountStyle, balanceStyle, dateStyle, timeStyle, attachStyle, ...rest }: Props): JSX.Element;
     displayName: string;
 }, {}>;
 export default _default;
